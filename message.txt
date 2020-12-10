@@ -1,0 +1,151 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Tablero{
+  agregarBloque(unNombre)
+}
+
+class SeccionAlgoritmo{
+  -bloquesParaEjecucion
+  agregarBloqueEnPosicion(unBloque, unIndice)
+}
+
+Abstract class Bloque{
+  -nombre
+  -siguiente
+  ejecutarBloque() 
+}
+
+Abstract class Secuencia{
+  -listadoBloques
+}
+
+class Repeticion{
+  repetirSecuencia()
+}
+
+class Inversion{
+  invertirSecuencia()
+}
+
+class Personalizado{
+  guardarSecuencia()
+}
+
+class Individual{
+  -accion
+}
+
+
+Abstract class Accion{
+  {Abstract}invertir()
+}
+
+Abstract class Movimiento{
+  {Abstract}modificarPosicion(unaPosicion)
+}
+
+class MoverArriba{
+  invertir()
+  modificarPosicion(unaPosicion)
+}
+
+class MoverAbajo{
+  invertir()
+  modificarPosicion(unaPosicion)
+}
+
+class MoverIzquierda{
+  invertir()
+  modificarPosicion(unaPosicion)
+}
+
+class MoverDerecha{
+  invertir()  
+  modificarPosicion(unaPosicion)
+}
+
+class BajarLapiz{}
+class LevantarLapiz{}
+
+
+class Posicion{
+  -x
+  -y
+  modificarCoordenadas(unX, unY)
+}
+
+class Personaje{
+  -posicion 
+  -lapiz
+  levantarLapiz()
+  bajarLapiz()
+ 
+}
+
+Abstract class estadoLapiz{
+  {Abstract} dibujar()
+}
+
+class Bajado{
+  dibujar()
+}
+
+class Levantado{
+  dibujar()
+}
+
+class Lapiz{
+  -estado 
+  usar()
+  bajar()
+  subir()
+}
+
+class SeccionDibujo{
+}
+
+class SeccionBloques{
+  -bloquesDisponibles
+  buscarBloque(unNombre)
+}
+
+class Bloque{
+}
+
+Individual -> Accion
+
+Movimiento <|-- MoverArriba
+Movimiento <|-- MoverDerecha
+Movimiento <|-- MoverIzquierda
+Movimiento <|-- MoverAbajo
+
+Accion <|-- Movimiento
+Accion <|-- LevantarLapiz
+Accion <|-- BajarLapiz
+
+SeccionAlgoritmo "1" --> "*" Bloque
+Bloque ..> Personaje
+
+estadoLapiz <|-- Bajado
+estadoLapiz <|-- Levantado 
+Lapiz --> estadoLapiz
+Personaje "1" --> "1" Lapiz
+
+Personaje "1" --> "1" Posicion
+Bloque ..> Posicion
+SeccionDibujo <. estadoLapiz
+
+Bloque "*" <- Secuencia
+Secuencia --|> Bloque
+
+Individual -|> Bloque
+
+Secuencia <|-- Inversion
+Secuencia <|-- Repeticion
+Secuencia <|-- Personalizado
+
+Tablero --> SeccionAlgoritmo
+Tablero -> SeccionBloques
+Tablero --> SeccionDibujo
+@enduml
