@@ -5,11 +5,10 @@ public class pruebacommit {
         System.out.println("Pruebo mi primer commit");
 
         System.out.println("Segundo en probar mi primer commit");
-    }
-
-    public void imprimir(){
+        
         System.out.println("Pruebo mi primer commit -marcola");
     }
+
 }
 
 
