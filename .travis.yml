@@ -1,4 +1,12 @@
   
 language: java
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+sudo: false
+
+cache: directories:
+  -"$HOME/ .ms2"
+
+before cache: 
+- rm -rf $HOME/.m2/repository/com/autentia/traviscodacy
+
+jdk:
+  -oraclejdk15
