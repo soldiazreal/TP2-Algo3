@@ -1,4 +1,4 @@
-language: Java
-rvm:
-- 15.0.1
--junit
+  
+language: java
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
