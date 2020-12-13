@@ -1,4 +1,4 @@
 language: Java
 rvm:
 - 15.0.1
--junix
+-junit
