@@ -2,5 +2,5 @@
 language: java
 os: windows
 rvm:
- - 15.0
+ - 15.0.1
  - junit
