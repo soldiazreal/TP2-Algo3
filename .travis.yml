@@ -29,6 +29,14 @@ matrix:
       os: osx
       jdk: openjdk-ea
 
+    - env: DEPLOY='windows'
+      os: windows
+      jdk: openjdk15
+
+    - env: DEPLOY='windows-15'
+      os: windows
+      jdk: openjdk-ea
+
     - env: DEPLOY='linux-early-access-loom' TAG="untagged-a6acf5c962e51cb48b3c" NAME="jdk-16-loom"
 
     - env: DEPLOY='linux-early-access-lworld' TAG="untagged-a6acf5c962e51cb48b3c" NAME="jdk-16-lworld"
