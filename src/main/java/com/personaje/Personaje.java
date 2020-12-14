@@ -2,9 +2,9 @@ package com.personaje;
 
 public class Personaje{
 
-    public crearPersonaje();
+    public crearPersonaje(){}
 
-    public void mover(int variacionX, int variacionY);
+    public void mover(int variacionX, int variacionY){}
 
-    public void asignarLapiz(Lapiz lapiz);
+    public void asignarLapiz(Lapiz lapiz){}
 }
