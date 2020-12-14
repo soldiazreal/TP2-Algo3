@@ -5,13 +5,13 @@ public class LevantarLapiz extends Accion{
 
     @Override
     public void invertir(Personaje unPersonaje){
-        BajarLapiz accionInversa = new crearAccion();
+        BajarLapiz accionInversa = new Accion();
         accionInversa ejecutar(unPersonaje);
     }
 
     @Override
     public void ejecutar(Personaje unPersonaje){
-        LapizLevantado unLapiz = new crearLapizBajo();
+        LapizLevantado unLapiz = new LapizBajo();
         unPersonaje asignarLapiz(unLapiz);
     }
 }

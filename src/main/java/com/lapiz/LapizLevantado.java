@@ -1,3 +1,7 @@
 package com.lapiz;
 
-public class LapizLevantado extends Lapiz{}
+public class LapizLevantado extends Lapiz{
+
+    public LapizLevantado(){}
+
+}

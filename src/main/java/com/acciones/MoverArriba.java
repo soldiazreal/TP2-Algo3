@@ -4,7 +4,7 @@ public class MoverArriba extends Accion{
 
     @Override
     public void invertir(Personaje unPersonaje){
-        MoverAbajo accionInversa = new crearAccion();
+        MoverAbajo accionInversa = new Accion();
         accionInversa ejecutar(unPersonaje);
     }
 
