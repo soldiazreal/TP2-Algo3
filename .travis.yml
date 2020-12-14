@@ -1,5 +1,16 @@
-
 language: java
-rvm:
- - 15.0.1
- - junit
+jdk:
+  - oraclejdk15.0.1
+
+install: ant
+script: ant test
+
+notifications:
+ email:
+    recipients:
+      - mdiazr@fi.uba.ar
+      - ldemarchi@fi.uba.ar
+      - mlvargas@fi.uba.ar
+      - favendano@fi.uba.ar
+    on_failure: always
+    on_success: always
