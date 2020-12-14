@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oraclejdk15.0.1
+  - oraclejdk15
 
 install: ant
 script: ant test
