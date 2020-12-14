@@ -1,4 +1,5 @@
 package com.acciones;
+import com.lapiz.*;
 
 public class BajarLapiz extends Accion{
 

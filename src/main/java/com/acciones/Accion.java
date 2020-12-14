@@ -2,7 +2,7 @@ package com.acciones;
 
 interface Accion{
 
-    public crearAccion(){}
+    public Accion(){}
 
     public abstract void invertir(Personaje unPersonaje){}
 

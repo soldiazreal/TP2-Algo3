@@ -1,8 +1,9 @@
 package com.personaje;
+import com.lapiz.*;
 
 public class Personaje{
 
-    public crearPersonaje(){}
+    public Personaje(){}
 
     public void mover(int variacionX, int variacionY){}
 
