@@ -3,7 +3,7 @@ jdk:
   - oraclejdk15
 
 install: ant
-script: ant test
+script: ant build
 
 notifications:
  email:
