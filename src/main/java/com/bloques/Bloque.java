@@ -1,4 +1,4 @@
 package com.bloques;
 
-public interface Bloque {
+interface Bloque {
 }
