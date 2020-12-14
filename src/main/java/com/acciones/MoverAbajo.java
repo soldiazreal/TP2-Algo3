@@ -1,4 +1,5 @@
 package com.acciones;
+import com.personaje.*;
 
 public class MoverAbajo extends Accion{
 

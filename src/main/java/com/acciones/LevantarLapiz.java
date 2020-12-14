@@ -1,5 +1,7 @@
 package com.acciones;
 import com.lapiz.*;
+import com.personaje.*;
+
 
 public class LevantarLapiz extends Accion{
 
