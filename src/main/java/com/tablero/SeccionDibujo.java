@@ -1,6 +1,7 @@
-package com.tablero;
+package src.main.java.com.tablero;
+import src.main.java.com.arista.Arista;
+
 import java.util.List;
-import com.arista.*;
 
 public class SeccionDibujo {
 

@@ -1,7 +1,7 @@
-package com.lapiz;
+package src.main.java.com.lapiz;
 
 public class LapizBajo extends Lapiz{
 
-    public Lapizbajo(){}
+    public LapizBajo(){}
 
 }

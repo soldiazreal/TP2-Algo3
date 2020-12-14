@@ -1,12 +1,10 @@
-package com.acciones;
-import com.personaje.*;
+package src.main.java.com.acciones;
+import src.main.java.com.personaje.*;
 
 
 interface Accion{
 
-    public Accion(){}
+    public abstract void invertir(Personaje unPersonaje);
 
-    public abstract void invertir(Personaje unPersonaje){}
-
-    public abstract void accionar(Personaje unPersonaje){}
+    public abstract void accionar(Personaje unPersonaje);
 }

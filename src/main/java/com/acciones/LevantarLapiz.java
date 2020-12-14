@@ -1,19 +1,21 @@
-package com.acciones;
-import com.lapiz.*;
-import com.personaje.*;
+package src.main.java.com.acciones;
+import src.main.java.com.lapiz.*;
+import src.main.java.com.personaje.*;
 
 
-public class LevantarLapiz extends Accion{
+public class LevantarLapiz implements Accion{
+
+    public LevantarLapiz(){}
 
     @Override
     public void invertir(Personaje unPersonaje){
-        BajarLapiz accionInversa = new Accion();
-        accionInversa ejecutar(unPersonaje);
+        BajarLapiz accionInversa = new BajarLapiz();
+        accionInversa.accionar(unPersonaje);
     }
 
     @Override
-    public void ejecutar(Personaje unPersonaje){
-        LapizLevantado unLapiz = new LapizBajo();
-        unPersonaje asignarLapiz(unLapiz);
+    public void accionar(Personaje unPersonaje){
+        LapizLevantado unLapiz = new LapizLevantado();
+        unPersonaje.asignarLapiz(unLapiz);
     }
 }

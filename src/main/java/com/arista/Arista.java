@@ -1,5 +1,5 @@
-package com.arista;
-import com.posicion.Posicion;
+package src.main.java.com.arista;
+import src.main.java.com.posicion.Posicion;
 
 public class Arista {
 

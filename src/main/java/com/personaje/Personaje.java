@@ -1,7 +1,7 @@
-package com.personaje;
-import com.lapiz.*;
-import com.tablero.*;
-import com.posicion.*;
+package src.main.java.com.personaje;
+import src.main.java.com.lapiz.*;
+import src.main.java.com.tablero.*;
+import src.main.java.com.posicion.*;
 
 public class Personaje{
 

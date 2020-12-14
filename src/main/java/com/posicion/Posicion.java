@@ -1,4 +1,4 @@
-package com.posicion;
+package src.main.java.com.posicion;
 
 public class Posicion {
 

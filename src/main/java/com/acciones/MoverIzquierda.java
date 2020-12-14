@@ -1,16 +1,18 @@
-package com.acciones;
-import com.personaje.*;
+package src.main.java.com.acciones;
+import src.main.java.com.personaje.*;
 
-public class MoverIzquierda extends Accion{
+public class MoverIzquierda implements Accion{
+
+    public MoverIzquierda(){}
 
     @Override
     public void invertir(Personaje unPersonaje){
-        MoverDerecha accionInversa = new Accion();
-        accionInversa ejecutar(unPersonaje);
+        MoverDerecha accionInversa = new MoverDerecha();
+        accionInversa.accionar(unPersonaje);
     }
 
     @Override
-    public void ejecutar(Personaje unPersonaje){
-        unPersonaje mover(-1,0);
+    public void accionar(Personaje unPersonaje){
+        unPersonaje.mover(-1,0);
     }
 }

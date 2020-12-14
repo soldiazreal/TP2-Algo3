@@ -1,4 +1,4 @@
-package com.bloques;
+package src.main.java.com.bloques;
 
 interface Bloque {
 }
