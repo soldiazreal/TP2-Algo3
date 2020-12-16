@@ -42,6 +42,16 @@ public class PersonajeTests {
         assertEquals(personaje.posicionActual.x, 2);
         assertEquals(personaje.posicionActual.y, 4);
     }
+    @Test
+    public void test05PersonajeSeMueve(){
+        Posicion posicion = new Posicion(1,2);
+        Personaje personaje = new Personaje(posicion);
+
+        personaje.mover(1,2);
+
+        assertEquals(personaje.posicionActual.x, 2);
+        assertEquals(personaje.posicionActual.y, 4);
+    }
 
    /* @Test
     public void test03PersonajeComienzaConLapizLevantado(){
