@@ -7,6 +7,7 @@ import com.lapiz.LapizBajo;
 import com.lapiz.LapizLevantado;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
+import com.tablero.SeccionDibujo;
 import org.junit.Test;
 
 
@@ -18,7 +19,7 @@ public class AccionesTests {
 
         LapizBajo lapizEsperado = new LapizBajo();
 
-        Personaje personaje = new Personaje(posicion);
+        Personaje personaje = new Personaje(posicion, new SeccionDibujo());
 
         BajarLapiz accion = new BajarLapiz();
         accion.accionar(personaje);
@@ -34,7 +35,7 @@ public class AccionesTests {
 
         LapizLevantado lapizEsperado = new LapizLevantado();
 
-        Personaje personaje = new Personaje(posicion);
+        Personaje personaje = new Personaje(posicion, new SeccionDibujo());
 
         LevantarLapiz accion = new LevantarLapiz();
         accion.accionar(personaje);
@@ -49,7 +50,7 @@ public class AccionesTests {
         Posicion posicion = new Posicion(1,2);
         Posicion posicionEsperada = new Posicion(1,1);
 
-        Personaje personaje = new Personaje(posicion);
+        Personaje personaje = new Personaje(posicion, new SeccionDibujo());
 
         MoverAbajo accion = new MoverAbajo();
         accion.accionar(personaje);
@@ -65,7 +66,7 @@ public class AccionesTests {
         Posicion posicion = new Posicion(1,2);
         Posicion posicionEsperada = new Posicion(1,3);
 
-        Personaje personaje = new Personaje(posicion);
+        Personaje personaje = new Personaje(posicion, new SeccionDibujo());
 
         MoverArriba accion = new MoverArriba();
         accion.accionar(personaje);
@@ -81,7 +82,7 @@ public class AccionesTests {
         Posicion posicion = new Posicion(1,2);
         Posicion posicionEsperada = new Posicion(2,2);
 
-        Personaje personaje = new Personaje(posicion);
+        Personaje personaje = new Personaje(posicion, new SeccionDibujo());
 
         MoverDerecha accion = new MoverDerecha();
         accion.accionar(personaje);
@@ -99,7 +100,7 @@ public class AccionesTests {
         Posicion posicionEsperada = new Posicion(0,2);
 
 
-        Personaje personaje = new Personaje(posicion);
+        Personaje personaje = new Personaje(posicion, new SeccionDibujo());
 
         MoverIzquierda accion = new MoverIzquierda();
         accion.accionar(personaje);

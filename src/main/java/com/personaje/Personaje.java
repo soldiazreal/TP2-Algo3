@@ -5,11 +5,12 @@ import com.posicion.*;
 
 public class Personaje{
 
-    public SeccionDibujo seccionDibujo = new SeccionDibujo();
+    public SeccionDibujo seccionDibujo;
     public Posicion posicionActual;
     private Lapiz lapiz = new LapizLevantado();
 
-    public Personaje(Posicion posicionActual) {
+    public Personaje(Posicion posicionActual, SeccionDibujo seccionDibujo) {
+        this.seccionDibujo = seccionDibujo;
         this.posicionActual = posicionActual;
     }
 
