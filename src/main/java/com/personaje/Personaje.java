@@ -22,4 +22,12 @@ public class Personaje{
     public void asignarLapiz(Lapiz lapiz) {
         this.lapiz = lapiz;
     }
+
+    public Lapiz getLapizActual(){
+        return this.lapiz;
+    }
+
+    public Posicion getPosicionActual(){
+        return this.posicionActual;
+    }
 }

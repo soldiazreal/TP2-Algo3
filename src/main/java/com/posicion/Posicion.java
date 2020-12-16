@@ -14,4 +14,12 @@ public class Posicion {
         x = x + variacionX;
         y = y + variacionY;
     }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
 }
