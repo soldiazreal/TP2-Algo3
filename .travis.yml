@@ -2,9 +2,6 @@ language: java
 jdk:
   - oraclejdk15
 
-install: ant
-script: ant build
-
 notifications:
  email:
     recipients:
