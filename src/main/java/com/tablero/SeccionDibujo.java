@@ -10,4 +10,8 @@ public class SeccionDibujo {
     public void agregarArista(Arista unaArista) {
         aristas.add(unaArista);
     }
+
+    public int cantidadAristas() {
+        return aristas.size();
+    }
 }

@@ -9,7 +9,6 @@ public class LapizLevantado extends Lapiz{
 
     }
 
-    public void usar(Posicion incio, Posicion actual, SeccionDibujo seccionDibujo){
-
+    public void usar(Posicion inicio, Posicion actual, SeccionDibujo seccionDibujo){
     }
 }
