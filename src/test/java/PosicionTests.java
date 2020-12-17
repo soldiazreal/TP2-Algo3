@@ -27,9 +27,9 @@ public class PosicionTests {
     @Test
     public void test02SeModificaPosicion(){
         Posicion unaPosicion = new Posicion(1,0);
-        unaPosicion.modificarCoordenadas(2,3);
-        assertEquals(unaPosicion.getX(), 2);
-        assertEquals(unaPosicion.getY(), 3);
+        unaPosicion.modificarCoordenadas(2,4);
+        assertEquals(unaPosicion.getX(), 3);
+        assertEquals(unaPosicion.getY(), 4);
     }
 
 }

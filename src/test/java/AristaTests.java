@@ -24,7 +24,7 @@ public class AristaTests {
         Arista unaArista = new Arista (posicionInicial, posicionFin);
 
         assertEquals(unaArista.getPosicionInicial().getX(), posicionInicial.getX());
-        assertEquals(unaArista.getPosicionInicial().getY(), posicionFin.getY());
+        assertEquals(unaArista.getPosicionFinal().getY(), posicionFin.getY());
     }
 
     /*@Test
