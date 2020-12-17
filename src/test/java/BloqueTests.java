@@ -12,7 +12,7 @@ public class BloqueTests {
         MoverArriba Arriba = new MoverArriba();
         Individual bloque = new Individual("MoverArriba", Arriba);
 
-        assertEquals(bloque.nombre, "MoverArriba");
+        assertEquals(bloque.getNombre(), "MoverArriba");
 
     }
 

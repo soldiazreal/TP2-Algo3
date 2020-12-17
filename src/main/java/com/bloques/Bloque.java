@@ -4,7 +4,7 @@ import com.acciones.*;
 import com.personaje.*;
 
 public abstract class Bloque {
-    public final String nombre;
+    protected final String nombre;
     protected final Accion accion;
 
     protected Bloque(String nombre, Accion unaAccion) {
@@ -14,6 +14,10 @@ public abstract class Bloque {
 
     public Accion getAccion(){
         return this.accion;
+    }
+
+    public String getNombre(){
+        return this.nombre;
     }
 
     public abstract void ejecutarBloque(Personaje unPersonaje);
