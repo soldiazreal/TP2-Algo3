@@ -27,7 +27,7 @@ public class AristaTests {
         assertEquals(unaArista.getPosicionFinal().getY(), posicionFin.getY());
     }
 
-    /*@Test
+    /*@Test aca hay que hacer una excepcion
     public void test02NoSePuedeCrearAristaConPosicionesIguales() {
         Posicion inicial = Posicion (1, 0);
         Posicion posicionFin = Posicion (1, 0);

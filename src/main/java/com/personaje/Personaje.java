@@ -6,8 +6,8 @@ import com.posicion.*;
 
 public class Personaje{
 
-    public SeccionDibujo seccionDibujo;
-    public Posicion posicionActual;
+    private SeccionDibujo seccionDibujo;
+    private Posicion posicionActual;
     private Lapiz lapiz = new LapizLevantado();
 
     private void validarPosicionYSeccionDibujo(Posicion posicionActual, SeccionDibujo seccionDibujo){

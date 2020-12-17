@@ -3,8 +3,8 @@ import com.posicion.*;
 
 public class Arista {
 
-    Posicion posicionInicio;
-    Posicion posicionFin;
+    private Posicion posicionInicio;
+    private Posicion posicionFin;
 
     public Posicion getPosicionInicial (){
         return posicionInicio;

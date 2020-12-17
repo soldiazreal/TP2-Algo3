@@ -2,8 +2,8 @@ package com.posicion;
 
 public class Posicion {
 
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
     public Posicion(int x, int y) {
         this.x = x;
