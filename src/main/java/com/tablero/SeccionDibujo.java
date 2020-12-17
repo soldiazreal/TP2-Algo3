@@ -1,11 +1,13 @@
 package com.tablero;
 import com.arista.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeccionDibujo {
 
-    List<Arista> aristas;
+    private List<Arista> aristas = new ArrayList<>();
+    private int cantidadAristas = 0;
 
     public void agregarArista(Arista unaArista) {
         aristas.add(unaArista);
