@@ -2,7 +2,7 @@ package com.acciones;
 import com.personaje.*;
 
 
-interface Accion{
+public interface Accion{
 
     public abstract void invertir(Personaje unPersonaje);
 
