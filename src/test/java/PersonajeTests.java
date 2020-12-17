@@ -2,18 +2,12 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import com.arista.Arista;
-import com.lapiz.Lapiz;
 import com.lapiz.LapizBajo;
-import com.lapiz.LapizLevantado;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
 
 public class PersonajeTests {
 
@@ -65,7 +59,6 @@ public class PersonajeTests {
         personaje.mover(1,2);
 
         Mockito.verify(lapizBajoMock, times(2)).usar(any(Posicion.class), any(Posicion.class), any(SeccionDibujo.class));
-       // Mockito.verify(seccionDibujoMock, times(2)).agregarArista(any(Arista.class));
 
         assertEquals(personaje.getPosicionActual().getX(), 4);
         assertEquals(personaje.getPosicionActual().getY(), 8);
