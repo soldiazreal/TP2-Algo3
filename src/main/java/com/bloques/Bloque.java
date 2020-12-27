@@ -5,15 +5,9 @@ import com.personaje.*;
 
 public abstract class Bloque {
     protected final String nombre;
-    protected final Accion accion;
 
-    protected Bloque(String nombre, Accion unaAccion) {
+    protected Bloque(String nombre) {
         this.nombre = nombre;
-        this.accion = unaAccion;
-    }
-
-    public Accion getAccion(){
-        return this.accion;
     }
 
     public String getNombre(){
