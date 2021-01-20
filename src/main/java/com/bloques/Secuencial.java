@@ -3,13 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 import com.personaje.Personaje;
 
-public abstract class Secuencial extends Bloque{
+public abstract class Secuencial implements Bloque{
     private List<Bloque> bloques = new ArrayList<>();
 
     //Puede crearse sin un bloque? esto hay que verlo onda puede que quiera crearlo sin? aunque creo solo
     //arma lio y lo mejor seria obligar al usuario a meter un bloque para hacer el secuencial
-    public Secuencial(String nombre, Bloque unBloque){
-        super(nombre);
+    public Secuencial(Bloque unBloque){
         bloques.add(unBloque);
     }
 

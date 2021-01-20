@@ -3,13 +3,19 @@ package com.bloques;
 import com.acciones.*;
 import com.personaje.Personaje;
 
-public class Individual extends Bloque{
+public class Individual implements Bloque{
+
+    protected final String nombre;
 
     private Accion accion;
 
     public Individual(String nombre, Accion unaAccion) {
-        super(nombre);
+        this.nombre = nombre;
         this.accion = unaAccion;
+    }
+
+    public String getNombre(){
+        return this.nombre;
     }
 
     public Accion getAccion(){
@@ -19,6 +25,5 @@ public class Individual extends Bloque{
     @Override
     public void ejecutarBloque(Personaje unPersonaje){
         this.accion.accionar(unPersonaje);
-
     }
 }
