@@ -26,9 +26,5 @@ public abstract class Secuencial implements Bloque{
     public abstract void ejecutarBloque(Personaje unPersonaje);
 
     @Override
-    public void invertirBloque(Personaje unPersonaje){
-        for(Bloque elBloque:this.bloques){
-            elBloque.invertirBloque(unPersonaje);
-        }
-    }
+    public abstract void invertirBloque(Personaje unPersonaje);
 }
