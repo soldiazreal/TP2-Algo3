@@ -1,7 +1,7 @@
 package com.tablero;
 
 import com.bloques.Bloque;
-import com.factory.CrearBloque;
+import com.factory.CrearBloqueIndividual;
 import com.personaje.Personaje;
 
 import java.util.LinkedList;
@@ -14,8 +14,8 @@ public class SeccionAlgoritmo{
         this.bloquesParaEjecucion = new LinkedList<>();
     }
 
-    public void agregarBloqueEnPosicion(CrearBloque bloque, Integer unIndice){
-        Bloque bloqueAAgregar = bloque.generar();
+    public void agregarBloqueEnPosicion(CrearBloqueIndividual bloque, Integer unIndice){
+        Bloque bloqueAAgregar = bloque.generarIndividual();
         this.bloquesParaEjecucion.add(unIndice, bloqueAAgregar);
     }
 

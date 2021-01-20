@@ -1,12 +1,11 @@
 package com.factory;
 
 import com.acciones.LevantarLapiz;
-import com.bloques.Bloque;
 import com.bloques.Individual;
 
-public class BloqueLevantarLapiz implements CrearBloque{
+public class BloqueLevantarLapiz implements CrearBloqueIndividual {
     @Override
-    public Individual generar() {
+    public Individual generarIndividual() {
         LevantarLapiz accion = new LevantarLapiz();
         Individual bloque =  new Individual("LevantarLapiz", accion);
         return bloque;
