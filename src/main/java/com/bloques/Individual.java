@@ -5,7 +5,7 @@ import com.personaje.Personaje;
 
 public class Individual implements Bloque{
 
-    protected final String nombre;
+    private String nombre;
 
     private Accion accion;
 
@@ -25,5 +25,10 @@ public class Individual implements Bloque{
     @Override
     public void ejecutarBloque(Personaje unPersonaje){
         this.accion.accionar(unPersonaje);
+    }
+
+    @Override
+    public void invertirBloque(Personaje unPersonaje){
+        this.accion.invertir(unPersonaje);
     }
 }

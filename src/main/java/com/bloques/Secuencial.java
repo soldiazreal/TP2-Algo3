@@ -4,7 +4,7 @@ import java.util.List;
 import com.personaje.Personaje;
 
 public abstract class Secuencial implements Bloque{
-    private List<Bloque> bloques = new ArrayList<>();
+    protected final List<Bloque> bloques = new ArrayList<>();
 
     //Puede crearse sin un bloque? esto hay que verlo onda puede que quiera crearlo sin? aunque creo solo
     //arma lio y lo mejor seria obligar al usuario a meter un bloque para hacer el secuencial
@@ -24,4 +24,11 @@ public abstract class Secuencial implements Bloque{
     //secuenciales tambien es diferente
     @Override
     public abstract void ejecutarBloque(Personaje unPersonaje);
+
+    @Override
+    public void invertirBloque(Personaje unPersonaje){
+        for(Bloque elBloque:this.bloques){
+            elBloque.invertirBloque(unPersonaje);
+        }
+    }
 }

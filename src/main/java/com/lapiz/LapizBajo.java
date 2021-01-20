@@ -6,6 +6,7 @@ import com.tablero.SeccionDibujo;
 
 public class LapizBajo extends Lapiz{
 
+    @Override
     public void usar(Posicion inicio, Posicion actual, SeccionDibujo seccionDibujo){
         seccionDibujo.agregarArista (new Arista(inicio, actual));
     }
