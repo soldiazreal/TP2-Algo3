@@ -7,6 +7,7 @@ import com.bloques.Individual;
 import com.factory.BloqueBajaraLapiz;
 import com.factory.BloqueLevantarLapiz;
 import com.factory.BloqueMoverAbajo;
+import com.factory.BloqueMoverArriba;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
@@ -59,8 +60,24 @@ public class FactoryTests {
         SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
         Personaje personaje = new Personaje(new Posicion(1,2), seccionDibujoMock);
         BloqueMoverAbajo bloqueMoverAbajo = new BloqueMoverAbajo();
-        Individual bloqueRecibido
+        Individual bloqueRecibido = bloqueMoverAbajo.generar();
 
+        bloqueRecibido.ejecutarBloque(personaje);
+
+        assertEquals(1, personaje.getPosicionActual().getX());
+        assertEquals(1, personaje.getPosicionActual().getY());
     }
 
+    @Test
+    public void SeCreaBloqueParaMoverArribaYLoMueveCorrectamente(){
+        SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
+        Personaje personaje = new Personaje(new Posicion(1,2), seccionDibujoMock);
+        BloqueMoverArriba bloqueMoverArriba = new BloqueMoverArriba();
+        Individual bloqueRecibido = bloqueMoverArriba.generar();
+
+        bloqueRecibido.ejecutarBloque(personaje);
+
+        assertEquals(1, personaje.getPosicionActual().getX());
+        assertEquals(3, personaje.getPosicionActual().getY());
+    }
 }
