@@ -4,10 +4,7 @@ import static org.mockito.Mockito.*;
 import com.arista.Arista;
 import com.bloques.Bloque;
 import com.bloques.Individual;
-import com.factory.BloqueBajaraLapiz;
-import com.factory.BloqueLevantarLapiz;
-import com.factory.BloqueMoverAbajo;
-import com.factory.BloqueMoverArriba;
+import com.factory.*;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
@@ -28,9 +25,7 @@ public class FactoryTests {
         bloqueRecibido.ejecutarBloque(personaje);
 
         assertEquals(posicionActual.getX(),personaje.getPosicionActual().getX());
-
         personaje.mover(1, 1);
-
         assertEquals(posicionActual.getY(),personaje.getPosicionActual().getY());
 
         Mockito.verify(seccionDibujoMock, Mockito.times(1)).agregarArista(any(Arista.class));
@@ -47,9 +42,7 @@ public class FactoryTests {
         bloqueRecibido.ejecutarBloque(personaje);
 
         assertEquals(posicionActual.getX(),personaje.getPosicionActual().getX());
-
         personaje.mover(1, 1);
-
         assertEquals(posicionActual.getY(),personaje.getPosicionActual().getY());
 
         Mockito.verify(seccionDibujoMock, Mockito.times(0)).agregarArista(any(Arista.class));
@@ -79,5 +72,31 @@ public class FactoryTests {
 
         assertEquals(1, personaje.getPosicionActual().getX());
         assertEquals(3, personaje.getPosicionActual().getY());
+    }
+
+    @Test
+    public void SeCreaBloqueParaMoverDerechaYLoMueveCorrectamente(){
+        SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
+        Personaje personaje = new Personaje(new Posicion(1,2), seccionDibujoMock);
+        BloqueMoverDerecha bloqueMoverDerecha = new BloqueMoverDerecha();
+        Individual bloqueRecibido = bloqueMoverDerecha.generar();
+
+        bloqueRecibido.ejecutarBloque(personaje);
+
+        assertEquals(2, personaje.getPosicionActual().getX());
+        assertEquals(2, personaje.getPosicionActual().getY());
+    }
+
+    @Test
+    public void SeCreaBloqueParaMoverIzquierdaYLoMueveCorrectamente(){
+        SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
+        Personaje personaje = new Personaje(new Posicion(1,2), seccionDibujoMock);
+        BloqueMoverIzquierda bloqueMoverIzquierda = new BloqueMoverIzquierda();
+        Individual bloqueRecibido = bloqueMoverIzquierda.generar();
+
+        bloqueRecibido.ejecutarBloque(personaje);
+
+        assertEquals(0, personaje.getPosicionActual().getX());
+        assertEquals(2, personaje.getPosicionActual().getY());
     }
 }
