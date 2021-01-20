@@ -2,6 +2,6 @@ package com.factory;
 
 import com.bloques.Bloque;
 
-interface CrearBloque {
+public interface CrearBloque {
     Bloque generar();
 }
