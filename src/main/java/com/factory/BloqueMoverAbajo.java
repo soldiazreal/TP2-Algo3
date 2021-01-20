@@ -6,7 +6,7 @@ import com.bloques.Individual;
 
 public class BloqueMoverAbajo implements CrearBloque{
     @Override
-    public Bloque generar() {
+    public Individual generar() {
         MoverAbajo accion = new MoverAbajo();
         Individual bloque =  new Individual("MoverAbajo", accion);
         return bloque;

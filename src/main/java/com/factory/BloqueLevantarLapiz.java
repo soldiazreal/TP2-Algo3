@@ -6,7 +6,7 @@ import com.bloques.Individual;
 
 public class BloqueLevantarLapiz implements CrearBloque{
     @Override
-    public Bloque generar() {
+    public Individual generar() {
         LevantarLapiz accion = new LevantarLapiz();
         Individual bloque =  new Individual("LevantarLapiz", accion);
         return bloque;
