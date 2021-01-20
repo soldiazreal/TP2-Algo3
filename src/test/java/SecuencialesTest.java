@@ -89,7 +89,7 @@ public class SecuencialesTest {
     @Test
     public void test04BloqueRepeticionRepiteIndividuales(){
         Posicion posicionActual = new Posicion(0,0);
-        Posicion posicionEsperada = new Posicion(-2,0);
+        Posicion posicionEsperada = new Posicion(2,0);
 
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
@@ -108,7 +108,7 @@ public class SecuencialesTest {
     @Test
     public void test05BloqueRepeticionRepiteSecuenciales(){
         Posicion posicionActual = new Posicion(0,0);
-        Posicion posicionEsperada = new Posicion(2,0);
+        Posicion posicionEsperada = new Posicion(-2,0);
 
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
@@ -130,16 +130,19 @@ public class SecuencialesTest {
     @Test
     public void test06BloqueRepeticionRepiteIndividualesYSecuenciales(){
         Posicion posicionActual = new Posicion(0,0);
-        Posicion posicionEsperada = new Posicion(2,0);
+        Posicion posicionEsperada = new Posicion(-4,-2);
 
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
         BloqueMoverDerecha generadorDerecha = new BloqueMoverDerecha();
+        BloqueMoverIzquierda generadorIzquierda = new BloqueMoverIzquierda();
+        BloqueMoverArriba generadorArriba = new BloqueMoverArriba();
+
 
         Individual primerBloque = generadorDerecha.generar();
-        Individual segundoBloque = generadorDerecha.generar();
-        Individual tercerBloque = generadorDerecha.generar();
+        Individual segundoBloque = generadorArriba.generar();
+        Individual tercerBloque = generadorIzquierda.generar();
 
 
         Inversion bloqueInversionSecundario = new Inversion(primerBloque);
