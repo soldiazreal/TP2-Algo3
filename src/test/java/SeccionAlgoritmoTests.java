@@ -6,6 +6,7 @@ import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionAlgoritmo;
 import com.tablero.SeccionDibujo;
+import com.bloques.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -17,8 +18,9 @@ public class SeccionAlgoritmoTests {
     public void test01SeAgregaUnBloqueAlPrincipio(){
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
-        BloqueMoverArriba bloque = new BloqueMoverArriba();
-        seccion.agregarBloqueEnPosicion(bloque,0);
+        BloqueMoverArriba genBloqueArriba = new BloqueMoverArriba();
+        Individual bloqueArriba = genBloqueArriba.generarIndividual();
+        seccion.agregarBloqueEnPosicion(bloqueArriba,0);
 
         SeccionDibujo dibujo = new SeccionDibujo();
         Posicion posicion = new Posicion(1,1);
@@ -35,10 +37,12 @@ public class SeccionAlgoritmoTests {
     public void test02PuedoAgregarUnBloqueEnPosicion(){
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
-        BloqueMoverAbajo bloque = new BloqueMoverAbajo();
-        seccion.agregarBloqueEnPosicion(bloque,0);
+        BloqueMoverAbajo genBloqueAbajo = new BloqueMoverAbajo();
+        Individual bloqueAbajo = genBloqueAbajo.generarIndividual();
+        seccion.agregarBloqueEnPosicion(bloqueAbajo,0);
 
-        BloqueLevantarLapiz bloqueLapiz = new BloqueLevantarLapiz();
+        BloqueLevantarLapiz genBloqueLapiz = new BloqueLevantarLapiz();
+        Individual bloqueLapiz = genBloqueLapiz.generarIndividual();
         seccion.agregarBloqueEnPosicion(bloqueLapiz,1);
 
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -46,7 +50,8 @@ public class SeccionAlgoritmoTests {
 
         Personaje personaje = new Personaje(posicion,dibujo);
 
-        BloqueMoverDerecha bloqueDerecha = new BloqueMoverDerecha();
+        BloqueMoverDerecha genBloqueDerecha = new BloqueMoverDerecha();
+        Individual bloqueDerecha = genBloqueDerecha.generarIndividual();
         seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
 
         seccion.ejecutar(personaje);
@@ -60,18 +65,20 @@ public class SeccionAlgoritmoTests {
     public void test03RemuevoUnBloque(){
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
-        BloqueMoverAbajo bloque = new BloqueMoverAbajo();
-        seccion.agregarBloqueEnPosicion(bloque,0);
+        BloqueMoverAbajo genBloqueAbajo = new BloqueMoverAbajo();
+        Individual bloqueAbajo = genBloqueAbajo.generarIndividual();
+        seccion.agregarBloqueEnPosicion(bloqueAbajo,0);
 
         SeccionDibujo dibujo = new SeccionDibujo();
         Posicion posicion = new Posicion(1,1);
 
         Personaje personaje = new Personaje(posicion,dibujo);
 
-        BloqueMoverDerecha bloqueDerecha = new BloqueMoverDerecha();
+        BloqueMoverDerecha genBloqueDerecha = new BloqueMoverDerecha();
+        Individual bloqueDerecha = genBloqueDerecha.generarIndividual();
         seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
 
-        seccion.removerBloqueDePosicion("MoverAbajo",0);
+        seccion.removerBloqueDePosicion(0);
 
         seccion.ejecutar(personaje);
 
