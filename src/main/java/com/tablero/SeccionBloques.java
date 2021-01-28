@@ -4,6 +4,7 @@ import com.acciones.*;
 import com.bloques.Bloque;
 import com.bloques.Individual;
 import com.bloques.Secuencial;
+import com.factory.*;
 import com.personaje.Personaje;
 
 import java.lang.reflect.Type;
@@ -11,23 +12,28 @@ import java.util.*;
 
 public class SeccionBloques {
 
-    private final HashMap<String,Bloque> bloquesDisponibles;
+    private final HashMap<String, CrearBloqueIndividual> bloquesDisponibles;
 
     public SeccionBloques(){
         this.bloquesDisponibles = new HashMap<>();
-        bloquesDisponibles.put("BajarLapiz", new Individual("BajarLapiz", new BajarLapiz()));
-        bloquesDisponibles.put("LevantarLapiz", new Individual("LevantarLapiz", new LevantarLapiz()));
-        bloquesDisponibles.put("MoverAbajo", new Individual("MoverAbajo", new MoverAbajo()));
-        bloquesDisponibles.put("MoverArriba", new Individual("MoverArriba", new MoverArriba()));
-        bloquesDisponibles.put("MoverIzquierda", new Individual("BajarLapiz", new MoverIzquierda()));
-        bloquesDisponibles.put("MoverDerecha", new Individual("MoverDerecha", new MoverDerecha()));
+        bloquesDisponibles.put("BajarLapiz", new BloqueBajaraLapiz());
+        bloquesDisponibles.put("LevantarLapiz", new BloqueLevantarLapiz());
+        bloquesDisponibles.put("MoverAbajo", new BloqueMoverAbajo());
+        bloquesDisponibles.put("MoverArriba", new BloqueMoverArriba());
+        bloquesDisponibles.put("MoverIzquierda", new BloqueMoverIzquierda());
+        bloquesDisponibles.put("MoverDerecha", new BloqueMoverDerecha());
+        /*bloquesDisponibles.put("RepetirDoble", new BloqueRepetirDoble());
+        bloquesDisponibles.put("RepetirTriple", new BloqueRepetirTriple());
+        bloquesDisponibles.put("Invertir", new BloqueInvertir());*/
+
     }
 
-    public void agregarBloque (String unNombre,Bloque unBloque) {
-        bloquesDisponibles.put(unNombre, unBloque);
+    public void agregarBloque (String unNombre,CrearBloqueIndividual unConstructor) {
+        bloquesDisponibles.put(unNombre, unConstructor);
     }
 
     public Bloque buscarBloque (String unNombre) {
-        return bloquesDisponibles.get(unNombre);
+        CrearBloqueIndividual unConstructor = bloquesDisponibles.get(unNombre);
+        return unConstructor.generarIndividual();
     }
 }
