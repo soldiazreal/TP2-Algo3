@@ -23,7 +23,11 @@ public class SeccionBloques {
         bloquesDisponibles.put("MoverDerecha", new Individual("MoverDerecha", new MoverDerecha()));
     }
 
-    public Bloque buscarBloqueIndividual (String unNombre) {
+    public void agregarBloque (String unNombre,Bloque unBloque) {
+        bloquesDisponibles.put(unNombre, unBloque);
+    }
+
+    public Bloque buscarBloque (String unNombre) {
         return bloquesDisponibles.get(unNombre);
     }
 }
