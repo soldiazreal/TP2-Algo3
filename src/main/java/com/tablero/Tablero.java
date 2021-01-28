@@ -23,7 +23,7 @@ public class Tablero {
     }
 
     public void removerBloque (String unNombre, int unIndice) {
-        seccionAlgoritmo.removerBloqueDePosicion(unNombre, unIndice);
+        seccionAlgoritmo.removerBloqueDePosicion(unIndice);
     }
 
     public void iniciarAlgoritmo () {

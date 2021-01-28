@@ -14,9 +14,8 @@ public class SeccionAlgoritmo{
         this.bloquesParaEjecucion = new LinkedList<>();
     }
 
-    public void agregarBloqueEnPosicion(CrearBloqueIndividual bloque, int unIndice){
-        Bloque bloqueAAgregar = bloque.generarIndividual();
-        this.bloquesParaEjecucion.add(unIndice, bloqueAAgregar);
+    public void agregarBloqueEnPosicion(Bloque bloque, int unIndice){
+        this.bloquesParaEjecucion.add(unIndice, bloque);
     }
 
     public void ejecutar(Personaje unPersonaje){
@@ -26,7 +25,7 @@ public class SeccionAlgoritmo{
     }
 
     //Para que recibe un nombre? Solo necesito el indice para saber cual borrar.
-    public void removerBloqueDePosicion(String unNombre, int unIndice){
+    public void removerBloqueDePosicion(int unIndice){
         this.bloquesParaEjecucion.remove(unIndice);
     }
 
