@@ -1,28 +1,20 @@
 package com.tablero;
 
 import  com.bloques.Bloque;
-import com.acciones.BajarLapiz;
-import com.bloques.Individual;
-import com.bloques.Secuencial;
-import com.factory.CrearBloqueIndividual;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 
 public class Tablero {
 
-    // HABLAR CON SEBA SOBRE LA "INSTANCIA" DE UNA INTERFAZ QUE SEA CAPAZ DE SABER QUE ES UN BLOQUE
-
     private SeccionBloques seccionBloques = new SeccionBloques();
     private SeccionAlgoritmo seccionAlgoritmo = new SeccionAlgoritmo();
 
     public void agregarBloque (String unNombre, int unIndice) {
-        //tengo que pedir un bloque a seccion bloques
         Bloque bloqueRecibido = seccionBloques.buscarBloque(unNombre);
-        //le doy ese bloque y el indice en donde va..
         seccionAlgoritmo.agregarBloqueEnPosicion(bloqueRecibido, unIndice);
     }
 
-    public void removerBloque (String unNombre, int unIndice) {
+    public void removerBloque (int unIndice) {
         seccionAlgoritmo.removerBloqueDePosicion(unIndice);
     }
 
@@ -33,6 +25,12 @@ public class Tablero {
     public void reiniciarPrograma () {
         this.seccionBloques = new SeccionBloques();
         this.seccionAlgoritmo = new SeccionAlgoritmo();
+    }
+
+    //ojo con esto, es peligroso pero no quedaba otra por el momento
+    public void setSeccionBloquesYAlgoritmos (SeccionBloques seccionBloques, SeccionAlgoritmo seccionAlgoritmo)  {
+        this.seccionBloques = seccionBloques;
+        this.seccionAlgoritmo = seccionAlgoritmo;
     }
 }
 
