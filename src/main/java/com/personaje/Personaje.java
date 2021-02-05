@@ -15,9 +15,11 @@ public class Personaje{
     }
 
     public void mover(int variacionX, int variacionY) {
-        Posicion posicionInicio = posicionActual;
+        Posicion posicionInicio = new Posicion(posicionActual.getX(),posicionActual.getY());
+        Posicion posicionFinal = new Posicion(0,0);
         posicionActual.modificarCoordenadas(variacionX, variacionY);
-        lapiz.usar(posicionInicio, posicionActual, seccionDibujo);
+        posicionFinal.modificarCoordenadas(posicionActual.getX(), posicionActual.getY());
+        lapiz.usar(posicionInicio, posicionFinal, seccionDibujo);
     }
 
     public void asignarLapiz(Lapiz lapiz) {
