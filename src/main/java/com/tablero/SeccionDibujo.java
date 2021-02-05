@@ -6,8 +6,7 @@ import java.util.List;
 
 public class SeccionDibujo {
 
-    private List<Arista> aristas = new ArrayList<>();
-    private int cantidadAristas = 0;
+    private final List<Arista> aristas = new ArrayList<>();
 
     public void agregarArista(Arista unaArista) {
         aristas.add(unaArista);
@@ -16,4 +15,6 @@ public class SeccionDibujo {
     public int cantidadAristas() {
         return aristas.size();
     }
+
+    public Arista getArista(int indice){return this.aristas.get(indice);}
 }
