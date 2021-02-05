@@ -1,12 +1,13 @@
 package com.tablero;
 
 import com.bloques.Bloque;
-import com.factory.CrearBloqueIndividual;
 import com.personaje.Personaje;
 
 import java.util.LinkedList;
 
 public class SeccionAlgoritmo{
+
+    //AGREGAR METODO PARA AGREGAR SIN INDICE?
 
     private final LinkedList<Bloque> bloquesParaEjecucion;
 
@@ -24,7 +25,6 @@ public class SeccionAlgoritmo{
         }
     }
 
-    //Para que recibe un nombre? Solo necesito el indice para saber cual borrar.
     public void removerBloqueDePosicion(int unIndice){
         this.bloquesParaEjecucion.remove(unIndice);
     }
