@@ -36,8 +36,6 @@ public class SeccionAlgoritmoTests {
     @Test
     public void test02PuedoAgregarUnBloqueEnPosicionDelMedio(){
 
-        //NO FUNCIONA COMO DEBERIA
-
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
         BloqueBajaraLapiz genBajarLapiz = new BloqueBajaraLapiz();
@@ -48,23 +46,23 @@ public class SeccionAlgoritmoTests {
         Individual bloqueDerecha = genBloqueDerecha.generarBloque();
         seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
 
-       // BloqueMoverIzquierda genBloqueIzquierda = new BloqueMoverIzquierda();
-       // Individual bloqueIzquierda = genBloqueIzquierda.generarIndividual();
-       // seccion.agregarBloqueEnPosicion(bloqueIzquierda,2);
+        BloqueMoverIzquierda genBloqueIzquierda = new BloqueMoverIzquierda();
+        Individual bloqueIzquierda = genBloqueIzquierda.generarBloque();
+        seccion.agregarBloqueEnPosicion(bloqueIzquierda,2);
 
         BloqueMoverDerecha genDerecha = new BloqueMoverDerecha();
         Individual derecha = genDerecha.generarBloque();
         seccion.agregarBloqueEnPosicion(derecha,2);
 
         SeccionDibujo dibujo = new SeccionDibujo();
-        Posicion posicion = new Posicion(1,1);
+        Posicion posicion = new Posicion(0,0);
         Personaje personaje = new Personaje(posicion,dibujo);
 
         seccion.ejecutar(personaje);
 
-        assertEquals(dibujo.cantidadAristas(),2);
-        assertEquals(dibujo.getArista(1).getPosicionFinal().getX(),3);
-        assertEquals(dibujo.getArista(1).getPosicionFinal().getY(),1);
+        assertEquals(dibujo.cantidadAristas(),3);
+        assertEquals(dibujo.getArista(1).getPosicionFinal().getX(),2);
+        assertEquals(dibujo.getArista(1).getPosicionFinal().getY(),0);
     }
 
     @Test

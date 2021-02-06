@@ -4,7 +4,7 @@ import com.personaje.*;
 
 public interface Accion{
 
-    public abstract void invertir(Personaje unPersonaje);
+    void invertir(Personaje unPersonaje);
 
-    public abstract void accionar(Personaje unPersonaje);
+    void accionar(Personaje unPersonaje);
 }
