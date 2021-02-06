@@ -18,7 +18,7 @@ public class SeccionAlgoritmoTests {
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
         BloqueMoverArriba genBloqueArriba = new BloqueMoverArriba();
-        Individual bloqueArriba = genBloqueArriba.generarIndividual();
+        Individual bloqueArriba = genBloqueArriba.generarBloque();
         seccion.agregarBloqueEnPosicion(bloqueArriba,0);
 
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -41,11 +41,11 @@ public class SeccionAlgoritmoTests {
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
         BloqueBajaraLapiz genBajarLapiz = new BloqueBajaraLapiz();
-        Individual bloqueBajarLapiz = genBajarLapiz.generarIndividual();
+        Individual bloqueBajarLapiz = genBajarLapiz.generarBloque();
         seccion.agregarBloqueEnPosicion(bloqueBajarLapiz,0);
 
         BloqueMoverDerecha genBloqueDerecha = new BloqueMoverDerecha();
-        Individual bloqueDerecha = genBloqueDerecha.generarIndividual();
+        Individual bloqueDerecha = genBloqueDerecha.generarBloque();
         seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
 
        // BloqueMoverIzquierda genBloqueIzquierda = new BloqueMoverIzquierda();
@@ -53,7 +53,7 @@ public class SeccionAlgoritmoTests {
        // seccion.agregarBloqueEnPosicion(bloqueIzquierda,2);
 
         BloqueMoverDerecha genDerecha = new BloqueMoverDerecha();
-        Individual derecha = genDerecha.generarIndividual();
+        Individual derecha = genDerecha.generarBloque();
         seccion.agregarBloqueEnPosicion(derecha,2);
 
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -73,7 +73,7 @@ public class SeccionAlgoritmoTests {
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
         BloqueMoverAbajo genBloqueAbajo = new BloqueMoverAbajo();
-        Individual bloqueAbajo = genBloqueAbajo.generarIndividual();
+        Individual bloqueAbajo = genBloqueAbajo.generarBloque();
         seccion.agregarBloqueEnPosicion(bloqueAbajo,0);
 
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -82,7 +82,7 @@ public class SeccionAlgoritmoTests {
         Personaje personaje = new Personaje(posicion,dibujo);
 
         BloqueMoverDerecha genBloqueDerecha = new BloqueMoverDerecha();
-        Individual bloqueDerecha = genBloqueDerecha.generarIndividual();
+        Individual bloqueDerecha = genBloqueDerecha.generarBloque();
         seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
 
         seccion.removerBloqueDePosicion(0);
