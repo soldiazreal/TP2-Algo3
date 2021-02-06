@@ -1,10 +1,9 @@
 package com.factory;
 import com.bloques.*;
 
-public class BloqueInvertir implements CrearBloqueSecuencial{
+public class BloqueInvertir implements CrearBloque{
     @Override
-    public Inversion generarSecuencia(Bloque bloque){
-        Inversion bloqueNuevo = new Inversion(bloque);
-        return (bloqueNuevo);
+    public Inversion generarBloque(){
+        return new Inversion();
     }
 }

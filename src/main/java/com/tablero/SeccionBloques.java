@@ -12,7 +12,7 @@ import java.util.*;
 
 public class SeccionBloques {
 
-    private final HashMap<String, CrearBloqueIndividual> bloquesDisponibles;
+    private final HashMap<String, CrearBloque> bloquesDisponibles;
 
     public SeccionBloques(){
         this.bloquesDisponibles = new HashMap<>();
@@ -22,18 +22,19 @@ public class SeccionBloques {
         bloquesDisponibles.put("MoverArriba", new BloqueMoverArriba());
         bloquesDisponibles.put("MoverIzquierda", new BloqueMoverIzquierda());
         bloquesDisponibles.put("MoverDerecha", new BloqueMoverDerecha());
-        /*bloquesDisponibles.put("RepetirDoble", new BloqueRepetirDoble());
+        bloquesDisponibles.put("RepetirDoble", new BloqueRepetirDoble());
         bloquesDisponibles.put("RepetirTriple", new BloqueRepetirTriple());
-        bloquesDisponibles.put("Invertir", new BloqueInvertir());*/
+        bloquesDisponibles.put("Invertir", new BloqueInvertir());
 
     }
 
-    public void agregarBloque (String unNombre,CrearBloqueIndividual unConstructor) {
+    public void agregarBloque (String unNombre,CrearBloque unConstructor) {
         bloquesDisponibles.put(unNombre, unConstructor);
     }
 
     public Bloque buscarBloque (String unNombre) {
-        CrearBloqueIndividual unConstructor = bloquesDisponibles.get(unNombre);
-        return unConstructor.generarIndividual();
+        CrearBloque unConstructor = bloquesDisponibles.get(unNombre);
+        return unConstructor.generarBloque();
+        //Cambios: Se cambia el constructor de individuales por el de bloques en general
     }
 }

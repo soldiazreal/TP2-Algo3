@@ -5,8 +5,7 @@ import com.personaje.Personaje;
 public class Repeticion extends Secuencial{
     private int repeticiones;
 
-    public Repeticion(Bloque unBloque, int repeticiones) {
-        super(unBloque);
+    public Repeticion(int repeticiones) {
         this.repeticiones = repeticiones;
     }
 

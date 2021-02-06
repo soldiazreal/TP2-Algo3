@@ -1,10 +1,9 @@
 package com.factory;
 import com.bloques.*;
 
-public class BloqueRepetirDoble implements CrearBloqueSecuencial{
+public class BloqueRepetirDoble implements CrearBloque{
     @Override
-    public Repeticion generarSecuencia(Bloque bloque){
-        Repeticion bloqueNuevo = new Repeticion(bloque,2);
-        return (bloqueNuevo);
+    public Repeticion generarBloque(){
+        return new Repeticion(2);
     }
 }

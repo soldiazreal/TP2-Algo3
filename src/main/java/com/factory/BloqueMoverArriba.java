@@ -3,11 +3,10 @@ package com.factory;
 import com.acciones.MoverArriba;
 import com.bloques.Individual;
 
-public class BloqueMoverArriba implements CrearBloqueIndividual {
+public class BloqueMoverArriba implements CrearBloque {
     @Override
-    public Individual generarIndividual() {
+    public Individual generarBloque() {
         MoverArriba accion = new MoverArriba();
-        Individual bloque =  new Individual("MoverArriba", accion);
-        return bloque;
+        return new Individual("MoverArriba", accion);
     }
 }

@@ -4,10 +4,6 @@ import com.personaje.Personaje;
 
 public class Inversion extends Secuencial{
 
-    public Inversion(Bloque unBloque) {
-        super(unBloque);
-    }
-
     @Override
     public void invertirBloque(Personaje unPersonaje) {
         for (Bloque elBloque : this.bloques) {

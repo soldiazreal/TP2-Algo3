@@ -5,7 +5,6 @@ import com.arista.Arista;
 import com.bloques.Individual;
 import com.bloques.*;
 import com.bloques.Repeticion;
-import com.bloques.Secuencial;
 import com.factory.*;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
@@ -18,7 +17,7 @@ public class FactoryTests {
     @Test
     public void test01SeCreaBloqueParaBajarLapizYLoBaja(){
         BloqueBajaraLapiz bloqueBajar = new BloqueBajaraLapiz();
-        Individual bloqueRecibido = bloqueBajar.generarIndividual();
+        Individual bloqueRecibido = bloqueBajar.generarBloque();
         SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
         Posicion posicionActual = new Posicion(2,4);
         Personaje personaje = new Personaje(posicionActual, seccionDibujoMock);
@@ -37,7 +36,7 @@ public class FactoryTests {
     @Test
     public void test02SeCreaBloqueParaLevantarLapizYLoLevanta(){
         BloqueLevantarLapiz bloqueLevantar = new BloqueLevantarLapiz();
-        Individual bloqueRecibido = bloqueLevantar.generarIndividual();
+        Individual bloqueRecibido = bloqueLevantar.generarBloque();
         SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
         Posicion posicionActual = new Posicion(2,4);
         Personaje personaje = new Personaje(posicionActual, seccionDibujoMock);
@@ -58,7 +57,7 @@ public class FactoryTests {
         SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
         Personaje personaje = new Personaje(new Posicion(1,2), seccionDibujoMock);
         BloqueMoverAbajo bloqueMoverAbajo = new BloqueMoverAbajo();
-        Individual bloqueRecibido = bloqueMoverAbajo.generarIndividual();
+        Individual bloqueRecibido = bloqueMoverAbajo.generarBloque();
 
         bloqueRecibido.ejecutarBloque(personaje);
 
@@ -71,7 +70,7 @@ public class FactoryTests {
         SeccionDibujo seccionDibujoMock = mock(SeccionDibujo.class);
         Personaje personaje = new Personaje(new Posicion(1,2), seccionDibujoMock);
         BloqueMoverArriba bloqueMoverArriba = new BloqueMoverArriba();
-        Individual bloqueRecibido = bloqueMoverArriba.generarIndividual();
+        Individual bloqueRecibido = bloqueMoverArriba.generarBloque();
 
         bloqueRecibido.ejecutarBloque(personaje);
 
@@ -88,7 +87,7 @@ public class FactoryTests {
 
         Personaje personaje = new Personaje(posicionActual, seccionDibujoMock);
         BloqueMoverDerecha bloqueMoverDerecha = new BloqueMoverDerecha();
-        Individual bloqueRecibido = bloqueMoverDerecha.generarIndividual();
+        Individual bloqueRecibido = bloqueMoverDerecha.generarBloque();
 
         bloqueRecibido.ejecutarBloque(personaje);
 
@@ -105,7 +104,7 @@ public class FactoryTests {
 
         Personaje personaje = new Personaje(posicionActual, seccionDibujoMock);
         BloqueMoverIzquierda bloqueMoverIzquierda = new BloqueMoverIzquierda();
-        Individual bloqueRecibido = bloqueMoverIzquierda.generarIndividual();
+        Individual bloqueRecibido = bloqueMoverIzquierda.generarBloque();
 
         bloqueRecibido.ejecutarBloque(personaje);
 
@@ -122,11 +121,12 @@ public class FactoryTests {
 
         Personaje personaje = new Personaje(posicionActual, seccionDibujoMock);
         BloqueMoverIzquierda bloqueMoverIzquierda = new BloqueMoverIzquierda();
-        Individual bloqueInicial = bloqueMoverIzquierda.generarIndividual();
-        Individual bloqueSecundario = bloqueMoverIzquierda.generarIndividual();
+        Individual bloqueInicial = bloqueMoverIzquierda.generarBloque();
+        Individual bloqueSecundario = bloqueMoverIzquierda.generarBloque();
 
         BloqueRepetirDoble bloqueRepeticionDoble = new BloqueRepetirDoble();
-        Repeticion bloqueRecibido = bloqueRepeticionDoble.generarSecuencia(bloqueInicial);
+        Repeticion bloqueRecibido = bloqueRepeticionDoble.generarBloque();
+        bloqueRecibido.agregarBloque(bloqueInicial);
         bloqueRecibido.agregarBloque(bloqueSecundario);
 
         bloqueRecibido.ejecutarBloque(personaje);
@@ -144,11 +144,12 @@ public class FactoryTests {
 
         Personaje personaje = new Personaje(posicionActual, seccionDibujoMock);
         BloqueMoverIzquierda bloqueMoverIzquierda = new BloqueMoverIzquierda();
-        Individual bloqueInicial = bloqueMoverIzquierda.generarIndividual();
-        Individual bloqueSecundario = bloqueMoverIzquierda.generarIndividual();
+        Individual bloqueInicial = bloqueMoverIzquierda.generarBloque();
+        Individual bloqueSecundario = bloqueMoverIzquierda.generarBloque();
 
         BloqueRepetirTriple bloqueRepeticionTriple = new BloqueRepetirTriple();
-        Repeticion bloqueRecibido = bloqueRepeticionTriple.generarSecuencia(bloqueInicial);
+        Repeticion bloqueRecibido = bloqueRepeticionTriple.generarBloque();
+        bloqueRecibido.agregarBloque(bloqueInicial);
         bloqueRecibido.agregarBloque(bloqueSecundario);
 
         bloqueRecibido.ejecutarBloque(personaje);
@@ -166,11 +167,12 @@ public class FactoryTests {
 
         Personaje personaje = new Personaje(posicionActual, seccionDibujoMock);
         BloqueMoverIzquierda bloqueMoverIzquierda = new BloqueMoverIzquierda();
-        Individual bloqueInicial = bloqueMoverIzquierda.generarIndividual();
-        Individual bloqueSecundario = bloqueMoverIzquierda.generarIndividual();
+        Individual bloqueInicial = bloqueMoverIzquierda.generarBloque();
+        Individual bloqueSecundario = bloqueMoverIzquierda.generarBloque();
 
         BloqueInvertir bloqueInvertir = new BloqueInvertir();
-        Inversion bloqueRecibido = bloqueInvertir.generarSecuencia(bloqueInicial);
+        Inversion bloqueRecibido = bloqueInvertir.generarBloque();
+        bloqueRecibido.agregarBloque(bloqueInicial);
         bloqueRecibido.agregarBloque(bloqueSecundario);
 
         bloqueRecibido.ejecutarBloque(personaje);
