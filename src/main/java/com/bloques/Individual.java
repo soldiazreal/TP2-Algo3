@@ -18,10 +18,6 @@ public class Individual implements Bloque{
         return this.nombre;
     }
 
-    public Accion getAccion(){
-        return this.accion;
-    }
-
     @Override
     public void ejecutarBloque(Personaje unPersonaje){
         this.accion.accionar(unPersonaje);

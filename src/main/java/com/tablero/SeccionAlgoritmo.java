@@ -7,8 +7,6 @@ import java.util.LinkedList;
 
 public class SeccionAlgoritmo{
 
-    //AGREGAR METODO PARA AGREGAR SIN INDICE?
-
     private final LinkedList<Bloque> bloquesParaEjecucion;
 
     public SeccionAlgoritmo(){
