@@ -1,15 +1,7 @@
-import com.acciones.BajarLapiz;
-import com.acciones.MoverDerecha;
 import com.bloques.*;
-import com.excepciones.BloqueInexistenteException;
 import com.factory.BloqueInvertir;
-import com.factory.BloqueMoverArriba;
-import com.lapiz.Lapiz;
-import com.lapiz.LapizBajo;
 import com.personaje.Personaje;
-import com.posicion.Posicion;
 import com.tablero.*;
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
