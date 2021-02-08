@@ -2,6 +2,8 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import com.arista.Arista;
+import com.excepciones.PosicionANullException;
+import com.excepciones.SeccionDibujoNullException;
 import com.lapiz.LapizBajo;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
@@ -62,5 +64,15 @@ public class PersonajeTests {
 
         assertEquals(personaje.getPosicionActual().getX(), 4);
         assertEquals(personaje.getPosicionActual().getY(), 8);
+    }
+
+    @Test (expected = PosicionANullException.class)
+    public void test05NoSePuedeCrearPersonajeConPosicionANull(){
+        new Personaje(null, mock(SeccionDibujo.class));
+    }
+
+    @Test (expected = SeccionDibujoNullException.class)
+    public void test06NoSePuedeCrearPersonajeConSeccionDibujoANull(){
+        new Personaje(mock(Posicion.class), null);
     }
 }
