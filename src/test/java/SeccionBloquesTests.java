@@ -1,4 +1,5 @@
 import com.bloques.*;
+import com.excepciones.BloqueInexistenteException;
 import com.factory.BloqueInvertir;
 import com.personaje.Personaje;
 import com.tablero.*;
@@ -112,8 +113,9 @@ public class SeccionBloquesTests {
         assertEquals(bloqueNuevo.getClass(), Inversion.class);
     }
 
-    /*@Test (expected = BloqueInexistenteException.class)
+    @Test (expected = BloqueInexistenteException.class)
     public void test10NoSePuedeBuscarBloqueQueNoExiste (){
-
-    }*/
+        SeccionBloques seccionBloques = new SeccionBloques();
+        seccionBloques.buscarBloque("Inexistente");
+    }
 }

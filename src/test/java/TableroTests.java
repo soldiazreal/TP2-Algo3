@@ -1,5 +1,6 @@
 import static org.mockito.Mockito.*;
 
+import com.excepciones.BloqueInexistenteException;
 import com.personaje.Personaje;
 import com.tablero.SeccionAlgoritmo;
 import com.tablero.SeccionBloques;
@@ -47,5 +48,11 @@ public class TableroTests {
         tablero.iniciarAlgoritmo();
 
         Mockito.verify(algoritmoMock, Mockito.times(1)).ejecutar(any(Personaje.class));
+    }
+
+    @Test (expected = BloqueInexistenteException.class)
+    public void test04NoSePuedeAgregarBloqueInexistente (){
+        Tablero tablero = new Tablero();
+        tablero.agregarBloque("Inexistente", 0);
     }
 }

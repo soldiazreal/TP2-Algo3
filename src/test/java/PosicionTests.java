@@ -18,4 +18,11 @@ public class PosicionTests {
         assertEquals(unaPosicion.getX(), 3);
         assertEquals(unaPosicion.getY(), 4);
     }
+
+    @Test
+    public void test03SeCreaPosicionConValoresNegativos (){
+        Posicion posicion = new Posicion(-1, -2);
+        assertEquals(posicion.getX(), -1);
+        assertEquals(posicion.getY(), -2);
+    }
 }

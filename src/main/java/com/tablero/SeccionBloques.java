@@ -1,13 +1,9 @@
 package com.tablero;
 
-import com.acciones.*;
 import com.bloques.Bloque;
-import com.bloques.Individual;
-import com.bloques.Secuencial;
+import com.excepciones.BloqueInexistenteException;
 import com.factory.*;
-import com.personaje.Personaje;
 
-import java.lang.reflect.Type;
 import java.util.*;
 
 public class SeccionBloques {
@@ -34,7 +30,9 @@ public class SeccionBloques {
 
     public Bloque buscarBloque (String unNombre) {
         CrearBloque unConstructor = bloquesDisponibles.get(unNombre);
+        if (unConstructor == null){
+            throw new BloqueInexistenteException("Error no existe bloque buscado");
+        }
         return unConstructor.generarBloque();
-        //Cambios: Se cambia el constructor de individuales por el de bloques en general
     }
 }

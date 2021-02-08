@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+import com.excepciones.ValorInvalidoException;
 import com.factory.BloqueMoverArriba;
 import com.factory.BloqueMoverDerecha;
 import com.factory.BloqueMoverIzquierda;
@@ -168,4 +170,28 @@ public class SecuencialesTest {
 
     }
 
+    @Test
+    public void test07EjecutarBloqueInversionVacioNoModificaAPersonaje (){
+        Inversion bloqueInversion = new Inversion();
+        Personaje personajeMock = mock(Personaje.class);
+
+        bloqueInversion.ejecutarBloque(personajeMock);
+
+        verifyNoInteractions(personajeMock);
+    }
+
+    @Test
+    public void test08EjecutarBloqueRepeticionVacioNoModificaAPersonaje (){
+        Repeticion bloqueRepeticion = new Repeticion(1);
+        Personaje personajeMock = mock(Personaje.class);
+
+        bloqueRepeticion.ejecutarBloque(personajeMock);
+
+        verifyNoInteractions(personajeMock);
+    }
+
+    @Test (expected = ValorInvalidoException.class)
+    public void test09NoSePuedeCrearBloqueRepeticionConRepeticionesNegativas (){
+        new Repeticion(-1);
+    }
 }
