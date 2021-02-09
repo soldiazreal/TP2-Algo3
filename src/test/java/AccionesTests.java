@@ -1,7 +1,11 @@
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 import com.acciones.*;
 
+import com.arista.Arista;
+import com.excepciones.PersonajeNullException;
+import com.excepciones.PosicionANullException;
 import com.lapiz.Lapiz;
 import com.lapiz.LapizBajo;
 import com.lapiz.LapizLevantado;
@@ -273,6 +277,43 @@ public class AccionesTests {
 
         assertEquals(seccionDibujado.cantidadAristas(),1);
     }
+
+    @Test (expected = PersonajeNullException.class)
+    public void test17BajarLapizPersonajeNull(){
+        BajarLapiz accion = new BajarLapiz();
+        accion.accionar(null);
+    }
+
+    @Test (expected = PersonajeNullException.class)
+    public void test18LevantarLapizPersonajeNull(){
+        LevantarLapiz accion = new LevantarLapiz();
+        accion.accionar(null);
+    }
+
+    @Test (expected = PersonajeNullException.class)
+    public void test19MoverDerechaPersonajeNull(){
+        MoverDerecha accion = new MoverDerecha();
+        accion.accionar(null);
+    }
+
+    @Test (expected = PersonajeNullException.class)
+    public void test20MoverIzquierdaPersonajeNull(){
+        MoverIzquierda accion = new MoverIzquierda();
+        accion.accionar(null);
+    }
+
+    @Test (expected = PersonajeNullException.class)
+    public void test21MoverArribaPersonajeNull(){
+        MoverArriba accion = new MoverArriba();
+        accion.accionar(null);
+    }
+
+    @Test (expected = PersonajeNullException.class)
+    public void test22MoverAbajoPersonajeNull(){
+        MoverAbajo accion = new MoverAbajo();
+        accion.accionar(null);
+    }
+
 }
 
 
