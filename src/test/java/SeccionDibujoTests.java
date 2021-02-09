@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import com.arista.Arista;
+import com.excepciones.AristaANullException;
 import com.lapiz.Lapiz;
 import com.lapiz.LapizBajo;
 import com.lapiz.LapizLevantado;
@@ -30,5 +31,11 @@ public class SeccionDibujoTests {
     public void test02SeCreaSeccionDibujoSinAristas (){
         SeccionDibujo unaSeccionDibujo = new SeccionDibujo();
         assertEquals(unaSeccionDibujo.cantidadAristas(), 0 );
+    }
+
+    @Test (expected = AristaANullException.class)
+    public void test03NoSePuedeAgregarAristaANull(){
+        SeccionDibujo seccionDibujo = new SeccionDibujo();
+        seccionDibujo.agregarArista(null);
     }
 }
