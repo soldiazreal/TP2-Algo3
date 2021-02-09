@@ -1,0 +1,13 @@
+language: java
+jdk:
+  - oraclejdk15
+
+notifications:
+ email:
+    recipients:
+      - mdiazr@fi.uba.ar
+      - ldemarchi@fi.uba.ar
+      - mlvargas@fi.uba.ar
+      - favendano@fi.uba.ar
+    on_failure: always
+    on_success: always
