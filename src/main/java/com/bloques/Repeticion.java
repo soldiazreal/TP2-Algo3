@@ -7,7 +7,7 @@ public class Repeticion extends Secuencial{
     private int repeticiones;
 
     public Repeticion(int repeticiones) {
-        if (repeticiones < 0){
+        if (repeticiones <= 0){
             throw new ValorInvalidoException("No se puede crear el bloque con repeticiones negativo");
         }
         this.repeticiones = repeticiones;

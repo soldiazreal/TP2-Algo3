@@ -194,4 +194,10 @@ public class SecuencialesTest {
     public void test09NoSePuedeCrearBloqueRepeticionConRepeticionesNegativas (){
         new Repeticion(-1);
     }
+
+
+    @Test (expected = ValorInvalidoException.class)
+    public void test10NoSePuedeCrearBloqueRepeticionConRepeticionesNulas (){
+        new Repeticion(0);
+    }
 }
