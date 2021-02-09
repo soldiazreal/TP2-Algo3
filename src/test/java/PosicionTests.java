@@ -25,4 +25,13 @@ public class PosicionTests {
         assertEquals(posicion.getX(), -1);
         assertEquals(posicion.getY(), -2);
     }
+
+    @Test
+    public void test04SeCreaUnaCopiaDePosicion(){
+        Posicion posicion = new Posicion(2, 1);
+        Posicion copia = posicion.copiaDePosicion();
+
+        assertEquals(posicion.getX(), copia.getX());
+        assertEquals(posicion.getY(), copia.getY());
+    }
 }

@@ -15,6 +15,10 @@ public class Posicion {
         y = y + variacionY;
     }
 
+    public Posicion copiaDePosicion (){
+        return new Posicion(x, y);
+    }
+
     public int getX(){
         return this.x;
     }

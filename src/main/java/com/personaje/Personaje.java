@@ -21,10 +21,9 @@ public class Personaje{
     }
 
     public void mover(int variacionX, int variacionY) {
-        Posicion posicionInicio = new Posicion(posicionActual.getX(),posicionActual.getY());
-        Posicion posicionFinal = new Posicion(0,0);
+        Posicion posicionInicio = posicionActual.copiaDePosicion();
         posicionActual.modificarCoordenadas(variacionX, variacionY);
-        posicionFinal.modificarCoordenadas(posicionActual.getX(), posicionActual.getY());
+        Posicion posicionFinal = posicionActual.copiaDePosicion();
         lapiz.usar(posicionInicio, posicionFinal, seccionDibujo);
     }
 
