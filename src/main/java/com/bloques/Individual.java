@@ -1,6 +1,7 @@
 package com.bloques;
 
 import com.acciones.*;
+import com.excepciones.AccionANullException;
 import com.personaje.Personaje;
 
 public class Individual implements Bloque{
@@ -10,6 +11,8 @@ public class Individual implements Bloque{
     private Accion accion;
 
     public Individual(String nombre, Accion unaAccion) {
+        if (unaAccion == null)
+            throw new AccionANullException("No se puede crear Individual con Accion a null");
         this.nombre = nombre;
         this.accion = unaAccion;
     }

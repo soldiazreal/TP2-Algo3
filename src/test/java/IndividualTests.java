@@ -1,15 +1,15 @@
 import com.acciones.*;
 import com.bloques.Individual;
+import com.excepciones.AccionANullException;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import org.junit.Test;
 
-import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
 
-public class BloqueTests {
+public class IndividualTests {
 
     @Test
 
@@ -39,7 +39,7 @@ public class BloqueTests {
 
     @Test
 
-    public void test03Inversion(){
+    public void test03LaAccionSeInvierteBien(){
         Posicion posicion = new Posicion(0,0);
         Posicion esperada = new Posicion(0,1);
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -50,5 +50,10 @@ public class BloqueTests {
 
         assertEquals(posicion.getX(),esperada.getX());
         assertEquals(posicion.getY(),esperada.getY());
+    }
+
+    @Test (expected = AccionANullException.class)
+    public void test04NoSePuedeCrearIndividualConAccionANull(){
+        new Individual ("Bloque", null);
     }
 }

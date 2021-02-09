@@ -3,6 +3,7 @@ import static org.mockito.Mockito.*;
 
 import com.arista.Arista;
 import com.bloques.Individual;
+import com.excepciones.PosicionANullException;
 import com.factory.BloqueBajaraLapiz;
 import com.factory.BloqueMoverArriba;
 import com.factory.BloqueMoverDerecha;
@@ -33,6 +34,16 @@ public class AristaTests {
         assertEquals(unaArista.getPosicionFinal().getY(), posicionFin.getY());
         assertEquals(unaArista.getPosicionInicial().getY(), posicionInicial.getY());
         assertEquals(unaArista.getPosicionFinal().getX(), posicionFin.getX());
+    }
+
+    @Test (expected = PosicionANullException.class)
+    public void test02NoSePuedeCrearAristaConPosicionInicioANull(){
+        new Arista(null, mock(Posicion.class));
+    }
+
+    @Test (expected = PosicionANullException.class)
+    public void test03NoSePuedeCrearAristaConPosicionFinANull(){
+        new Arista(mock(Posicion.class), null);
     }
 
 }

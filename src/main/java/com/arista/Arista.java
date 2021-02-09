@@ -1,4 +1,5 @@
 package com.arista;
+import com.excepciones.PosicionANullException;
 import com.posicion.*;
 
 public class Arista {
@@ -15,6 +16,10 @@ public class Arista {
     }
 
     public Arista(Posicion posicionInicio, Posicion posicionFin){
+        if (posicionInicio == null)
+            throw new PosicionANullException("No se puede crear Arista con posicionInicio a null");
+        if (posicionFin == null)
+            throw new PosicionANullException("No se puede crear Arista con posicionFin a null");
         this.posicionInicio = posicionInicio;
         this.posicionFin = posicionFin;
     }
