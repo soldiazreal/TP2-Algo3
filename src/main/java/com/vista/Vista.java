@@ -18,7 +18,7 @@ public class Vista extends Application {
         layout.getChildren().add(boton);
 
         Scene escena = new Scene(layout);
-
+        stage.setScene(escena);
         stage.show();
     }
 
