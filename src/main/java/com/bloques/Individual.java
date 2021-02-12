@@ -30,4 +30,9 @@ public class Individual implements Bloque{
     public void invertirBloque(Personaje unPersonaje){
         this.accion.invertir(unPersonaje);
     }
+
+    @Override
+    public Bloque copia(){
+        return new Individual(this.nombre, this.accion);
+    }
 }
