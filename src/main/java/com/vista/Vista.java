@@ -1,5 +1,8 @@
 package com.vista;
 
+import com.tablero.Tablero;
+import com.vista.imagenes.ContenedorBienvenidos;
+import com.vista.imagenes.ContenedorPrincipal;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,7 +13,7 @@ public class Vista extends Application {
     @Override
     public void start (Stage stage) throws Exception{
         stage.setTitle("titulo");
-
+/*
         StackPane layout = new StackPane();
         Button boton = new Button();
         boton.setText("accept");
@@ -19,6 +22,17 @@ public class Vista extends Application {
 
         Scene escena = new Scene(layout);
         stage.setScene(escena);
+        stage.show();
+  */
+        Tablero tablero = new Tablero();
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, tablero);
+        Scene escenaJuego = new Scene(contenedorPrincipal, 640, 480);
+
+        ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(stage, escenaJuego);
+        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 640, 480);
+
+        stage.setScene(escenaBienvenidos);
+        stage.setFullScreen(true);
         stage.show();
     }
 
