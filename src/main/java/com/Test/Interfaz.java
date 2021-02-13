@@ -50,6 +50,7 @@ public class Interfaz extends Application
     @Override
     public void start(Stage stage)
     {
+        //PARTE DE LINEAS
         List<Line> lines = new ArrayList<>();
 
         for(int i = 5; i <= 405; i+= 100) {
@@ -91,6 +92,7 @@ public class Interfaz extends Application
         for(int i = 0; i < 0; i++){
             lines.get(i).setVisible(false);
         }
+        //Termina creacion de lineas
 
         // Creacion del texto para cada zona
         Label seccionBloquesLbl = new Label("Seccion Bloques: ");
@@ -100,7 +102,7 @@ public class Interfaz extends Application
         // Seleccion de como se ven las areas
         bloquesDisponibles.setPrefSize(200, 200);
         bloquesAEjecutar.setPrefSize(200, 200);
-        seccionDibujado.setMaxSize(410, 210);
+        seccionDibujado.setMaxSize(410, 210); //SECCION DE LAS LINEAS
 
         // Agregando los bloques a la Source List
         bloquesDisponibles.getItems().addAll(this.getBloqueList());
@@ -185,7 +187,7 @@ public class Interfaz extends Application
         });
 
         VBox root = new VBox();
-        // Agregando el Pane y la seccionDibujad a la VBox
+        // Agregando el Pane y la seccionDibujado a la VBox
         root.getChildren().addAll(pane, seccionDibujado);
         // Estilo de la VBox
         root.setStyle(
