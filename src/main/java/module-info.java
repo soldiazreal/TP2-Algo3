@@ -8,6 +8,7 @@ module BlockUs {
 
      */
 
+
     opens com.vista to javafx.graphics;
     exports com.vista;
 }
