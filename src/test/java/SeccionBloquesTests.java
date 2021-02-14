@@ -1,6 +1,5 @@
 import com.bloques.*;
 import com.excepciones.BloqueInexistenteException;
-import com.factory.BloqueInvertir;
 import com.personaje.Personaje;
 import com.tablero.*;
 import org.junit.Test;
