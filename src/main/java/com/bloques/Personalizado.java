@@ -1,5 +1,7 @@
 package com.bloques;
 
+import com.excepciones.ListaNullException;
+import com.excepciones.PersonajeNullException;
 import com.personaje.Personaje;
 import com.tablero.SeccionBloques;
 
@@ -8,13 +10,9 @@ import java.util.List;
 
 public class Personalizado extends Secuencial {
 
-    private String nombre;
-
-    public Personalizado (String nombreNuevo){
-        this.nombre = nombreNuevo;
-    }
-
     public void guardarAlgoritmo(List<Bloque> algoritmo){
+        if (algoritmo == null)
+            throw new ListaNullException("No se puede guardar algoritmo con algoritmo null");
         for (Bloque unBloque: algoritmo){
             this.bloques.add(unBloque.copia());
         }
@@ -22,6 +20,8 @@ public class Personalizado extends Secuencial {
 
     @Override
     public void ejecutarBloque(Personaje unPersonaje) {
+        if (unPersonaje == null)
+            throw new PersonajeNullException("No se puede ejecutar bloque con personaje null");
         for (Bloque unBloque: this.bloques){
             unBloque.ejecutarBloque(unPersonaje);
         }
@@ -29,6 +29,8 @@ public class Personalizado extends Secuencial {
 
     @Override
     public void invertirBloque (Personaje unPersonaje){
+        if (unPersonaje == null)
+            throw new PersonajeNullException("No se puede invertir bloque con personaje null");
         for (Bloque unBloque: this.bloques){
             unBloque.invertirBloque(unPersonaje);
         }
@@ -36,7 +38,7 @@ public class Personalizado extends Secuencial {
 
     @Override
     public Bloque copia(){
-        Personalizado personalizado = new Personalizado(this.nombre);
+        Personalizado personalizado = new Personalizado();
         for (Bloque unBloque: this.bloques){
             personalizado.agregarBloque(unBloque.copia());
         }
