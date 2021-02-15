@@ -54,7 +54,7 @@ public class Interfaz extends Application
         List<Line> lines = new ArrayList<>();
 
         for(int i = 5; i <= 405; i+= 100) {
-            for (int j = 5; j <= 205; j += 100) {
+            for (int j = 5; j <= 405; j += 100) {
                 Circle circle = new Circle();
                 circle.setCenterX(i);
                 circle.setCenterY(j);
@@ -64,7 +64,7 @@ public class Interfaz extends Application
         }
 
         for(int i = 5; i < 405; i+= 100) {
-            for(int j = 5; j <= 205; j+= 100) {
+            for(int j = 5; j <= 405; j+= 100) {
                 Line line = new Line();
                 line.setStartX(i);
                 line.setStartY(j);
@@ -76,7 +76,7 @@ public class Interfaz extends Application
             }
         }
         for(int i = 5; i <= 405; i+= 100) {
-            for(int j = 5; j < 205; j+= 100) {
+            for(int j = 5; j < 405; j+= 100) {
                 Line line = new Line();
                 line.setStartX(i);
                 line.setStartY(j);
@@ -102,7 +102,7 @@ public class Interfaz extends Application
         // Seleccion de como se ven las areas
         bloquesDisponibles.setPrefSize(200, 200);
         bloquesAEjecutar.setPrefSize(200, 200);
-        seccionDibujado.setMaxSize(410, 210); //SECCION DE LAS LINEAS
+        seccionDibujado.setMaxSize(410, 410); //SECCION DE LAS LINEAS
 
         // Agregando los bloques a la Source List
         bloquesDisponibles.getItems().addAll(this.getBloqueList());
@@ -137,6 +137,7 @@ public class Interfaz extends Application
             }
         });
 
+        /*
         bloquesDisponibles.setOnDragDropped(new EventHandler <DragEvent>()
         {
             public void handle(DragEvent event)
@@ -152,6 +153,7 @@ public class Interfaz extends Application
                 dragDone(event, bloquesDisponibles);
             }
         });
+        */
 
         // Agregar mouse para los event handlers para el objetivo
         bloquesAEjecutar.setOnDragDetected(new EventHandler <MouseEvent>()
@@ -183,6 +185,7 @@ public class Interfaz extends Application
             public void handle(DragEvent event)
             {
                 dragDone(event, bloquesAEjecutar);
+                removeSelectedBloque(bloquesAEjecutar);
             }
         });
 
