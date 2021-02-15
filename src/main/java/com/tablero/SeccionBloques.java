@@ -15,12 +15,12 @@ public class SeccionBloques {
 
     public SeccionBloques(){
         this.bloquesDisponibles = new HashMap<>();
-        bloquesDisponibles.put("BajarLapiz", new Individual("BajarLapiz", new BajarLapiz()));
-        bloquesDisponibles.put("LevantarLapiz", new Individual("LevantarLapiz", new LevantarLapiz()));
-        bloquesDisponibles.put("MoverAbajo", new Individual("MoverAbajo", new MoverAbajo()));
-        bloquesDisponibles.put("MoverArriba", new Individual("MoverArriba", new MoverArriba()));
-        bloquesDisponibles.put("MoverIzquierda", new Individual("MoverIzquierda", new MoverIzquierda()));
-        bloquesDisponibles.put("MoverDerecha", new Individual("MoverDerecha", new MoverDerecha()));
+        bloquesDisponibles.put("BajarLapiz", new Individual(new BajarLapiz()));
+        bloquesDisponibles.put("LevantarLapiz", new Individual(new LevantarLapiz()));
+        bloquesDisponibles.put("MoverAbajo", new Individual(new MoverAbajo()));
+        bloquesDisponibles.put("MoverArriba", new Individual(new MoverArriba()));
+        bloquesDisponibles.put("MoverIzquierda", new Individual(new MoverIzquierda()));
+        bloquesDisponibles.put("MoverDerecha", new Individual(new MoverDerecha()));
         bloquesDisponibles.put("RepetirDoble", new Repeticion(2));
         bloquesDisponibles.put("RepetirTriple", new Repeticion(3));
         bloquesDisponibles.put("Invertir", new Inversion());

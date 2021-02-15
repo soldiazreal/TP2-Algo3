@@ -17,7 +17,7 @@ public class SeccionAlgoritmoTests {
     public void test01SeAgregaUnBloqueAlPrincipio(){
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
-        Individual bloqueArriba = new Individual("MoverArriba", new MoverArriba());
+        Individual bloqueArriba = new Individual(new MoverArriba());
         seccion.agregarBloqueEnPosicion(bloqueArriba,0);
 
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -37,16 +37,16 @@ public class SeccionAlgoritmoTests {
 
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
-        Individual bloqueBajarLapiz = new Individual("BajarLapiz", new BajarLapiz());
+        Individual bloqueBajarLapiz = new Individual(new BajarLapiz());
         seccion.agregarBloqueEnPosicion(bloqueBajarLapiz,0);
 
-        Individual bloqueDerecha = new Individual("MoverDerecha", new MoverDerecha());
+        Individual bloqueDerecha = new Individual(new MoverDerecha());
         seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
 
-        Individual bloqueIzquierda = new Individual("MoverIzquierda", new MoverIzquierda());
+        Individual bloqueIzquierda = new Individual(new MoverIzquierda());
         seccion.agregarBloqueEnPosicion(bloqueIzquierda,2);
 
-        Individual derecha = new Individual("MoverDerecha", new MoverDerecha());
+        Individual derecha = new Individual(new MoverDerecha());
         seccion.agregarBloqueEnPosicion(derecha,2);
 
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -65,7 +65,7 @@ public class SeccionAlgoritmoTests {
     public void test03RemuevoUnBloque(){
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
-        Individual bloqueAbajo = new Individual("MoverAbajo", new MoverAbajo());
+        Individual bloqueAbajo = new Individual(new MoverAbajo());
         seccion.agregarBloqueEnPosicion(bloqueAbajo,0);
 
         SeccionDibujo dibujo = new SeccionDibujo();
@@ -73,7 +73,7 @@ public class SeccionAlgoritmoTests {
 
         Personaje personaje = new Personaje(posicion,dibujo);
 
-        Individual bloqueDerecha = new Individual("MoverDerecha", new MoverDerecha());
+        Individual bloqueDerecha = new Individual(new MoverDerecha());
         seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
 
         seccion.removerBloqueDePosicion(0);

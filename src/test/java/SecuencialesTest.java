@@ -21,8 +21,8 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        Individual primerBloque = new Individual("MoverDerecha", new MoverDerecha());
-        Individual segundoBloque = new Individual("MoverDerecha", new MoverDerecha());
+        Individual primerBloque = new Individual(new MoverDerecha());
+        Individual segundoBloque = new Individual(new MoverDerecha());
 
         Inversion bloqueInversion = new Inversion();
         bloqueInversion.agregarBloque(primerBloque);
@@ -42,7 +42,7 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        Individual primerBloque = new Individual("MoverDerecha", new MoverDerecha());
+        Individual primerBloque = new Individual(new MoverDerecha());
 
         Inversion bloqueInversionSecundario = new Inversion();
         bloqueInversionSecundario.agregarBloque(primerBloque);
@@ -65,10 +65,10 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        Individual primerBloque = new Individual("MoverDerecha", new MoverDerecha());
-        Individual segundoBloque = new Individual("MoverDerecha", new MoverDerecha());
-        Individual tercerBloque = new Individual("MoverArriba", new MoverArriba());
-        Individual cuartoBloque = new Individual("MoverDerecha", new MoverDerecha());
+        Individual primerBloque = new Individual(new MoverDerecha());
+        Individual segundoBloque = new Individual(new MoverDerecha());
+        Individual tercerBloque = new Individual(new MoverArriba());
+        Individual cuartoBloque = new Individual(new MoverDerecha());
 
 
         Inversion bloqueInversionSecundario = new Inversion();
@@ -95,7 +95,7 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        Individual primerBloque = new Individual("MoverDerecha", new MoverDerecha());
+        Individual primerBloque = new Individual(new MoverDerecha());
 
         Repeticion bloqueRepeticion = new Repeticion(2);
         bloqueRepeticion.agregarBloque(primerBloque);
@@ -114,7 +114,7 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        Individual primerBloque = new Individual("MoverDerecha", new MoverDerecha());
+        Individual primerBloque = new Individual(new MoverDerecha());
 
         Inversion bloqueInversionSecundario = new Inversion();
         bloqueInversionSecundario.agregarBloque(primerBloque);
@@ -136,9 +136,9 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        Individual primerBloque = new Individual("MoverDerecha", new MoverDerecha());
-        Individual segundoBloque = new Individual("MoverArriba", new MoverArriba());
-        Individual tercerBloque = new Individual("MoverIzquierda", new MoverIzquierda());
+        Individual primerBloque = new Individual(new MoverDerecha());
+        Individual segundoBloque = new Individual(new MoverArriba());
+        Individual tercerBloque = new Individual(new MoverIzquierda());
 
 
         Inversion bloqueInversionSecundario = new Inversion();
@@ -190,7 +190,7 @@ public class SecuencialesTest {
     @Test
     public void test11RepeticionesSeCopiaCorrectamente(){
         Repeticion repeticion = new Repeticion(2);
-        Individual moverDerecha = new Individual("MoverDerecha", new MoverDerecha());
+        Individual moverDerecha = new Individual(new MoverDerecha());
         repeticion.agregarBloque(moverDerecha);
 
         Bloque copia = repeticion.copia();
@@ -204,7 +204,7 @@ public class SecuencialesTest {
     @Test
     public void test12InversionSeCopiaCorrectamente(){
         Inversion inversion = new Inversion();
-        Individual moverDerecha = new Individual("MoverDerecha", new MoverDerecha());
+        Individual moverDerecha = new Individual(new MoverDerecha());
         inversion.agregarBloque(moverDerecha);
 
         Bloque copia = inversion.copia();
