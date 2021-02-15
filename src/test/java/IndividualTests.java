@@ -1,4 +1,7 @@
+import static org.mockito.Mockito.*;
+
 import com.acciones.*;
+import com.bloques.Bloque;
 import com.bloques.Individual;
 import com.excepciones.AccionANullException;
 import com.personaje.Personaje;
@@ -55,5 +58,16 @@ public class IndividualTests {
     @Test (expected = AccionANullException.class)
     public void test04NoSePuedeCrearIndividualConAccionANull(){
         new Individual ("Bloque", null);
+    }
+
+    @Test
+    public void test05SeCopiaIndividual(){
+        Individual moverIzquierda = new Individual("MoverIzquierda", new MoverIzquierda());
+        Bloque copia = moverIzquierda.copia();
+
+        Personaje personajeMock = mock(Personaje.class);
+
+        copia.ejecutarBloque(personajeMock);
+        verify(personajeMock, times(1)).mover(-1, 0);
     }
 }

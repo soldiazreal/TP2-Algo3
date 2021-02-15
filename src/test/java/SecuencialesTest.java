@@ -186,4 +186,32 @@ public class SecuencialesTest {
     public void test10NoSePuedeCrearBloqueRepeticionConRepeticionesNulas (){
         new Repeticion(0);
     }
+
+    @Test
+    public void test11RepeticionesSeCopiaCorrectamente(){
+        Repeticion repeticion = new Repeticion(2);
+        Individual moverDerecha = new Individual("MoverDerecha", new MoverDerecha());
+        repeticion.agregarBloque(moverDerecha);
+
+        Bloque copia = repeticion.copia();
+
+        Personaje personajeMock = mock(Personaje.class);
+
+        copia.ejecutarBloque(personajeMock);
+        verify(personajeMock, times(2)).mover(1,0);
+    }
+
+    @Test
+    public void test12InversionSeCopiaCorrectamente(){
+        Inversion inversion = new Inversion();
+        Individual moverDerecha = new Individual("MoverDerecha", new MoverDerecha());
+        inversion.agregarBloque(moverDerecha);
+
+        Bloque copia = inversion.copia();
+
+        Personaje personajeMock = mock(Personaje.class);
+
+        copia.ejecutarBloque(personajeMock);
+        verify(personajeMock, times(1)).mover(-1,0);
+    }
 }
