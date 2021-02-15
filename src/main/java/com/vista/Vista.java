@@ -26,10 +26,10 @@ public class Vista extends Application {
   */
         Tablero tablero = new Tablero();
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, tablero);
-        Scene escenaJuego = new Scene(contenedorPrincipal, 640, 480);
+        Scene escenaJuego = new Scene(contenedorPrincipal, 1024, 720);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(stage, escenaJuego);
-        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 640, 480);
+        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 1024, 720);
 
         stage.setScene(escenaBienvenidos);
         stage.setFullScreen(true);

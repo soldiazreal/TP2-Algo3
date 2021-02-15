@@ -3,7 +3,7 @@ package com.vista.imagenes;
 import com.tablero.Tablero;
 import com.vista.eventos.BotonCrearPersonalizadoHandler;
 import com.vista.eventos.BotonReiniciarHandler;
-import com.vista.eventos.BotonReproducirHandler;
+import com.vista.eventos.ControladorSimulacion;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -25,13 +25,13 @@ public class ContenedorPrincipal extends BorderPane {
         this.setMenu(stage);
         ContenedorPersonalizado contenedorPersonalizado = new ContenedorPersonalizado();
         Scene escenaPersonalizado = new Scene(contenedorPersonalizado, 640, 480);
-        ContenedorSimulacion contenedorSimulacion = new ContenedorSimulacion(stage, tablero, new Scene(new ContenedorPrincipal(stage, tablero), 640, 480));
-        Scene escenaSimulacion = new Scene(contenedorSimulacion, 640, 480);
-        this.setBotonera(stage, escenaPersonalizado, escenaSimulacion);
+        //ContenedorSimulacion contenedorSimulacion = new ContenedorSimulacion(stage, tablero, new Scene(new ContenedorPrincipal(stage, tablero), 640, 480));
+        //Scene escenaSimulacion = new Scene(contenedorSimulacion, 640, 480);
+        this.setBotonera(stage, escenaPersonalizado);
 
     }
 
-    public void setBotonera(Stage stage, Scene escenaPersonalizado, Scene escenaSimulacion) {
+    public void setBotonera(Stage stage, Scene escenaPersonalizado) {
 
         Button botonCrearPersonalizado = new Button();
         botonCrearPersonalizado.setText("Crear bloque personalizado");
@@ -40,8 +40,10 @@ public class ContenedorPrincipal extends BorderPane {
 
         Button botonReproducir = new Button();
         botonReproducir.setText("Reproducir");
-        BotonReproducirHandler botonReproducirHandler = new BotonReproducirHandler(stage, escenaSimulacion);
-        botonReproducir.setOnAction(botonReproducirHandler);
+        botonReproducir.setOnAction(e -> {
+            ControladorSimulacion controladorSimulacion = new ControladorSimulacion();
+            controladorSimulacion.mostrarSimulacion();
+        });
 
         Button botonReiniciar = new Button();
         botonReiniciar.setText("Reiniciar");
@@ -53,7 +55,7 @@ public class ContenedorPrincipal extends BorderPane {
         botonReiniciar.setStyle("-fx-text-fill: #ff0000");
 
         HBox contenedorHorizontal = new HBox(botonCrearPersonalizado, botonReproducir, botonReiniciar);
-        contenedorHorizontal.setSpacing(100);
+        contenedorHorizontal.setSpacing(300);
         contenedorHorizontal.setPadding(new Insets(15));
 
         this.setBottom(contenedorHorizontal);

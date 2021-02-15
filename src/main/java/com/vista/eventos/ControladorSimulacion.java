@@ -1,10 +1,5 @@
-package com.vista.imagenes;
+package com.vista.eventos;
 
-import com.tablero.Tablero;
-import com.vista.eventos.BotonCrearPersonalizadoHandler;
-import com.vista.eventos.BotonReproducirHandler;
-import com.vista.eventos.BotonVolverHandler;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -13,43 +8,26 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContenedorSimulacion extends BorderPane {
+public class ControladorSimulacion extends BorderPane {
 
-    Scene escenaAnterior;
-    Tablero tablero;
+    public void mostrarSimulacion() {
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
 
-    public ContenedorSimulacion (Stage stage, Tablero tablero, Scene escenaAnterior) {
-        this.tablero = tablero;
-        this.setDibujo(stage, tablero);
-        this.escenaAnterior = escenaAnterior;
-    }
+        VBox cuadricula = new VBox();
+        Scene escena = new Scene(cuadricula, 1400, 900);
+        Button volver = new Button("Volver");
 
-    public void setBotonera (Stage stage, Tablero tablero) {
+        volver.setOnAction(e -> {
+            stage.close();
+        });
 
-        Button botonParar = new Button();
-        botonParar.setText("Parar");
-        BotonReproducirHandler botonReproducirHandler = new BotonReproducirHandler(stage, new Scene(new ContenedorSimulacion(stage, tablero, escenaAnterior)));
-        botonParar.setOnAction(botonReproducirHandler);
-
-        Button botonVolver = new Button();
-        botonVolver.setText("Volver");
-        BotonVolverHandler botonVolverHandler = new BotonVolverHandler();
-        botonVolver.setOnAction(botonVolverHandler);
-
-        HBox contenedorHorizontal = new HBox(botonVolver, botonParar);
-        contenedorHorizontal.setSpacing(100);
-        contenedorHorizontal.setPadding(new Insets(15));
-
-        this.setBottom(contenedorHorizontal);
-
-    }
-
-    public void setDibujo (Stage stage, Tablero tablero) {
         Pane seccionDibujado = new Pane();
         //PARTE DE LINEAS
         List<Line> lines = new ArrayList<>();
@@ -96,7 +74,10 @@ public class ContenedorSimulacion extends BorderPane {
         //Termina creacion de lineas
 
         seccionDibujado.setMaxSize(410, 210); //SECCION DE LAS LINEAS
-        VBox escenaSimulacion = new VBox(seccionDibujado);
-        this.setCenter(escenaSimulacion);
+
+
+        cuadricula.getChildren().addAll(seccionDibujado, volver);
+        stage.setScene(escena);
+        stage.showAndWait();
     }
 }
