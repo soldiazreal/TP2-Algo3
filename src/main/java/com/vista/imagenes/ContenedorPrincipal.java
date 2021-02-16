@@ -29,9 +29,7 @@ public class ContenedorPrincipal extends BorderPane {
 
     static final DataFormat STRING_LIST = new DataFormat("StringList");
 
-    Canvas canvasCentral;
     BarraDeMenu menuBar;
-    VBox contenedorCentral;
     Tablero tablero;
 
     public ContenedorPrincipal (Stage stage, Tablero tablero) {
@@ -42,10 +40,7 @@ public class ContenedorPrincipal extends BorderPane {
         this.setAlgoritmo(stage);
         this.setDibujo(stage);
         this.setBotonera(stage, escenaPersonalizado);
-        Image imagen = new Image("file:src/main/java/com/vista/imagenes/fondo.jpg");
 
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        this.setBackground(new Background((imagenDeFondo)));
     }
 
     public void setBotonera(Stage stage, Scene escenaPersonalizado) {
@@ -54,26 +49,48 @@ public class ContenedorPrincipal extends BorderPane {
         botonCrearPersonalizado.setText("Personalizado");
         BotonCrearPersonalizadoHandler crearPersonalizadoHandler = new BotonCrearPersonalizadoHandler(stage, escenaPersonalizado);
         botonCrearPersonalizado.setOnAction(crearPersonalizadoHandler);
+        botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
+                "-fx-text-fill: #280a03;" +
+                "-fx-border-color: #441509;" +
+                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonReiniciar = new Button();
         botonReiniciar.setText("Reiniciar");
         BotonReiniciarHandler botonReiniciarHandler = new BotonReiniciarHandler(tablero);
         botonReiniciar.setOnAction(botonReiniciarHandler);
-        botonReiniciar.setStyle("-fx-border-color: #000000; -fx-border-width: 5px;");
-        // botonReiniciar.setStyle("-fx-background-color: #00ff00");
-        // botonReiniciar.setStyle("-fx-font-size: 2em; ");
-        botonReiniciar.setStyle("-fx-text-fill: #ff0000");
+        botonReiniciar.setStyle("-fx-border-width: 4;" +
+                "-fx-text-fill: red;" +
+                "-fx-border-color: #441509;" +
+                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonInstrucciones = new Button();
         botonInstrucciones.setText("Instrucciones");
+        botonInstrucciones.setStyle("-fx-border-width: 4;" +
+                "-fx-text-fill: #280a03;" +
+                "-fx-border-color: #441509;" +
+                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
+        botonSalir.setStyle("-fx-border-width: 4;" +
+                "-fx-text-fill: #280a03;" +
+                "-fx-border-color: #441509;" +
+                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         VBox contenedor = new VBox(botonInstrucciones, botonCrearPersonalizado, botonReiniciar, botonSalir);
         contenedor.setSpacing(15);
         contenedor.setPadding(new Insets(25));
         contenedor.setAlignment(Pos.CENTER);
+
+        Image imagen = new Image("file:src/main/java/com/vista/imagenes/f13.jpg");
+
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        contenedor.setBackground(new Background((imagenDeFondo)));
+
+        contenedor.setStyle(
+                        "-fx-border-style: solid inside;" +
+                        "-fx-border-width: 4;" +
+                        "-fx-border-color: #3e2302;");
 
         this.setLeft(contenedor);
     }
@@ -81,7 +98,7 @@ public class ContenedorPrincipal extends BorderPane {
     public void setDibujo(Stage stage) {
 
         Pane seccionDibujado = new Pane();
-        //PARTE DE LINEAS
+
         List<Line> lines = new ArrayList<>();
 
         for(int i = 5; i <= 405; i+= 100) {
@@ -119,11 +136,9 @@ public class ContenedorPrincipal extends BorderPane {
             }
         }
 
-        //la goma de borrar lineas magica
         for(int i = 0; i < 0; i++){
             lines.get(i).setVisible(false);
         }
-        //Termina creacion de lineas
 
         seccionDibujado.setMaxSize(410, 410); //SECCION DE LAS LINEAS
 
@@ -137,10 +152,18 @@ public class ContenedorPrincipal extends BorderPane {
         botonera.setPadding(new Insets(15));
 
         VBox contenedor = new VBox(dibujo, botonera);
-        //contenedor.setPadding(new Insets(15));
         contenedor.setSpacing(20);
         contenedor.setAlignment(Pos.CENTER);
-        //contenedor.setAlignment(Pos.CENTER);
+
+        Image imagen = new Image("file:src/main/java/com/vista/imagenes/fondo1.jpg");
+
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        contenedor.setBackground(new Background((imagenDeFondo)));
+        contenedor.setStyle(
+                "-fx-border-style: solid inside;" +
+                        "-fx-border-width: 4;" +
+                        "-fx-border-color: #c9c7bd;");
+
         this.setRight(contenedor);
     }
 
@@ -148,13 +171,18 @@ public class ContenedorPrincipal extends BorderPane {
 
         ListView<String> bloquesDisponibles = new ListView<>();
         ListView<String> bloquesAEjecutar = new ListView<>();
+        bloquesDisponibles.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
+        bloquesAEjecutar.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
 
         // Creacion del texto para cada zona
         Label seccionBloquesLbl = new Label("Seccion Bloques ");
         seccionBloquesLbl.setFont(new Font("Tahoma", 19));
+        seccionBloquesLbl.setStyle("-fx-text-fill: #bb4c14");
         Label seccionAlgoritmosLbl = new Label("Seccion Algoritmos ");
         seccionAlgoritmosLbl.setFont(new Font("Tahoma", 19));
+        seccionAlgoritmosLbl.setStyle("-fx-text-fill: #bb4c14");
         Label explicacionLbl = new Label("Arrastra de seccion bloques a seccion algoritmos para seleccionar que se ejecuta");
+        explicacionLbl.setStyle("-fx-text-fill: #bb4c14");
 
         // Seleccion de como se ven las areas
         bloquesDisponibles.setPrefSize(200, 350);
@@ -218,17 +246,6 @@ public class ContenedorPrincipal extends BorderPane {
             }
         });
 
-
-
-        Button botonReiniciar = new Button();
-        botonReiniciar.setText("Reiniciar");
-        BotonReiniciarHandler botonReiniciarHandler = new BotonReiniciarHandler(tablero);
-        botonReiniciar.setOnAction(botonReiniciarHandler);
-        botonReiniciar.setStyle("-fx-border-color: #000000; -fx-border-width: 5px;");
-       // botonReiniciar.setStyle("-fx-background-color: #00ff00");
-       // botonReiniciar.setStyle("-fx-font-size: 2em; ");
-        botonReiniciar.setStyle("-fx-text-fill: #ff0000");
-
         HBox textos = new HBox();
         textos.getChildren().addAll(seccionBloquesLbl, seccionAlgoritmosLbl);
         textos.setSpacing(80);
@@ -247,16 +264,18 @@ public class ContenedorPrincipal extends BorderPane {
         //general.setAlignment(Pos.CENTER);
         general.setPadding(new Insets(10));
         general.setAlignment(Pos.CENTER);
-        /*listas.setStyle(
-                "-fx-padding: 10;" +
-                        "-fx-border-style: solid inside;" +
-                        "-fx-border-width: 2;" +
-                        "-fx-border-insets: 5;" +
-                        "-fx-border-radius: 5;" +
-                        "-fx-border-color: blue;");
-*/
-        this.setCenter(general);
 
+        Image imagen = new Image("file:src/main/java/com/vista/imagenes/f7.jpg");
+
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        general.setBackground(new Background((imagenDeFondo)));
+
+        general.setStyle(
+                "-fx-border-style: solid inside;" +
+                        "-fx-border-width: 4;" +
+                        "-fx-border-color: #241802;");
+
+        this.setCenter(general);
     }
 
     public void setMenu(Stage stage) {
@@ -264,11 +283,9 @@ public class ContenedorPrincipal extends BorderPane {
         this.setTop(menuBar);
     }
 
-
     public BarraDeMenu getBarraDeMenu() {
         return menuBar;
     }
-
 
 
 
