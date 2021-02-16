@@ -1,15 +1,13 @@
 package com.vista.imagenes;
 
 import com.tablero.Tablero;
-import com.vista.eventos.BotonCrearPersonalizadoHandler;
-import com.vista.eventos.BotonReiniciarHandler;
+import com.vista.eventos.BotonInstruccionesEventHandler;
+import com.vista.eventos.OpcionSalirEventHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -29,53 +27,59 @@ public class ContenedorPrincipal extends BorderPane {
 
     static final DataFormat STRING_LIST = new DataFormat("StringList");
 
+    ListView<String> bloquesDisponibles;
+    ListView<String> bloquesAEjecutar;
     BarraDeMenu menuBar;
     Tablero tablero;
 
     public ContenedorPrincipal (Stage stage, Tablero tablero) {
         this.tablero = tablero;
         this.setMenu(stage);
-        ContenedorPersonalizado contenedorPersonalizado = new ContenedorPersonalizado();
-        Scene escenaPersonalizado = new Scene(contenedorPersonalizado, 640, 480);
         this.setAlgoritmo(stage);
         this.setDibujo(stage);
-        this.setBotonera(stage, escenaPersonalizado);
-
+        this.setBotonera(stage);
     }
 
-    public void setBotonera(Stage stage, Scene escenaPersonalizado) {
+    public void setBotonera(Stage stage) {
 
         Button botonCrearPersonalizado = new Button();
-        botonCrearPersonalizado.setText("Personalizado");
-        BotonCrearPersonalizadoHandler crearPersonalizadoHandler = new BotonCrearPersonalizadoHandler(stage, escenaPersonalizado);
-        botonCrearPersonalizado.setOnAction(crearPersonalizadoHandler);
+        botonCrearPersonalizado.setText("Guardar algoritmo");
+        botonCrearPersonalizado.setOnAction(e -> {
+            this.bloquesDisponibles.getItems().add("Personalizado");
+        });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
-                "-fx-text-fill: #280a03;" +
+                "-fx-text-fill: #000000;" +
                 "-fx-border-color: #441509;" +
-                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-background-color: #eaaf95;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonReiniciar = new Button();
         botonReiniciar.setText("Reiniciar");
-        BotonReiniciarHandler botonReiniciarHandler = new BotonReiniciarHandler(tablero);
-        botonReiniciar.setOnAction(botonReiniciarHandler);
+        botonReiniciar.setOnAction(e -> {
+            this.bloquesDisponibles.getItems().removeAll("Personalizado");
+            tablero.reiniciarPrograma();
+        });
         botonReiniciar.setStyle("-fx-border-width: 4;" +
-                "-fx-text-fill: red;" +
+                "-fx-text-fill: #000000;" +
                 "-fx-border-color: #441509;" +
-                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-background-color: #eaaf95;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonInstrucciones = new Button();
         botonInstrucciones.setText("Instrucciones");
+        BotonInstruccionesEventHandler botonInstruccionesEventHandler = new BotonInstruccionesEventHandler();
+        botonInstrucciones.setOnAction(botonInstruccionesEventHandler);
         botonInstrucciones.setStyle("-fx-border-width: 4;" +
-                "-fx-text-fill: #280a03;" +
+                "-fx-text-fill: #0a0401;" +
                 "-fx-border-color: #441509;" +
-                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-background-color: #eaaf95;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
         botonSalir.setStyle("-fx-border-width: 4;" +
-                "-fx-text-fill: #280a03;" +
+                "-fx-text-fill: #000000;" +
                 "-fx-border-color: #441509;" +
-                "-fx-background-color: #d47747;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-background-color: #eaaf95;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+        OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
+        botonSalir.setOnAction(opcionSalirEventHandler);
 
         VBox contenedor = new VBox(botonInstrucciones, botonCrearPersonalizado, botonReiniciar, botonSalir);
         contenedor.setSpacing(15);
@@ -83,10 +87,8 @@ public class ContenedorPrincipal extends BorderPane {
         contenedor.setAlignment(Pos.CENTER);
 
         Image imagen = new Image("file:src/main/java/com/vista/imagenes/f13.jpg");
-
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedor.setBackground(new Background((imagenDeFondo)));
-
         contenedor.setStyle(
                         "-fx-border-style: solid inside;" +
                         "-fx-border-width: 4;" +
@@ -169,19 +171,19 @@ public class ContenedorPrincipal extends BorderPane {
 
     public void setAlgoritmo(Stage stage) {
 
-        ListView<String> bloquesDisponibles = new ListView<>();
-        ListView<String> bloquesAEjecutar = new ListView<>();
+        this.bloquesDisponibles = new ListView<>();
+        this.bloquesAEjecutar = new ListView<>();
         bloquesDisponibles.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
         bloquesAEjecutar.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
 
         // Creacion del texto para cada zona
-        Label seccionBloquesLbl = new Label("Seccion Bloques ");
+        Label seccionBloquesLbl = new Label("Sección Bloques ");
         seccionBloquesLbl.setFont(new Font("Tahoma", 19));
         seccionBloquesLbl.setStyle("-fx-text-fill: #bb4c14");
-        Label seccionAlgoritmosLbl = new Label("Seccion Algoritmos ");
+        Label seccionAlgoritmosLbl = new Label("  Sección Algoritmo ");
         seccionAlgoritmosLbl.setFont(new Font("Tahoma", 19));
         seccionAlgoritmosLbl.setStyle("-fx-text-fill: #bb4c14");
-        Label explicacionLbl = new Label("Arrastra de seccion bloques a seccion algoritmos para seleccionar que se ejecuta");
+        Label explicacionLbl = new Label("Arrastra de Sección Bloques a Sección Algoritmo para seleccionar qué se ejecuta");
         explicacionLbl.setStyle("-fx-text-fill: #bb4c14");
 
         // Seleccion de como se ven las areas
@@ -261,15 +263,12 @@ public class ContenedorPrincipal extends BorderPane {
 
         VBox general = new VBox(textos, listas, explicacion);
         general.setSpacing(22);
-        //general.setAlignment(Pos.CENTER);
         general.setPadding(new Insets(10));
         general.setAlignment(Pos.CENTER);
 
         Image imagen = new Image("file:src/main/java/com/vista/imagenes/f7.jpg");
-
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         general.setBackground(new Background((imagenDeFondo)));
-
         general.setStyle(
                 "-fx-border-style: solid inside;" +
                         "-fx-border-width: 4;" +

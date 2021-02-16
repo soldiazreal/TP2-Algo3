@@ -9,8 +9,8 @@ public class OpcionAcercaDeEventHandler implements EventHandler<ActionEvent> {
     public void handle (ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Acerca de...");
-        alert.setHeaderText("ejemplo de mensaje de alerta");
-        String mensaje = "Esta es una app de aprendizaje de programación";
+        alert.setHeaderText("Block Us");
+        String mensaje = "Esta es una app de aprendizaje de programación desarrollada por los siguientes estudiantes: \n - Avendaño, Franz\n - Demarchi, Lucas\n - Diaz Real, Sol\n - Vargas, Marcos\n\n Con el uso de Java 15, JavaFX 15.";
         alert.setContentText(mensaje);
         alert.show();
     }

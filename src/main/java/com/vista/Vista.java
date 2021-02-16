@@ -13,27 +13,17 @@ public class Vista extends Application {
     @Override
     public void start (Stage stage) throws Exception{
         stage.setTitle("titulo");
-/*
-        StackPane layout = new StackPane();
-        Button boton = new Button();
-        boton.setText("accept");
 
-        layout.getChildren().add(boton);
-
-        Scene escena = new Scene(layout);
-        stage.setScene(escena);
-        stage.show();
-  */
         Tablero tablero = new Tablero();
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, tablero);
         Scene escenaJuego = new Scene(contenedorPrincipal, 1400, 530);
 
         ContenedorBienvenidos contenedorBienvenidos = new ContenedorBienvenidos(stage, escenaJuego);
-        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 1800, 900);
+        Scene escenaBienvenidos = new Scene(contenedorBienvenidos, 1400, 900);
 
         stage.setScene(escenaBienvenidos);
         stage.setFullScreenExitHint("");
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
         stage.show();
     }
 

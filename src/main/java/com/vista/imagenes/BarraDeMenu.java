@@ -15,16 +15,10 @@ public class BarraDeMenu extends MenuBar {
 
     public BarraDeMenu (Stage stage) {
 
-        Menu menuArchivo = new Menu("Archivo");
         Menu menuVer = new Menu("Ver");
         Menu menuAyuda = new Menu("Ayuda");
 
-        MenuItem opcionSalir = new MenuItem("Salir");
-        MenuItem opcionAbrir = new MenuItem("Abrir");
         MenuItem opcionAcercaDe = new MenuItem("Acerca de...");
-
-        OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
-        opcionSalir.setOnAction(opcionSalirEventHandler);
 
         OpcionAcercaDeEventHandler opcionAcercaDeEventHandler = new OpcionAcercaDeEventHandler();
         opcionAcercaDe.setOnAction(opcionAcercaDeEventHandler);
@@ -34,11 +28,10 @@ public class BarraDeMenu extends MenuBar {
 
         opcionPantallaCompleta.setDisable(true);
 
-        menuArchivo.getItems().addAll(opcionAbrir, new SeparatorMenuItem(), opcionSalir);
         menuAyuda.getItems().addAll(opcionAcercaDe);
         menuVer.getItems().addAll(opcionPantallaCompleta);
 
-        this.getMenus().addAll(menuArchivo, menuVer, menuAyuda);
+        this.getMenus().addAll(menuVer, menuAyuda);
     }
 
     public void aplicacionMaximizada() {
