@@ -56,8 +56,12 @@ public class SeccionAlgoritmoTests {
         seccion.ejecutar(personaje);
 
         assertEquals(dibujo.cantidadAristas(),3);
+        assertEquals(dibujo.getArista(0).getPosicionFinal().getX(),1);
+        assertEquals(dibujo.getArista(0).getPosicionFinal().getY(),0);
         assertEquals(dibujo.getArista(1).getPosicionFinal().getX(),2);
         assertEquals(dibujo.getArista(1).getPosicionFinal().getY(),0);
+        assertEquals(dibujo.getArista(2).getPosicionFinal().getX(),1);
+        assertEquals(dibujo.getArista(2).getPosicionFinal().getY(),0);
     }
 
     @Test
