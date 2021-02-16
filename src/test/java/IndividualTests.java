@@ -1,4 +1,7 @@
+import static org.mockito.Mockito.*;
+
 import com.acciones.*;
+import com.bloques.Bloque;
 import com.bloques.Individual;
 import com.excepciones.AccionANullException;
 import com.personaje.Personaje;
@@ -13,24 +16,13 @@ public class IndividualTests {
 
     @Test
 
-    public void test01ElNombreDelBloqueSeGuardaBien(){
-
-        MoverArriba Arriba = new MoverArriba();
-        Individual bloque = new Individual("MoverArriba", Arriba);
-
-        assertEquals(bloque.getNombre(), "MoverArriba");
-
-    }
-
-    @Test
-
-    public void test02LaAccionSeEjecutaBien(){
+    public void test01LaAccionSeEjecutaBien(){
         Posicion posicion = new Posicion(0,0);
         Posicion esperada = new Posicion(0,-1);
         SeccionDibujo dibujo = new SeccionDibujo();
         Personaje personaje = new Personaje(posicion,dibujo);
         MoverAbajo accion = new MoverAbajo();
-        Individual bloque = new Individual("MoverAbajo",accion);
+        Individual bloque = new Individual(accion);
         bloque.ejecutarBloque(personaje);
 
         assertEquals(posicion.getX(),esperada.getX());
@@ -39,13 +31,13 @@ public class IndividualTests {
 
     @Test
 
-    public void test03LaAccionSeInvierteBien(){
+    public void test02LaAccionSeInvierteBien(){
         Posicion posicion = new Posicion(0,0);
         Posicion esperada = new Posicion(0,1);
         SeccionDibujo dibujo = new SeccionDibujo();
         Personaje personaje = new Personaje(posicion,dibujo);
         MoverAbajo accion = new MoverAbajo();
-        Individual bloque = new Individual("MoverAbajo",accion);
+        Individual bloque = new Individual(accion);
         bloque.invertirBloque(personaje);
 
         assertEquals(posicion.getX(),esperada.getX());
@@ -53,7 +45,18 @@ public class IndividualTests {
     }
 
     @Test (expected = AccionANullException.class)
-    public void test04NoSePuedeCrearIndividualConAccionANull(){
-        new Individual ("Bloque", null);
+    public void test03NoSePuedeCrearIndividualConAccionANull(){
+        new Individual ( null);
+    }
+
+    @Test
+    public void test04SeCopiaIndividual(){
+        Individual moverIzquierda = new Individual(new MoverIzquierda());
+        Bloque copia = moverIzquierda.copia();
+
+        Personaje personajeMock = mock(Personaje.class);
+
+        copia.ejecutarBloque(personajeMock);
+        verify(personajeMock, times(1)).mover(-1, 0);
     }
 }
