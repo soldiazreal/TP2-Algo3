@@ -46,6 +46,7 @@ public class ContenedorPrincipal extends BorderPane {
         botonCrearPersonalizado.setText("Guardar algoritmo");
         botonCrearPersonalizado.setOnAction(e -> {
             this.bloquesDisponibles.getItems().add("Personalizado");
+            this.bloquesAEjecutar.getItems().clear();
         });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
@@ -57,6 +58,7 @@ public class ContenedorPrincipal extends BorderPane {
         botonReiniciar.setOnAction(e -> {
             this.bloquesDisponibles.getItems().removeAll("Personalizado");
             tablero.reiniciarPrograma();
+            this.bloquesAEjecutar.getItems().clear();
         });
         botonReiniciar.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
