@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
@@ -45,8 +42,18 @@ public class ContenedorPrincipal extends BorderPane {
         Button botonCrearPersonalizado = new Button();
         botonCrearPersonalizado.setText("Guardar algoritmo");
         botonCrearPersonalizado.setOnAction(e -> {
-            this.bloquesDisponibles.getItems().add("Personalizado");
-            this.bloquesAEjecutar.getItems().clear();
+            if (bloquesAEjecutar.getItems().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alerta");
+                alert.setHeaderText("Hubo un error");
+                String mensaje = "No hay ninguna secuencia grabada en Sección Algoritmo!\n\nPor favor, antes de presionar el boton 'Guardar algoritmo' asegurate de haber armado una secuencia.";
+                alert.setContentText(mensaje);
+                alert.show();
+            } else {
+                this.bloquesDisponibles.getItems().add("Personalizado");
+                this.bloquesAEjecutar.getItems().clear();
+                botonCrearPersonalizado.setDisable(true);
+            }
         });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
@@ -59,6 +66,7 @@ public class ContenedorPrincipal extends BorderPane {
             this.bloquesDisponibles.getItems().removeAll("Personalizado");
             tablero.reiniciarPrograma();
             this.bloquesAEjecutar.getItems().clear();
+            botonCrearPersonalizado.setDisable(false);
         });
         botonReiniciar.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
