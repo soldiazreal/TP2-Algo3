@@ -17,4 +17,13 @@ public class Inversion extends Secuencial{
             elBloque.invertirBloque(unPersonaje);
         }
     }
+
+    @Override
+    public Bloque copia(){
+        Inversion inversion = new Inversion();
+        for (Bloque unBloque: this.bloques){
+            inversion.agregarBloque(unBloque.copia());
+        }
+        return inversion;
+    }
 }

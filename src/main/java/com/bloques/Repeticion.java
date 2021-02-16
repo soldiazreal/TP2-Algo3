@@ -30,4 +30,13 @@ public class Repeticion extends Secuencial{
             }
         }
     }
+
+    @Override
+    public Bloque copia(){
+        Repeticion repeticion = new Repeticion(this.repeticiones);
+        for (Bloque unBloque: this.bloques){
+            repeticion.bloques.add(unBloque.copia());
+        }
+        return repeticion;
+    }
 }
