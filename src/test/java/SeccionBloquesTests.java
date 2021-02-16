@@ -1,6 +1,5 @@
 import com.bloques.*;
 import com.excepciones.BloqueInexistenteException;
-import com.factory.BloqueInvertir;
 import com.personaje.Personaje;
 import com.tablero.*;
 import org.junit.Test;
@@ -107,7 +106,7 @@ public class SeccionBloquesTests {
     @Test
     public void test09SePuedeAgregarYBuscarBloque () {
         SeccionBloques seccionBloques = new SeccionBloques();
-        seccionBloques.agregarBloque("Invertir2", new BloqueInvertir());
+        seccionBloques.agregarBloque("Invertir2", new Inversion());
         Bloque bloqueNuevo = seccionBloques.buscarBloque("Invertir2");
 
         assertEquals(bloqueNuevo.getClass(), Inversion.class);
