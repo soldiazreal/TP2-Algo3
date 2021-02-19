@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class Vista extends Application {
     @Override
     public void start (Stage stage) throws Exception{
-        stage.setTitle("titulo");
+        stage.setTitle("Block Us");
 
         Tablero tablero = new Tablero();
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, tablero);

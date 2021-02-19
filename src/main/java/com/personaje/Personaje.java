@@ -4,8 +4,14 @@ import com.excepciones.SeccionDibujoNullException;
 import com.lapiz.*;
 import com.tablero.*;
 import com.posicion.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
-public class Personaje{
+import java.util.LinkedList;
+
+public class Personaje implements Observable {
+
+    LinkedList<InvalidationListener> observadores = new LinkedList<>();
 
     private SeccionDibujo seccionDibujo;
     private Posicion posicionActual;
@@ -25,6 +31,7 @@ public class Personaje{
         posicionActual.modificarCoordenadas(variacionX, variacionY);
         Posicion posicionFinal = posicionActual.copiaDePosicion();
         lapiz.usar(posicionInicio, posicionFinal, seccionDibujo);
+        this.notificar();
     }
 
     public void asignarLapiz(Lapiz lapiz) {
@@ -33,5 +40,25 @@ public class Personaje{
 
     public Posicion getPosicionActual(){
         return this.posicionActual;
+    }
+
+    public SeccionDibujo getSeccionDibujo() {
+        return seccionDibujo;
+    }
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        observadores.add(invalidationListener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        observadores.remove(invalidationListener);
+    }
+
+    public void notificar() {
+        for (InvalidationListener observador : observadores) {
+            observador.invalidated(null);
+        }
     }
 }

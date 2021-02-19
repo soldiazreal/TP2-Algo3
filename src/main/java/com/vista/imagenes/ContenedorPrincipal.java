@@ -1,6 +1,9 @@
 package com.vista.imagenes;
 
+import com.personaje.Personaje;
+import com.tablero.SeccionDibujo;
 import com.tablero.Tablero;
+import com.vista.clasesParaVista.VistaPersonaje;
 import com.vista.eventos.BotonInstruccionesEventHandler;
 import com.vista.eventos.OpcionSalirEventHandler;
 import javafx.collections.FXCollections;
@@ -8,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.*;
@@ -33,8 +37,9 @@ public class ContenedorPrincipal extends BorderPane {
         this.tablero = tablero;
         this.setMenu(stage);
         this.setAlgoritmo(stage);
-        this.setDibujo(stage);
         this.setBotonera(stage);
+        Personaje personaje = tablero.getPersonaje();
+        this.setReproductor(personaje, personaje.getSeccionDibujo());
     }
 
     public void setBotonera(Stage stage) {
@@ -63,10 +68,7 @@ public class ContenedorPrincipal extends BorderPane {
         Button botonReiniciar = new Button();
         botonReiniciar.setText("Reiniciar");
         botonReiniciar.setOnAction(e -> {
-            this.bloquesDisponibles.getItems().removeAll("Personalizado");
-            tablero.reiniciarPrograma();
-            this.bloquesAEjecutar.getItems().clear();
-            botonCrearPersonalizado.setDisable(false);
+            this.reiniciarJuego(stage);
         });
         botonReiniciar.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
@@ -175,6 +177,65 @@ public class ContenedorPrincipal extends BorderPane {
                 "-fx-border-style: solid inside;" +
                         "-fx-border-width: 4;" +
                         "-fx-border-color: #c9c7bd;");
+
+        this.setRight(contenedor);
+    }
+
+    public void setReproductor(Personaje personaje, SeccionDibujo seccionDibujo) {
+        Canvas canvasCentral = new Canvas(500, 500);
+        VistaPersonaje vistaPersonaje = new VistaPersonaje(personaje, canvasCentral);
+        personaje.addListener(vistaPersonaje);
+        vistaPersonaje.dibujar();
+
+        VBox contenedor = new VBox(canvasCentral);
+        contenedor.setAlignment(Pos.CENTER);
+        contenedor.setSpacing(20);
+        contenedor.setPadding(new Insets(25));
+        Image imagen = new Image("file:src/main/java/com/vista/imagenes/f7.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        contenedor.setBackground(new Background(imagenDeFondo));
+
+        Button moverArriba = new Button("mover arriba");
+        moverArriba.setOnAction(e -> {
+            tablero.getPersonaje().mover(0, 1);
+            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
+        });
+
+        Button moverAbajo = new Button("mover abajo");
+        moverAbajo.setOnAction(e -> {
+            tablero.getPersonaje().mover(0, -1);
+            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
+        });
+
+        Button moverDer = new Button("mover der");
+        moverDer.setOnAction(e -> {
+            tablero.getPersonaje().mover(1, 0);
+            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
+        });
+
+        Button moverIzquierda = new Button("mover izq");
+        moverIzquierda.setOnAction(e -> {
+            tablero.getPersonaje().mover(-1, 0);
+            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
+        });
+
+        //creacion de bloques
+        tablero.agregarBloque("MoverDerecha", 0);
+        tablero.agregarBloque("MoverDerecha", 1);
+        tablero.agregarBloque("MoverArriba", 2);
+        tablero.agregarBloque("MoverIzquierda", 3);
+        tablero.agregarBloque("MoverIzquierda", 4);
+        tablero.agregarBloque("MoverAbajo", 5);
+        tablero.agregarBloque("MoverAbajo", 6);
+
+        //se agregaron todos
+        Button reproducir = new Button("reproducir");
+        reproducir.setOnAction(e -> {
+            tablero.iniciarAlgoritmo();
+        });
+
+
+        contenedor.getChildren().addAll(reproducir);
 
         this.setRight(contenedor);
     }
@@ -296,6 +357,14 @@ public class ContenedorPrincipal extends BorderPane {
         return menuBar;
     }
 
+    public void reiniciarJuego(Stage stage) {
+        this.tablero = new Tablero();
+        this.setMenu(stage);
+        this.setAlgoritmo(stage);
+        this.setBotonera(stage);
+        Personaje personaje = tablero.getPersonaje();
+        this.setReproductor(personaje, personaje.getSeccionDibujo());
+    }
 
 
 

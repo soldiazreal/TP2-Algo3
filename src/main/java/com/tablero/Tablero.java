@@ -8,6 +8,8 @@ public class Tablero {
 
     private SeccionBloques seccionBloques = new SeccionBloques();
     private SeccionAlgoritmo seccionAlgoritmo = new SeccionAlgoritmo();
+    private Personaje personaje = new Personaje(new Posicion(0, 0), new SeccionDibujo());
+
 
     public void agregarBloque (String unNombre, int unIndice) {
         Bloque bloqueRecibido = seccionBloques.buscarBloque(unNombre);
@@ -19,12 +21,11 @@ public class Tablero {
     }
 
     public void iniciarAlgoritmo () {
-        seccionAlgoritmo.ejecutar(new Personaje(new Posicion(0,0), new SeccionDibujo()));
+        seccionAlgoritmo.ejecutar(personaje);
     }
 
-    public void reiniciarPrograma () {
-        this.seccionBloques = new SeccionBloques();
-        this.seccionAlgoritmo = new SeccionAlgoritmo();
+    public Personaje getPersonaje() {
+        return personaje;
     }
 
     //ojo con esto, es peligroso pero no quedaba otra por el momento
