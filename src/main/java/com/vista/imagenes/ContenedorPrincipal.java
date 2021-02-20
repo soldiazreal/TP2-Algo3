@@ -1,6 +1,8 @@
 package com.vista.imagenes;
 
+import com.arista.Arista;
 import com.personaje.Personaje;
+import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import com.tablero.Tablero;
 import com.vista.clasesParaVista.VistaPersonaje;
@@ -195,6 +197,8 @@ public class ContenedorPrincipal extends BorderPane {
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedor.setBackground(new Background(imagenDeFondo));
 
+        //tablero.agregarBloque("BajarLapiz", 0);
+
         Button moverArriba = new Button("mover arriba");
         moverArriba.setOnAction(e -> {
             tablero.getPersonaje().mover(0, 1);
@@ -221,12 +225,12 @@ public class ContenedorPrincipal extends BorderPane {
 
         //creacion de bloques
         tablero.agregarBloque("MoverDerecha", 0);
-        tablero.agregarBloque("MoverDerecha", 1);
-        tablero.agregarBloque("MoverArriba", 2);
-        tablero.agregarBloque("MoverIzquierda", 3);
-        tablero.agregarBloque("MoverIzquierda", 4);
-        tablero.agregarBloque("MoverAbajo", 5);
-        tablero.agregarBloque("MoverAbajo", 6);
+        //tablero.agregarBloque("MoverDerecha", 1);
+        //tablero.agregarBloque("MoverArriba", 2);
+        //tablero.agregarBloque("MoverIzquierda", 3);
+        //tablero.agregarBloque("MoverIzquierda", 4);
+        //tablero.agregarBloque("MoverAbajo", 5);
+        //tablero.agregarBloque("MoverAbajo", 6);
 
         //se agregaron todos
         Button reproducir = new Button("reproducir");
@@ -235,7 +239,7 @@ public class ContenedorPrincipal extends BorderPane {
         });
 
 
-        contenedor.getChildren().addAll(reproducir);
+        contenedor.getChildren().addAll(moverDer);
 
         this.setRight(contenedor);
     }
