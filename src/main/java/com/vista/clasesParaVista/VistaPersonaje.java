@@ -22,6 +22,7 @@ public class VistaPersonaje implements InvalidationListener {
 
     public void dibujar () {
         if (seguirReproduciendo) {
+            this.validarPosicion();
             this.clean();
             this.mostrarAristas(personaje.getSeccionDibujo());
 
@@ -30,8 +31,6 @@ public class VistaPersonaje implements InvalidationListener {
             //EL "-" es para que no se invierta el canvas en el eje y, no sé por qué pasa pero poner el - lo soluciona sin generar problemas al modelo, las posiciones son las mismas
             //la multiplicacion es para que se mueva a mayor distancia por accion
             canvas.getGraphicsContext2D().drawImage(new Image("file:src/main/java/com/vista/imagenes/personaje2.jpg"), (personaje.getPosicionActual().getX()) * 40 + 221, -(personaje.getPosicionActual().getY()) * 40 + 209, 25, 40);
-
-            this.validarPosicion();
         }
     }
 
@@ -43,13 +42,13 @@ public class VistaPersonaje implements InvalidationListener {
 
         if (contactoX || contactoY || contactoX2 || contactoY2) {
             seguirReproduciendo = false;
-
+/*
             canvas.getGraphicsContext2D().beginPath();
             canvas.getGraphicsContext2D().rect(3,3,494,494);
             canvas.getGraphicsContext2D().setFill(Color.RED);
             canvas.getGraphicsContext2D().fill();
             canvas.getGraphicsContext2D().stroke();
-
+*/
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
             alert.setHeaderText("Algoritmo no se puede representar!");
@@ -82,7 +81,6 @@ public class VistaPersonaje implements InvalidationListener {
 
     @Override
     public void invalidated(Observable observable) {
-        System.out.println("le llego la notificacion");
         this.dibujar();
     }
 }

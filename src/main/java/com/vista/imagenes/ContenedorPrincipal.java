@@ -7,8 +7,6 @@ import com.tablero.Tablero;
 import com.vista.clasesParaVista.VistaPersonaje;
 import com.vista.eventos.BotonInstruccionesEventHandler;
 import com.vista.eventos.OpcionSalirEventHandler;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -113,43 +111,20 @@ public class ContenedorPrincipal extends BorderPane {
     public void setReproductor(Personaje personaje, Stage stage) {
         VBox contenedor = this.crearVistaPersonaje(personaje);
 
-        Button moverArriba = new Button("mover arriba");
-        moverArriba.setOnAction(e -> {
-            tablero.getPersonaje().mover(0, 1);
-            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
-        });
-
-        Button moverAbajo = new Button("mover abajo");
-        moverAbajo.setOnAction(e -> {
-            tablero.getPersonaje().mover(0, -1);
-            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
-        });
-
-        Button moverDer = new Button("mover der");
-        moverDer.setOnAction(e -> {
-            tablero.getPersonaje().mover(1, 0);
-            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
-        });
-
-        Button moverIzquierda = new Button("mover izq");
-        moverIzquierda.setOnAction(e -> {
-            tablero.getPersonaje().mover(-1, 0);
-            System.out.println("posicionx:" +tablero.getPersonaje().getPosicionActual().getX() + "posiciony:" + tablero.getPersonaje().getPosicionActual().getY());
-        });
         //creacion de bloques
         tablero.agregarBloque("BajarLapiz", 0);
         tablero.agregarBloque("MoverDerecha", 1);
         tablero.agregarBloque("MoverArriba", 2);
-        /*tablero.agregarBloque("MoverIzquierda", 3);
+        tablero.agregarBloque("MoverIzquierda", 3);
         tablero.agregarBloque("LevantarLapiz", 4);
         tablero.agregarBloque("MoverIzquierda", 5);
         tablero.agregarBloque("BajarLapiz", 6);
         tablero.agregarBloque("MoverAbajo", 7);
         tablero.agregarBloque("MoverAbajo", 8);
-        tablero.agregarBloque("MoverIzquierda", 9);
+        tablero.agregarBloque("LevantarLapiz", 9);
         tablero.agregarBloque("MoverIzquierda", 10);
         tablero.agregarBloque("MoverIzquierda", 11);
-        tablero.agregarBloque("MoverIzquierda", 12);
+        tablero.agregarBloque("BajarLapiz", 12);
         tablero.agregarBloque("MoverIzquierda", 13);
         tablero.agregarBloque("MoverIzquierda", 14);
         tablero.agregarBloque("MoverIzquierda", 15);
@@ -157,20 +132,33 @@ public class ContenedorPrincipal extends BorderPane {
         tablero.agregarBloque("MoverIzquierda", 17);
         tablero.agregarBloque("MoverIzquierda", 18);
         //se agregaron todos
-*/
+
         Button reproducir = new Button("reproducir");
         reproducir.setOnAction(e -> {
             tablero.iniciarAlgoritmo();
             reproducir.setDisable(true);
         });
+        reproducir.setStyle("-fx-border-width: 4;" +
+                "-fx-text-fill: #000000;" +
+                "-fx-border-color: #441509;" +
+                "-fx-background-color: #eaaf95;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button reestablecer = new Button("reestablecer");
         reestablecer.setOnAction(e -> {
             this.reiniciarSimulacion(stage);
             reproducir.setDisable(false);
         });
+        reestablecer.setStyle("-fx-border-width: 4;" +
+                "-fx-text-fill: #000000;" +
+                "-fx-border-color: #441509;" +
+                "-fx-background-color: #eaaf95;"+ "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
-        contenedor.getChildren().addAll(reproducir, reestablecer, moverAbajo, moverArriba, moverDer, moverIzquierda);
+        HBox botonera = new HBox(reproducir, reestablecer);
+        botonera.setAlignment(Pos.CENTER);
+        botonera.setSpacing(15);
+        botonera.setPadding(new Insets(25));
+
+        contenedor.getChildren().addAll(botonera);
 
         this.setRight(contenedor);
     }
@@ -181,8 +169,13 @@ public class ContenedorPrincipal extends BorderPane {
         personaje.addListener(vistaPersonaje);
 
         vistaPersonaje.dibujar();
+        VBox contenedorCanvas = new VBox(canvasCentral);
+        contenedorCanvas.setStyle(
+                "-fx-border-style: solid inside;" +
+                        "-fx-border-width: 7;" +
+                        "-fx-border-color: #bb4c14;");
 
-        VBox contenedor = new VBox(canvasCentral);
+        VBox contenedor = new VBox(contenedorCanvas);
         contenedor.setAlignment(Pos.CENTER);
         contenedor.setSpacing(20);
         contenedor.setPadding(new Insets(25));
