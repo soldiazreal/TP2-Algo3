@@ -19,7 +19,6 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,7 @@ public class ContenedorPrincipal extends BorderPane {
     ListView<String> bloquesAEjecutar;
     BarraDeMenu menuBar;
     Tablero tablero;
+    VistaPersonaje vistaPersonaje;
 
     public ContenedorPrincipal (Stage stage, Tablero tablero) {
         this.tablero = tablero;
@@ -114,28 +114,45 @@ public class ContenedorPrincipal extends BorderPane {
         //creacion de bloques
         tablero.agregarBloque("BajarLapiz", 0);
         tablero.agregarBloque("MoverDerecha", 1);
-        tablero.agregarBloque("MoverArriba", 2);
-        tablero.agregarBloque("MoverIzquierda", 3);
-        tablero.agregarBloque("LevantarLapiz", 4);
+        tablero.agregarBloque("MoverDerecha", 2);
+        tablero.agregarBloque("MoverArriba", 3);
+        tablero.agregarBloque("MoverIzquierda", 4);
         tablero.agregarBloque("MoverIzquierda", 5);
-        tablero.agregarBloque("BajarLapiz", 6);
+        tablero.agregarBloque("MoverIzquierda", 6);
         tablero.agregarBloque("MoverAbajo", 7);
         tablero.agregarBloque("MoverAbajo", 8);
-        tablero.agregarBloque("LevantarLapiz", 9);
-        tablero.agregarBloque("MoverIzquierda", 10);
-        tablero.agregarBloque("MoverIzquierda", 11);
-        tablero.agregarBloque("BajarLapiz", 12);
-        tablero.agregarBloque("MoverIzquierda", 13);
-        tablero.agregarBloque("MoverIzquierda", 14);
-        tablero.agregarBloque("MoverIzquierda", 15);
+        tablero.agregarBloque("MoverDerecha", 9);
+        tablero.agregarBloque("MoverDerecha", 10);
+        tablero.agregarBloque("MoverDerecha", 11);
+        tablero.agregarBloque("MoverDerecha", 12);
+        tablero.agregarBloque("MoverArriba", 13);
+        tablero.agregarBloque("MoverArriba", 14);
+        tablero.agregarBloque("MoverArriba", 15);
         tablero.agregarBloque("MoverIzquierda", 16);
-        tablero.agregarBloque("MoverIzquierda", 17);
+        tablero.agregarBloque("LevantarLapiz", 17);
         tablero.agregarBloque("MoverIzquierda", 18);
+        tablero.agregarBloque("MoverIzquierda", 19);
+        tablero.agregarBloque("MoverIzquierda", 20);
+        tablero.agregarBloque("BajarLapiz", 21);
+        tablero.agregarBloque("MoverIzquierda", 22);
+        tablero.agregarBloque("MoverAbajo", 23);
+        tablero.agregarBloque("MoverAbajo", 24);
+        tablero.agregarBloque("MoverAbajo", 25);
+        tablero.agregarBloque("MoverAbajo", 26);
+        tablero.agregarBloque("MoverDerecha", 27);
+        tablero.agregarBloque("MoverAbajo", 28);
+        tablero.agregarBloque("MoverAbajo", 29);
+        tablero.agregarBloque("MoverAbajo", 30);
+        tablero.agregarBloque("MoverAbajo", 31);
+        tablero.agregarBloque("MoverAbajo", 32);
+        tablero.agregarBloque("MoverAbajo", 33);
+        tablero.agregarBloque("MoverAbajo", 34);
         //se agregaron todos
 
         Button reproducir = new Button("reproducir");
         reproducir.setOnAction(e -> {
             tablero.iniciarAlgoritmo();
+            vistaPersonaje.getTimeline().play();
             reproducir.setDisable(true);
         });
         reproducir.setStyle("-fx-border-width: 4;" +
@@ -145,8 +162,10 @@ public class ContenedorPrincipal extends BorderPane {
 
         Button reestablecer = new Button("reestablecer");
         reestablecer.setOnAction(e -> {
-            this.reiniciarSimulacion(stage);
             reproducir.setDisable(false);
+            vistaPersonaje.getTimeline().stop();
+            vistaPersonaje.reiniciarVista();
+            this.reiniciarSimulacion(stage);
         });
         reestablecer.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
@@ -167,8 +186,9 @@ public class ContenedorPrincipal extends BorderPane {
         Canvas canvasCentral = new Canvas(500, 500);
         VistaPersonaje vistaPersonaje = new VistaPersonaje(personaje, canvasCentral);
         personaje.addListener(vistaPersonaje);
+        this.vistaPersonaje = vistaPersonaje;
 
-        vistaPersonaje.dibujar();
+        vistaPersonaje.iniciarVista();
         VBox contenedorCanvas = new VBox(canvasCentral);
         contenedorCanvas.setStyle(
                 "-fx-border-style: solid inside;" +
