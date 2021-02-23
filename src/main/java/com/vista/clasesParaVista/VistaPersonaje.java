@@ -21,9 +21,9 @@ public class VistaPersonaje implements InvalidationListener {
 
     private final Timeline timeline;
 
-    private Personaje personaje;
-    private Canvas canvas;
-    private SeccionDibujo seccionDibujo;
+    private final Personaje personaje;
+    private final Canvas canvas;
+    private final SeccionDibujo seccionDibujo;
     private Posicion posicionAnterior = new Posicion(0, 0);
     private List<Posicion> recorridoPersonaje = new ArrayList<>();
     private List<Arista> aristasMostradas = new ArrayList<>();
@@ -35,17 +35,12 @@ public class VistaPersonaje implements InvalidationListener {
         this.seccionDibujo = personaje.getSeccionDibujo();
         this.canvas = canvas;
 
-        timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
-            this.simularUnPaso();
-        }));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> this.simularUnPaso()));
         timeline.setCycleCount(Timeline.INDEFINITE);
     }
 
     public boolean posicionPersonajeIgualAArista(Posicion personaje, Posicion posicionArista) {
-        if (personaje.getX() == posicionArista.getX() && personaje.getY() == posicionArista.getY())
-            return true;
-        else
-            return false;
+        return personaje.getX() == posicionArista.getX() && personaje.getY() == posicionArista.getY();
     }
 
     public void simularUnPaso() {
@@ -93,10 +88,7 @@ public class VistaPersonaje implements InvalidationListener {
         Boolean contactoY = Math.abs(recorridoPersonaje.get(contadorRecorrido).getY()*40+250) >= 500;
         Boolean contactoY2 = Math.abs(-recorridoPersonaje.get(contadorRecorrido).getY()*40+250) >= 500;
 
-        if (contactoX || contactoY || contactoX2 || contactoY2) {
-            return true;
-        }else
-            return false;
+        return contactoX || contactoY || contactoX2 || contactoY2;
     }
 
     public void pararYAlertar() {
