@@ -2,6 +2,7 @@ package com.nodos;
 
 import com.personaje.Personaje;
 
+//nodonulo
 public class NodoNulo implements Nodo {
 
 

@@ -3,6 +3,7 @@ package com.nodos;
 import com.bloques.Bloque;
 import com.personaje.Personaje;
 
+//No se si esta commiteado
 public class NodoConcreto implements Nodo {
 
     Nodo siguiente = new NodoNulo();

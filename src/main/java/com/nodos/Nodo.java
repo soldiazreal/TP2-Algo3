@@ -2,6 +2,8 @@ package com.nodos;
 
 import com.personaje.Personaje;
 
+
+//algo
 public interface Nodo {
 
     void insertarSiguiente(Nodo siguiente);
