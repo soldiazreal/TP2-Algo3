@@ -5,6 +5,9 @@ import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import com.tablero.Tablero;
 import com.vista.clasesParaVista.VistaPersonaje;
+import com.vista.clasesParaVista.vistaBloques.VistaBloqueIndividual;
+import com.vista.clasesParaVista.vistaBloques.VistaBloqueInicio;
+import com.vista.clasesParaVista.vistaSeccionBloques.VistaSeccionBloques;
 import com.vista.eventos.BotonInstruccionesEventHandler;
 import com.vista.eventos.OpcionSalirEventHandler;
 import javafx.geometry.Insets;
@@ -12,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.input.*;
@@ -27,8 +31,9 @@ public class ContenedorPrincipal extends BorderPane {
 
 
     static final DataFormat STRING_LIST = new DataFormat("StringList");
-    ListView<String> bloquesDisponibles;
-    ListView<String> bloquesAEjecutar;
+    ScrollPane bloquesDisponibles = new ScrollPane();
+    VistaSeccionBloques vistaSeccionBloques = new VistaSeccionBloques();
+    VBox bloquesAEjecutar = new VBox();
     BarraDeMenu menuBar;
     Tablero tablero;
     VistaPersonaje vistaPersonaje;
@@ -44,10 +49,11 @@ public class ContenedorPrincipal extends BorderPane {
 
     public void setAlgoritmo(Stage stage) {
 
-        this.bloquesDisponibles = new ListView<>();
-        this.bloquesAEjecutar = new ListView<>();
+        bloquesDisponibles.setContent(vistaSeccionBloques);
         bloquesDisponibles.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
         bloquesAEjecutar.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
+
+        bloquesAEjecutar.setSpacing(20);
 
         // Creacion del texto para cada zona
         Label seccionBloquesLbl = new Label("Sección Bloques ");
@@ -63,64 +69,13 @@ public class ContenedorPrincipal extends BorderPane {
         bloquesDisponibles.setPrefSize(200, 350);
         bloquesAEjecutar.setPrefSize(200, 350);
 
-        // Agregando los bloques a la Source List
-        bloquesDisponibles.getItems().addAll(this.getBloqueList());
+        //Agregando bloque Inicial a Bloques a Ejecutar
+        bloquesAEjecutar.getChildren().add(new VistaBloqueInicio());
 
-        // Permitiendo multiple seleccion en listas
-        bloquesDisponibles.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        bloquesAEjecutar.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        // Agregandoe el evento del mouse y los handlers para los disponibles
-        bloquesDisponibles.setOnDragDetected(new EventHandler<MouseEvent>()
-        {
-            public void handle(MouseEvent event)
-            {
-                dragDetected(event, bloquesDisponibles);
-            }
-        });
 
-        bloquesDisponibles.setOnDragOver(new EventHandler <DragEvent>()
-        {
-            public void handle(DragEvent event)
-            {
-                dragOver(event, bloquesDisponibles);
-            }
-        });
 
-        // Agregar mouse para los event handlers para el objetivo
-        bloquesAEjecutar.setOnDragDetected(new EventHandler <MouseEvent>()
-        {
-            public void handle(MouseEvent event)
-            {
-                dragDetected(event, bloquesAEjecutar);
-            }
-        });
-
-        bloquesAEjecutar.setOnDragOver(new EventHandler <DragEvent>()
-        {
-            public void handle(DragEvent event)
-            {
-                dragOver(event, bloquesAEjecutar);
-            }
-        });
-
-        bloquesAEjecutar.setOnDragDropped(new EventHandler <DragEvent>()
-        {
-            public void handle(DragEvent event)
-            {
-                dragDropped(event, bloquesAEjecutar);
-            }
-        });
-
-        bloquesAEjecutar.setOnDragDone(new EventHandler <DragEvent>()
-        {
-            public void handle(DragEvent event)
-            {
-                dragDone(event, bloquesAEjecutar);
-                removeSelectedBloque(bloquesAEjecutar);
-            }
-        });
-
+//-------------------------------------------------------------------------------------------
         HBox textos = new HBox();
         textos.getChildren().addAll(seccionBloquesLbl, seccionAlgoritmosLbl);
         textos.setSpacing(80);
@@ -164,78 +119,6 @@ public class ContenedorPrincipal extends BorderPane {
         return list;
     }
 
-    private void dragDetected(MouseEvent event, ListView<String> listView)
-    {
-        // Estando seguro de que un objeto fue seleccionado
-        int selectedCount = listView.getSelectionModel().getSelectedIndices().size();
-
-        if (selectedCount == 0)
-        {
-            event.consume();
-            return;
-        }
-
-        // Iniciando el drag y drop
-        Dragboard dragboard = listView.startDragAndDrop(TransferMode.COPY);
-
-        // Poniendo los items seleccionados en la dragboard
-        ArrayList<String> selectedItems = this.getSelectedBloque(listView);
-
-        ClipboardContent content = new ClipboardContent();
-        content.put(STRING_LIST, selectedItems);
-
-        dragboard.setContent(content);
-        event.consume();
-    }
-
-    private void dragOver(DragEvent event, ListView<String> listView)
-    {
-        // Si la drag board tiene una ITEM_LIST y no esta siendo arrastrada
-        // sobre si misma, aceptamos el MOVE transfer mode
-        Dragboard dragboard = event.getDragboard();
-
-        if (event.getGestureSource() != listView && dragboard.hasContent(STRING_LIST))
-        {
-            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-        }
-
-        event.consume();
-    }
-
-    @SuppressWarnings("unchecked")
-    private void dragDropped(DragEvent event, ListView<String> listView)
-    {
-        boolean dragCompleted = false;
-
-        // Transfiriendo los datos
-        Dragboard dragboard = event.getDragboard();
-
-        if(dragboard.hasContent(STRING_LIST))
-        {
-            ArrayList<String> list = (ArrayList<String>)dragboard.getContent(STRING_LIST);
-            listView.getItems().addAll(list);
-            // Transferencia de datos exitosa
-            dragCompleted = true;
-        }
-
-        // Transferencia de datos no es exitosa
-        event.setDropCompleted(dragCompleted);
-        event.consume();
-    }
-
-    private void dragDone(DragEvent event, ListView<String> listView)
-    {
-        // Esto habria que sacarlo estas removiendo el item no queremos hacer eso
-        TransferMode tm = event.getTransferMode();
-
-        if (tm == TransferMode.MOVE)
-        {
-            removeSelectedBloque(listView);
-        }
-
-        event.consume();
-    }
-
     private ArrayList<String> getSelectedBloque(ListView<String> listView)
     {
         // Devolviendo la lista de Bloques seleccionados en una ArrayList, asi es
@@ -267,18 +150,17 @@ public class ContenedorPrincipal extends BorderPane {
         Button botonCrearPersonalizado = new Button();
         botonCrearPersonalizado.setText("Guardar algoritmo");
         botonCrearPersonalizado.setOnAction(e -> {
-            if (bloquesAEjecutar.getItems().isEmpty()) {
+            if (bloquesAEjecutar.getChildren().size() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Alerta");
                 alert.setHeaderText("Hubo un error");
                 String mensaje = "No hay ninguna secuencia grabada en Sección Algoritmo!\n\nPor favor, antes de presionar el boton 'Guardar algoritmo' asegurate de haber armado una secuencia.";
                 alert.setContentText(mensaje);
                 alert.show();
-            } else {
+            } /*else {
                 this.bloquesDisponibles.getItems().add("Personalizado");
-                this.bloquesAEjecutar.getItems().clear();
                 botonCrearPersonalizado.setDisable(true);
-            }
+            }*/
         });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
