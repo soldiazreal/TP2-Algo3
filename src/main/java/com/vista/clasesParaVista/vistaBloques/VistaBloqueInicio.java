@@ -12,8 +12,8 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
     VistaBloque siguiente = new VistaBloqueNulo();
     ImageView bloqueInicioImagen;
 
-    public VistaBloqueInicio (){
-        bloqueInicioImagen = new ImageView(new Image("file:src/main/java/com/vista/imagenes/amongQuieto.jpg"));
+    public VistaBloqueInicio (ImageView image){
+        bloqueInicioImagen = image;
         bloqueInicioImagen.setFitHeight(50);
         bloqueInicioImagen.setFitWidth(75);
 
@@ -47,7 +47,7 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
 
     @Override
     public VistaBloque copia(){
-        return new VistaBloqueInicio();
+        return new VistaBloqueInicio(bloqueInicioImagen);
     }
 
     public void setDropConfiguration(){
