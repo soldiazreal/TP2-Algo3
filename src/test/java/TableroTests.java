@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 public class TableroTests {
 
     @Test
-    public void  test01SeAgregaUnBloqueCorrectamente () {
+    public void test01SeAgregaUnBloqueCorrectamente() {
         Tablero tablero = new Tablero();
         SeccionAlgoritmo algoritmoMock = mock(SeccionAlgoritmo.class);
         SeccionBloques bloquesMock = mock(SeccionBloques.class);
@@ -25,7 +25,7 @@ public class TableroTests {
     }
 
     @Test
-    public void  test02SeRemueveUnBloqueCorrectamente () {
+    public void test02SeRemueveUnBloqueCorrectamente() {
         Tablero tablero = new Tablero();
         SeccionAlgoritmo algoritmoMock = mock(SeccionAlgoritmo.class);
         SeccionBloques bloquesMock = mock(SeccionBloques.class);
@@ -38,7 +38,7 @@ public class TableroTests {
     }
 
     @Test
-    public void  test03SeIniciaAlgoritmoCorrectamente () {
+    public void test03SeIniciaAlgoritmoCorrectamente() {
         Tablero tablero = new Tablero();
         SeccionAlgoritmo algoritmoMock = mock(SeccionAlgoritmo.class);
         SeccionBloques bloquesMock = mock(SeccionBloques.class);
@@ -50,8 +50,8 @@ public class TableroTests {
         Mockito.verify(algoritmoMock, Mockito.times(1)).ejecutar(any(Personaje.class));
     }
 
-    @Test (expected = BloqueInexistenteException.class)
-    public void test04NoSePuedeAgregarBloqueInexistente (){
+    @Test(expected = BloqueInexistenteException.class)
+    public void test04NoSePuedeAgregarBloqueInexistente() {
         Tablero tablero = new Tablero();
         tablero.agregarBloque("Inexistente", 0);
     }
