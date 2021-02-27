@@ -70,7 +70,7 @@ public class ContenedorPrincipal extends BorderPane {
         bloquesAEjecutar.setPrefSize(200, 350);
 
         //Agregando bloque Inicial a Bloques a Ejecutar
-        bloquesAEjecutar.getChildren().add(new VistaBloqueInicio(new ImageView(new Image("file:src/main/java/com/vista/imagenes/amongQuieto.jpg"))));
+        bloquesAEjecutar.getChildren().add(new VistaBloqueInicio(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG"))));
 
 
 

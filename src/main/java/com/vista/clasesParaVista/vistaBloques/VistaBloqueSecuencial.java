@@ -24,7 +24,7 @@ public class VistaBloqueSecuencial extends VistaBloque implements Arrastrable, R
         this.setMaxHeight(50);
         this.getChildren().add(image);
         imagenBloqueSecuencial = image;
-        ImageView bloqueInicioImagen = new ImageView(new Image("file:src/main/java/com/vista/imagenes/amongQuieto.jpg"));
+        ImageView bloqueInicioImagen = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG"));
         bloqueInicialListaInterna = new VistaBloqueInicio(bloqueInicioImagen);
         HBox cuerpoMedio = new HBox();
         VBox cuerpoMedioIzquierdo = new VBox();
