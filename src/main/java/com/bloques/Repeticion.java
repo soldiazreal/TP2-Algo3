@@ -41,7 +41,7 @@ public class Repeticion extends Secuencial{
         Repeticion repeticion = new Repeticion(this.repeticiones);
         Nodo nodoAux = this.bloques;
         while(!(nodoAux.esUltimo())){
-            agregarBloque(nodoAux.copiar());
+            repeticion.agregarBloque(nodoAux.copiar());
             nodoAux = nodoAux.conseguirSiguiente();
         }
         return repeticion;

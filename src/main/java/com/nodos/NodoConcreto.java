@@ -48,7 +48,7 @@ public class NodoConcreto implements Nodo {
     public Nodo ultimoSiguiente() {
         if (siguiente.esUltimo())
             return this;
-        return ultimoSiguiente();
+        return siguiente.ultimoSiguiente();
     }
 
     @Override

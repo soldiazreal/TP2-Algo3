@@ -19,7 +19,7 @@ public class Personalizado extends Secuencial {
             nodoAux = nodoAux.conseguirSiguiente();
         }
     }
-//no anda
+
     @Override
     public void ejecutarBloque(Personaje unPersonaje) {
         if (unPersonaje == null)
@@ -47,7 +47,7 @@ public class Personalizado extends Secuencial {
         Personalizado personalizado = new Personalizado();
         Nodo nodoAux = this.bloques;
         while(!(nodoAux.esUltimo())){
-            agregarBloque(nodoAux.copiar());
+            personalizado.agregarBloque(nodoAux.copiar()) ;
             nodoAux = nodoAux.conseguirSiguiente();
         }
         return personalizado;

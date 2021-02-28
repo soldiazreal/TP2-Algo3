@@ -28,7 +28,7 @@ public class Inversion extends Secuencial{
         Inversion inversion = new Inversion();
         Nodo nodoAux = this.bloques;
         while(!(nodoAux.esUltimo())){
-            agregarBloque(nodoAux.copiar());
+            inversion.agregarBloque(nodoAux.copiar());
             nodoAux = nodoAux.conseguirSiguiente();
         }
         return inversion;

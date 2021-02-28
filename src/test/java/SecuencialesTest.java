@@ -45,11 +45,13 @@ public class SecuencialesTest {
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
         NodoConcreto primerBloque = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto segundoBloque = new NodoConcreto(new Individual(new MoverDerecha()));
+
 
         Inversion bloqueInversionSecundario = new Inversion();
 
         bloqueInversionSecundario.agregarBloque(primerBloque);
-        bloqueInversionSecundario.agregarBloque(primerBloque);
+        bloqueInversionSecundario.agregarBloque(segundoBloque);
 
         NodoConcreto inversionSecun = new NodoConcreto(bloqueInversionSecundario);
 

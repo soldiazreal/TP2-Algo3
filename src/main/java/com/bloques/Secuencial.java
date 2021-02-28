@@ -5,7 +5,7 @@ import com.personaje.Personaje;
 import com.nodos.*;
 
 public abstract class Secuencial implements Bloque{
-    protected final Nodo bloques = new NodoConcreto(new Inicial());
+    protected Nodo bloques = new NodoConcreto(new Inicial());
     int cantidad = 0;
 
     public void agregarBloque(Nodo siguiente){

@@ -65,7 +65,7 @@ public class PersonalizadoTests {
 
 
         NodoConcreto derecha = new NodoConcreto(new Individual(new MoverDerecha()));
-        NodoConcreto arriba = new NodoConcreto(new Individual(new MoverAbajo()));
+        NodoConcreto arriba = new NodoConcreto(new Individual(new MoverArriba()));
 
         Repeticion repeticion = new Repeticion(2);
         repeticion.agregarBloque(arriba);
