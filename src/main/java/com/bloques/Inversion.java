@@ -1,28 +1,35 @@
 package com.bloques;
 
+import com.nodos.Nodo;
 import com.personaje.Personaje;
 
 public class Inversion extends Secuencial{
 
     @Override
     public void invertirBloque(Personaje unPersonaje) {
-        for (Bloque elBloque : this.bloques) {
-            elBloque.ejecutarBloque(unPersonaje);
+        Nodo nodoAux = this.bloques;
+        while(!(nodoAux.esUltimo())){
+            nodoAux.ejecutar(unPersonaje);
+            nodoAux = nodoAux.conseguirSiguiente();
         }
     }
 
     @Override
     public void ejecutarBloque(Personaje unPersonaje){
-        for(Bloque elBloque: this.bloques){
-            elBloque.invertirBloque(unPersonaje);
+        Nodo nodoAux = this.bloques;
+        while(!(nodoAux.esUltimo())){
+            nodoAux.invertir(unPersonaje);
+            nodoAux = nodoAux.conseguirSiguiente();
         }
     }
 
     @Override
     public Bloque copia(){
         Inversion inversion = new Inversion();
-        for (Bloque unBloque: this.bloques){
-            inversion.agregarBloque(unBloque.copia());
+        Nodo nodoAux = this.bloques;
+        while(!(nodoAux.esUltimo())){
+            agregarBloque(nodoAux.copiar());
+            nodoAux = nodoAux.conseguirSiguiente();
         }
         return inversion;
     }

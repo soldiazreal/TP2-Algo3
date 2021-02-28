@@ -1,10 +1,19 @@
 package com.nodos;
 
+import com.bloques.Bloque;
+import com.bloques.Inicial;
 import com.personaje.Personaje;
 
 //nodonulo
 public class NodoNulo implements Nodo {
 
+
+
+    @Override
+    public Nodo copiar(){
+        NodoNulo nuevoNodo = new NodoNulo();
+        return nuevoNodo;
+    }
 
     @Override
     public Nodo conseguirSiguiente(){return this;}
@@ -39,3 +48,4 @@ public class NodoNulo implements Nodo {
         return true;
     }
 }
+

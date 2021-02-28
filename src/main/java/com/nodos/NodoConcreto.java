@@ -14,6 +14,12 @@ public class NodoConcreto implements Nodo {
     }
 
     @Override
+    public Nodo copiar(){
+       NodoConcreto nuevoNodo = new NodoConcreto(this.bloque.copia());
+       return nuevoNodo;
+    }
+
+    @Override
     public void insertarSiguiente(Nodo siguiente) {
         Nodo anteriorSiguiente = this.siguiente;
         this.siguiente = siguiente;

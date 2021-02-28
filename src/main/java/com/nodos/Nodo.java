@@ -1,7 +1,8 @@
 package com.nodos;
 
+import com.bloques.Bloque;
 import com.personaje.Personaje;
-
+import com.bloques.*;
 
 //algo
 public interface Nodo {
@@ -17,6 +18,8 @@ public interface Nodo {
     Nodo conseguirSiguiente();
 
     Nodo ultimoSiguiente();
+
+    Nodo copiar();
 
     boolean esUltimo();
 }

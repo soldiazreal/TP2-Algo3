@@ -105,46 +105,6 @@ public class ContenedorPrincipal extends BorderPane {
         this.setCenter(general);
     }
 
-    private ObservableList<String> getBloqueList()
-    {
-        ObservableList<String> list = FXCollections.<String>observableArrayList();
-
-        String moverDerecha = "Derecha";
-        String moverIzquierda = "Izquierda";
-        String moverArriba = "Arriba";
-        String moverAbajo = "Abajo";
-
-        list.addAll(moverDerecha,moverIzquierda,moverArriba,moverAbajo);
-
-        return list;
-    }
-
-    private ArrayList<String> getSelectedBloque(ListView<String> listView)
-    {
-        // Devolviendo la lista de Bloques seleccionados en una ArrayList, asi es
-        // serializable y se pueda guardar en una Dragboard.
-        ArrayList<String> list = new ArrayList<String>(listView.getSelectionModel().getSelectedItems());
-
-        return list;
-    }
-
-    private void removeSelectedBloque(ListView<String> listView)
-    {
-        // Metiendo todos los Bloques en una lista separada para no tener el problema de lista compartida
-        List<String> selectedList = new ArrayList<>();
-
-        for(String string : listView.getSelectionModel().getSelectedItems())
-        {
-            selectedList.add(string);
-        }
-
-        // Limpiando la seleccion
-        listView.getSelectionModel().clearSelection();
-        // Removiendo items de la lista seleccionada
-        listView.getItems().removeAll(selectedList);
-    }
-
-
     public void setBotonera(Stage stage) {
 
         Button botonCrearPersonalizado = new Button();

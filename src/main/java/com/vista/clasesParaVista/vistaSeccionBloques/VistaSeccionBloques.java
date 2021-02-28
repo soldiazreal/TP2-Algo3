@@ -69,5 +69,4 @@ public class VistaSeccionBloques extends VBox{
         this.getChildren().add(contenedorBloqueRepetir2);
     }
 
-
 }
