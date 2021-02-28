@@ -1,11 +1,18 @@
 package com.vista.clasesParaVista.vistaBloques;
 
 
+import com.bloques.Bloque;
+import com.nodos.Nodo;
+import com.nodos.NodoNulo;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Arrastrable;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Receptor;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, Receptor {
 
@@ -13,13 +20,25 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
     VistaBloque anterior = new VistaBloqueNulo();
     ImageView image;
 
-    public VistaBloqueIndividual(ImageView image){
+    public VistaBloqueIndividual(ImageView image, Nodo nodo, boolean esSecuencial){
         this.setMaxWidth(75);
         this.setMaxHeight(50);
         this.getChildren().add(image);
         this.image = image;
+        this.nodo = nodo;
         this.setDragConfiguration();
         this.setDropConfiguration();
+
+        if (esSecuencial){
+            ImageView bloqueInicioImagen = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG"));
+            VistaBloque bloqueInicialListaInterna = new VistaBloqueInicio(bloqueInicioImagen, new NodoNulo());
+            HBox cuerpoMedio = new HBox();
+            VBox cuerpoMedioIzquierdo = new VBox();
+            cuerpoMedioIzquierdo.setMinWidth(20);
+            cuerpoMedioIzquierdo.setBackground(new Background(new BackgroundFill(Color.DEEPPINK, CornerRadii.EMPTY, Insets.EMPTY)));
+            cuerpoMedio.getChildren().addAll(cuerpoMedioIzquierdo, bloqueInicialListaInterna);
+            this.getChildren().add(cuerpoMedio);
+        }
     }
 
     public void insertarSiguiente(VistaBloque siguienteNuevo){
@@ -28,6 +47,8 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
         siguienteNuevo.asignarAnterior(this);
         siguienteNuevo.ultimoSiguiente().asignarSiguiente(this.siguiente);
         this.siguiente = siguienteNuevo;
+
+        this.nodo.insertarSiguiente(siguienteNuevo.getNodo());
     }
 
     @Override
@@ -59,17 +80,11 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
         return siguiente.ultimoSiguiente();
     }
 
-    @Override
-    public VistaBloque copia(){
-        return new VistaBloqueIndividual(new ImageView(this.image.getImage()));
-    }
-
     public void setDragConfiguration(){
 
         image.setOnDragDetected((MouseEvent event)->{
             Dragboard db = this.startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
-            //content.putString("Source text (franz escribio esto)");
             content.putImage(image.getImage());
             db.setContent(content);
             this.separarDeLaCadena();
@@ -89,10 +104,10 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
             @Override
             public void handle(DragEvent dragEvent) {
                 if (dragEvent.getGestureSource().getClass() == VistaBloqueIndividual.class){
-                    dragEvent.acceptTransferModes(TransferMode.ANY);
+                    dragEvent.acceptTransferModes(TransferMode.MOVE);
                 }
                 else if (dragEvent.getGestureSource().getClass() == VistaBloqueDisponible.class){
-                    dragEvent.acceptTransferModes(TransferMode.ANY);
+                    dragEvent.acceptTransferModes(TransferMode.COPY);
                 }
                 dragEvent.consume();
             }
