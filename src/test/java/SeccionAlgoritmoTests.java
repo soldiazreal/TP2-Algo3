@@ -18,7 +18,7 @@ public class SeccionAlgoritmoTests {
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
         Individual bloqueArriba = new Individual(new MoverArriba());
-        seccion.agregarBloqueEnPosicion(bloqueArriba,0);
+        seccion.agregarBloqueDespuesDe(bloqueArriba,seccion.getNodo());
 
         SeccionDibujo dibujo = new SeccionDibujo();
         Posicion posicion = new Posicion(1,1);
@@ -38,16 +38,16 @@ public class SeccionAlgoritmoTests {
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
         Individual bloqueBajarLapiz = new Individual(new BajarLapiz());
-        seccion.agregarBloqueEnPosicion(bloqueBajarLapiz,0);
+        seccion.agregarBloqueDespuesDe(bloqueBajarLapiz,seccion.getNodo());
 
         Individual bloqueDerecha = new Individual(new MoverDerecha());
-        seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
+        seccion.agregarBloqueDespuesDe(bloqueDerecha,seccion.getNodo().conseguirSiguiente());
 
         Individual bloqueIzquierda = new Individual(new MoverIzquierda());
-        seccion.agregarBloqueEnPosicion(bloqueIzquierda,2);
+        seccion.agregarBloqueDespuesDe(bloqueIzquierda,seccion.getNodo().conseguirSiguiente().conseguirSiguiente());
 
         Individual derecha = new Individual(new MoverDerecha());
-        seccion.agregarBloqueEnPosicion(derecha,2);
+        seccion.agregarBloqueDespuesDe(derecha,seccion.getNodo().conseguirSiguiente().conseguirSiguiente());
 
         SeccionDibujo dibujo = new SeccionDibujo();
         Posicion posicion = new Posicion(0,0);
@@ -70,7 +70,7 @@ public class SeccionAlgoritmoTests {
         SeccionAlgoritmo seccion = new SeccionAlgoritmo();
 
         Individual bloqueAbajo = new Individual(new MoverAbajo());
-        seccion.agregarBloqueEnPosicion(bloqueAbajo,0);
+        seccion.agregarBloqueDespuesDe(bloqueAbajo, seccion.getNodo());
 
         SeccionDibujo dibujo = new SeccionDibujo();
         Posicion posicion = new Posicion(1,1);
@@ -78,13 +78,13 @@ public class SeccionAlgoritmoTests {
         Personaje personaje = new Personaje(posicion,dibujo);
 
         Individual bloqueDerecha = new Individual(new MoverDerecha());
-        seccion.agregarBloqueEnPosicion(bloqueDerecha,1);
+        seccion.agregarBloqueDespuesDe(bloqueDerecha,seccion.getNodo());
 
-        seccion.removerBloqueDePosicion(0);
+        seccion.removerSiguienteBloque(seccion.getNodo());
 
         seccion.ejecutar(personaje);
 
-        assertEquals(personaje.getPosicionActual().getX(),2);
-        assertEquals(personaje.getPosicionActual().getY(),1);
+        assertEquals(personaje.getPosicionActual().getX(),1);
+        assertEquals(personaje.getPosicionActual().getY(),0);
     }
 }

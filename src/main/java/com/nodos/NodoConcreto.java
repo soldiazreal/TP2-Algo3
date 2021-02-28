@@ -21,6 +21,9 @@ public class NodoConcreto implements Nodo {
     }
 
     @Override
+    public Nodo conseguirSiguiente(){ return this.siguiente;}
+
+    @Override
     public void asignarSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
     }

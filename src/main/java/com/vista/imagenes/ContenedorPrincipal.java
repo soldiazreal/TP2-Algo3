@@ -212,7 +212,7 @@ public class ContenedorPrincipal extends BorderPane {
     public void setReproductor(Personaje personaje, Stage stage) {
         VBox contenedor = this.crearVistaPersonaje(personaje);
 
-        //creacion de bloques
+      /*  //creacion de bloques
         tablero.agregarBloque("BajarLapiz", 0);
         tablero.agregarBloque("MoverDerecha", 1);
         tablero.agregarBloque("MoverDerecha", 2);
@@ -249,7 +249,7 @@ public class ContenedorPrincipal extends BorderPane {
         tablero.agregarBloque("MoverAbajo", 33);
         tablero.agregarBloque("MoverAbajo", 34);
         //se agregaron todos
-
+        */
         Button reproducir = new Button("reproducir");
         reproducir.setOnAction(e -> {
             tablero.iniciarAlgoritmo();

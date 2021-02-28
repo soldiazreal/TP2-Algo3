@@ -18,10 +18,10 @@ public class TableroTests {
 
         tablero.setSeccionBloquesYAlgoritmos(bloquesMock, algoritmoMock);
 
-        tablero.agregarBloque("MoverArriba", 2);
+        tablero.agregarBloque("MoverArriba", tablero.getPrimerNodo());
 
         Mockito.verify(bloquesMock, Mockito.times(1)).buscarBloque("MoverArriba");
-        Mockito.verify(algoritmoMock, Mockito.times(1)).agregarBloqueEnPosicion(null, 2);
+        Mockito.verify(algoritmoMock, Mockito.times(1)).agregarBloqueDespuesDe(null, tablero.getPrimerNodo());
     }
 
     @Test
@@ -32,9 +32,9 @@ public class TableroTests {
 
         tablero.setSeccionBloquesYAlgoritmos(bloquesMock, algoritmoMock);
 
-        tablero.removerBloque(2);
+        tablero.removerBloque(tablero.getPrimerNodo());
 
-        Mockito.verify(algoritmoMock, Mockito.times(1)).removerBloqueDePosicion(2);
+        Mockito.verify(algoritmoMock, Mockito.times(1)).removerSiguienteBloque(tablero.getPrimerNodo());
     }
 
     @Test
@@ -53,6 +53,6 @@ public class TableroTests {
     @Test(expected = BloqueInexistenteException.class)
     public void test04NoSePuedeAgregarBloqueInexistente() {
         Tablero tablero = new Tablero();
-        tablero.agregarBloque("Inexistente", 0);
+        tablero.agregarBloque("Inexistente", tablero.getPrimerNodo());
     }
 }

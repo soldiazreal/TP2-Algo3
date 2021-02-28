@@ -14,6 +14,8 @@ public interface Nodo {
 
     void invertir(Personaje personaje);
 
+    Nodo conseguirSiguiente();
+
     Nodo ultimoSiguiente();
 
     boolean esUltimo();

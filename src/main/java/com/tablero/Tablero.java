@@ -3,21 +3,22 @@ package com.tablero;
 import  com.bloques.Bloque;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
+import com.nodos.*;
 
 public class Tablero {
 
     private SeccionBloques seccionBloques = new SeccionBloques();
     private SeccionAlgoritmo seccionAlgoritmo = new SeccionAlgoritmo();
     private Personaje personaje = new Personaje(new Posicion(0, 0), new SeccionDibujo());
+    private Nodo primerNodo = seccionAlgoritmo.getNodo();
 
-
-    public void agregarBloque (String unNombre, int unIndice) {
+    public void agregarBloque (String unNombre, Nodo unNodo) {
         Bloque bloqueRecibido = seccionBloques.buscarBloque(unNombre);
-        seccionAlgoritmo.agregarBloqueEnPosicion(bloqueRecibido, unIndice);
+        seccionAlgoritmo.agregarBloqueDespuesDe(bloqueRecibido, unNodo);
     }
 
-    public void removerBloque (int unIndice) {
-        seccionAlgoritmo.removerBloqueDePosicion(unIndice);
+    public void removerBloque (Nodo unNodoPadre) {
+        seccionAlgoritmo.removerSiguienteBloque(unNodoPadre);
     }
 
     public void iniciarAlgoritmo () {
@@ -33,6 +34,8 @@ public class Tablero {
     public Personaje getPersonaje() {
         return personaje;
     }
+
+    public Nodo getPrimerNodo(){ return primerNodo;}
 
     //ojo con esto, es peligroso pero no quedaba otra por el momento
     public void setSeccionBloquesYAlgoritmos (SeccionBloques seccionBloques, SeccionAlgoritmo seccionAlgoritmo)  {

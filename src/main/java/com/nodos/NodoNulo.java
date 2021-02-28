@@ -7,6 +7,9 @@ public class NodoNulo implements Nodo {
 
 
     @Override
+    public Nodo conseguirSiguiente(){return this;}
+
+    @Override
     public void insertarSiguiente(Nodo siguiente) {
 
     }
