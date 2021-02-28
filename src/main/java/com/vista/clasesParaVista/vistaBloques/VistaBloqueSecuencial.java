@@ -1,5 +1,7 @@
 package com.vista.clasesParaVista.vistaBloques;
 
+import com.nodos.Nodo;
+import com.nodos.NodoNulo;
 import com.vista.Vista;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Arrastrable;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Receptor;
@@ -10,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class VistaBloqueSecuencial extends VistaBloque implements Arrastrable, Receptor {
 
@@ -19,19 +20,23 @@ public class VistaBloqueSecuencial extends VistaBloque implements Arrastrable, R
     VistaBloque anterior = new VistaBloqueNulo();
     VistaBloque bloqueInicialListaInterna;
 
-    public VistaBloqueSecuencial (ImageView image){
+    public VistaBloqueSecuencial (ImageView image, Nodo nodo){
         this.setMaxWidth(75);
         this.setMaxHeight(50);
         this.getChildren().add(image);
         imagenBloqueSecuencial = image;
+
         ImageView bloqueInicioImagen = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG"));
-        bloqueInicialListaInterna = new VistaBloqueInicio(bloqueInicioImagen);
+        bloqueInicialListaInterna = new VistaBloqueInicio(bloqueInicioImagen, new NodoNulo());
         HBox cuerpoMedio = new HBox();
         VBox cuerpoMedioIzquierdo = new VBox();
         cuerpoMedioIzquierdo.setMinWidth(20);
         cuerpoMedioIzquierdo.setBackground(new Background(new BackgroundFill(Color.DEEPPINK, CornerRadii.EMPTY, Insets.EMPTY)));
         cuerpoMedio.getChildren().addAll(cuerpoMedioIzquierdo, bloqueInicialListaInterna);
         this.getChildren().add(cuerpoMedio);
+
+        this.nodo = nodo;
+
         this.setDragConfiguration();
         this.setDropConfiguration();
     }
@@ -42,6 +47,8 @@ public class VistaBloqueSecuencial extends VistaBloque implements Arrastrable, R
         siguienteNuevo.asignarAnterior(this);
         siguienteNuevo.ultimoSiguiente().asignarSiguiente(this.siguiente);
         this.siguiente = siguienteNuevo;
+
+        this.nodo.insertarSiguiente(siguienteNuevo.getNodo());
     }
 
     public void asignarSiguiente(VistaBloque siguienteNuevo){
@@ -68,9 +75,6 @@ public class VistaBloqueSecuencial extends VistaBloque implements Arrastrable, R
         this.anterior.asignarSiguiente(new VistaBloqueNulo());
     }
 
-    public VistaBloque copia(){
-        return new VistaBloqueSecuencial(new ImageView(this.imagenBloqueSecuencial.getImage()));
-    }
 
     public void setDragConfiguration(){
         imagenBloqueSecuencial.setOnDragDetected((MouseEvent event)->{

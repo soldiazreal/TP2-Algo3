@@ -1,5 +1,8 @@
 package com.vista.clasesParaVista.vistaBloques;
 
+import com.nodos.Nodo;
+import com.nodos.NodoConcreto;
+import com.nodos.NodoNulo;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Receptor;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
@@ -11,11 +14,14 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
 
     VistaBloque siguiente = new VistaBloqueNulo();
     ImageView bloqueInicioImagen;
+    Nodo nodo;
 
-    public VistaBloqueInicio (ImageView image){
+    public VistaBloqueInicio (ImageView image, Nodo nodoInicial){
         bloqueInicioImagen = image;
         bloqueInicioImagen.setFitHeight(50);
         bloqueInicioImagen.setFitWidth(75);
+
+        nodo = nodoInicial;
 
         this.setMaxHeight(50);
         this.setMaxWidth(75);
@@ -30,6 +36,12 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
         siguienteNuevo.asignarAnterior(this);
         this.getChildren().add(siguienteNuevo);
         this.siguiente = siguienteNuevo;
+        nodo.insertarSiguiente(siguienteNuevo.getNodo());
+        if (siguienteNuevo.getNodo().getClass() == NodoConcreto.class)
+            System.out.println("Se inserta un nodo concreto");
+        else if (siguienteNuevo.getNodo().getClass() == NodoNulo.class){
+            System.out.println("Se inserta un nodo nulo");
+        }
     }
 
     protected void asignarAnterior(VistaBloque anterior){
@@ -45,21 +57,16 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
         return false;
     }
 
-    @Override
-    public VistaBloque copia(){
-        return new VistaBloqueInicio(bloqueInicioImagen);
-    }
-
     public void setDropConfiguration(){
 
         bloqueInicioImagen.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {
                 if (dragEvent.getGestureSource().getClass() == VistaBloqueIndividual.class){
-                    dragEvent.acceptTransferModes(TransferMode.ANY);
+                    dragEvent.acceptTransferModes(TransferMode.MOVE);
                 }
                 else if (dragEvent.getGestureSource().getClass() == VistaBloqueDisponible.class){
-                    dragEvent.acceptTransferModes(TransferMode.ANY);
+                    dragEvent.acceptTransferModes(TransferMode.COPY);
                 }
                 dragEvent.consume();
             }
@@ -70,26 +77,18 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
             if (VistaBloqueIndividual.class == event.getGestureSource().getClass()) {
                 VistaBloque bloque = (VistaBloque) event.getGestureSource();
                 this.asignarSiguiente(bloque);
+
                 event.setDropCompleted(true);
             }
             else if (VistaBloqueDisponible.class == event.getGestureSource().getClass()){
                 VistaBloqueDisponible vistaBloqueDisponible = (VistaBloqueDisponible) event.getGestureSource();
-                this.asignarSiguiente(vistaBloqueDisponible.copia());
+                VistaBloque copia = vistaBloqueDisponible.copia();
+                this.asignarSiguiente(copia);
+
                 event.setDropCompleted(false);
             }
             else {
                 event.setDropCompleted(false);
-            }
-        });
-
-        bloqueInicioImagen.setOnDragDone(new EventHandler <DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                System.out.println("onDragDone VistaBloqueInicio");
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    System.out.println("TransferMode = MOVE");
-                }
-                event.consume();
             }
         });
     }

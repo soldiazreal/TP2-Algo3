@@ -42,5 +42,9 @@ public class Tablero {
         this.seccionBloques = seccionBloques;
         this.seccionAlgoritmo = seccionAlgoritmo;
     }
+
+    public Nodo nodoConBloque(String nombreDelBloque){
+        return new NodoConcreto(this.seccionBloques.buscarBloque(nombreDelBloque));
+    }
 }
 

@@ -1,5 +1,6 @@
 package com.vista.clasesParaVista.vistaBloques;
 
+import com.tablero.Tablero;
 import com.vista.Vista;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Arrastrable;
 import com.vista.clasesParaVista.vistaBloques.VistaBloque;
@@ -12,45 +13,33 @@ import javafx.scene.input.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class VistaBloqueDisponible extends VistaBloque implements Arrastrable {
+public class VistaBloqueDisponible extends VBox implements Arrastrable {
 
 
     ImageView imageView;
-    VistaBloque bloque;
     VBox contenedor;
+    Tablero tablero;
+    String nombreBloque;
+    boolean tieneListaInternaEditable;
 
-    public VistaBloqueDisponible(ImageView image, VistaBloque bloque, VBox contenedor){
+    public VistaBloqueDisponible(ImageView image, VBox contenedor, Tablero tablero, String nombre, boolean tieneListaInternaEditable){
 
+        this.tablero = tablero;
         this.contenedor = contenedor;
-        this.bloque = bloque;
+        this.nombreBloque = nombre;
         image.setFitWidth(75);
         image.setFitHeight(50);
         this.getChildren().add(image);
         imageView = image;
+        this.tieneListaInternaEditable = tieneListaInternaEditable;
 
         setDragConfiguration();
     }
 
-    public void asignarSiguiente(VistaBloque siguiente){}
-
-    protected void asignarAnterior(VistaBloque anterior){}
-
-    public VistaBloque ultimoSiguiente(){
-        return null;
-    }
-
-    public boolean esNulo(){
-        return false;
-    }
-
     public VistaBloque copia(){
-
         System.out.println("copia vistaBloqueDisponible");
 
-        contenedor.getChildren().remove(this);
-        contenedor.getChildren().add(new VistaBloqueDisponible(imageView, bloque, contenedor));
-
-        return bloque.copia();
+        return new VistaBloqueIndividual(new ImageView(this.imageView.getImage()), tablero.nodoConBloque(nombreBloque), this.tieneListaInternaEditable);
     }
 
     public void setDragConfiguration(){
@@ -65,17 +54,6 @@ public class VistaBloqueDisponible extends VistaBloque implements Arrastrable {
         imageView.setOnMouseDragged((MouseEvent event)->{
             event.setDragDetect(true);
             System.out.println("MouseDragged on BloqueDisponible");
-        });
-
-        imageView.setOnDragDone(new EventHandler <DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                System.out.println("onDragDone VistaBloqueDisponible");
-                if (event.getTransferMode() == TransferMode.MOVE) {
-                    System.out.println("TransferMode = MOVE");
-                }
-                event.consume();
-            }
         });
     }
 }

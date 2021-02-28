@@ -32,7 +32,7 @@ public class ContenedorPrincipal extends BorderPane {
 
     static final DataFormat STRING_LIST = new DataFormat("StringList");
     ScrollPane bloquesDisponibles = new ScrollPane();
-    VistaSeccionBloques vistaSeccionBloques = new VistaSeccionBloques();
+    VistaSeccionBloques vistaSeccionBloques;
     VBox bloquesAEjecutar = new VBox();
     BarraDeMenu menuBar;
     Tablero tablero;
@@ -49,6 +49,7 @@ public class ContenedorPrincipal extends BorderPane {
 
     public void setAlgoritmo(Stage stage) {
 
+        this.vistaSeccionBloques = new VistaSeccionBloques(this.tablero);
         bloquesDisponibles.setContent(vistaSeccionBloques);
         bloquesDisponibles.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
         bloquesAEjecutar.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
@@ -70,7 +71,7 @@ public class ContenedorPrincipal extends BorderPane {
         bloquesAEjecutar.setPrefSize(200, 350);
 
         //Agregando bloque Inicial a Bloques a Ejecutar
-        bloquesAEjecutar.getChildren().add(new VistaBloqueInicio(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG"))));
+        bloquesAEjecutar.getChildren().add(new VistaBloqueInicio(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG")), tablero.getPrimerNodo()));
 
 
 

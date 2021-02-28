@@ -17,8 +17,4 @@ public class VistaBloqueNulo extends VistaBloque{
     public boolean esNulo(){
         return true;
     }
-
-    public VistaBloque copia(){
-        return new VistaBloqueNulo();
-    }
 }
