@@ -19,7 +19,7 @@ public class Personalizado extends Secuencial {
             nodoAux = nodoAux.conseguirSiguiente();
         }
     }
-
+//no anda
     @Override
     public void ejecutarBloque(Personaje unPersonaje) {
         if (unPersonaje == null)
