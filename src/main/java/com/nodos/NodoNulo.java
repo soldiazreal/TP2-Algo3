@@ -47,5 +47,10 @@ public class NodoNulo implements Nodo {
     public boolean esUltimo() {
         return true;
     }
+
+    @Override
+    public Nodo primerNodoListaInternaDeBloque(){
+        return new NodoNulo();
+    }
 }
 

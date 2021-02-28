@@ -26,8 +26,7 @@ public class Tablero {
     }
 
     //necesito esto para reiniciar simulacion, se puede mejorar
-    public void reiniciar (Personaje personaje) {
-        seccionAlgoritmo = new SeccionAlgoritmo();
+    public void reestablecerPersonaje (Personaje personaje) {
         this.personaje = personaje;
     }
 

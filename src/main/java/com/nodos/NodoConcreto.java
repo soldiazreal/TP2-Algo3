@@ -55,4 +55,9 @@ public class NodoConcreto implements Nodo {
     public boolean esUltimo() {
         return false;
     }
+
+    @Override
+    public Nodo primerNodoListaInternaDeBloque(){
+        return bloque.primerNodoListaInterna();
+    }
 }

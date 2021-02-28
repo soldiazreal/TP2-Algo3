@@ -22,4 +22,6 @@ public interface Nodo {
     Nodo copiar();
 
     boolean esUltimo();
+
+    Nodo primerNodoListaInternaDeBloque();
 }

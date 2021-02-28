@@ -5,6 +5,7 @@ import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import com.tablero.Tablero;
 import com.vista.clasesParaVista.VistaPersonaje;
+import com.vista.clasesParaVista.vistBloquesAEjecutar.VistaBloquesAEjecutar;
 import com.vista.clasesParaVista.vistaBloques.VistaBloqueIndividual;
 import com.vista.clasesParaVista.vistaBloques.VistaBloqueInicio;
 import com.vista.clasesParaVista.vistaSeccionBloques.VistaSeccionBloques;
@@ -33,10 +34,11 @@ public class ContenedorPrincipal extends BorderPane {
     static final DataFormat STRING_LIST = new DataFormat("StringList");
     ScrollPane bloquesDisponibles = new ScrollPane();
     VistaSeccionBloques vistaSeccionBloques;
-    VBox bloquesAEjecutar = new VBox();
+    VistaBloquesAEjecutar bloquesAEjecutar;
     BarraDeMenu menuBar;
     Tablero tablero;
     VistaPersonaje vistaPersonaje;
+    HBox listas = new HBox();
 
     public ContenedorPrincipal(Stage stage, Tablero tablero) {
         this.tablero = tablero;
@@ -49,12 +51,10 @@ public class ContenedorPrincipal extends BorderPane {
 
     public void setAlgoritmo(Stage stage) {
 
+        bloquesAEjecutar = new VistaBloquesAEjecutar(this.tablero);
         this.vistaSeccionBloques = new VistaSeccionBloques(this.tablero);
         bloquesDisponibles.setContent(vistaSeccionBloques);
         bloquesDisponibles.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
-        bloquesAEjecutar.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
-
-        bloquesAEjecutar.setSpacing(20);
 
         // Creacion del texto para cada zona
         Label seccionBloquesLbl = new Label("Sección Bloques ");
@@ -68,10 +68,7 @@ public class ContenedorPrincipal extends BorderPane {
 
         // Seleccion de como se ven las areas
         bloquesDisponibles.setPrefSize(200, 350);
-        bloquesAEjecutar.setPrefSize(200, 350);
 
-        //Agregando bloque Inicial a Bloques a Ejecutar
-        bloquesAEjecutar.getChildren().add(new VistaBloqueInicio(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG")), tablero.getPrimerNodo()));
 
 
 
@@ -83,7 +80,7 @@ public class ContenedorPrincipal extends BorderPane {
         textos.setPadding(new Insets(10));
         textos.setAlignment(Pos.CENTER);
 
-        HBox listas = new HBox(bloquesDisponibles, bloquesAEjecutar);
+        listas = new HBox(bloquesDisponibles, bloquesAEjecutar);
         listas.setSpacing(50);
         listas.setAlignment(Pos.CENTER);
 
@@ -275,12 +272,17 @@ public class ContenedorPrincipal extends BorderPane {
 
     public void reiniciarSimulacion(Stage stage) {
         Personaje personajeNuevo = new Personaje(new Posicion(0, 0), new SeccionDibujo());
-        tablero.reiniciar(personajeNuevo);
+        tablero.reestablecerPersonaje(personajeNuevo);
         this.setReproductor(personajeNuevo, stage);
     }
 
     public void reiniciarJuego(Stage stage) {
         this.tablero = new Tablero();
+
+        this.listas.getChildren().remove(this.bloquesAEjecutar);
+        this.bloquesAEjecutar = new VistaBloquesAEjecutar(this.tablero);
+        this.listas.getChildren().add(this.bloquesAEjecutar);
+
         this.setMenu(stage);
         this.setBotonera(stage);
         Personaje personaje = tablero.getPersonaje();

@@ -2,6 +2,8 @@ package com.bloques;
 
 import com.acciones.*;
 import com.excepciones.AccionANullException;
+import com.nodos.Nodo;
+import com.nodos.NodoNulo;
 import com.personaje.Personaje;
 
 public class Individual implements Bloque{
@@ -27,5 +29,10 @@ public class Individual implements Bloque{
     @Override
     public Bloque copia(){
         return new Individual(this.accion);
+    }
+
+    @Override
+    public Nodo primerNodoListaInterna(){
+        return new NodoNulo();
     }
 }

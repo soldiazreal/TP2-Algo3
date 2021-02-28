@@ -20,7 +20,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
     VistaBloque anterior = new VistaBloqueNulo();
     ImageView image;
 
-    public VistaBloqueIndividual(ImageView image, Nodo nodo, boolean esSecuencial){
+    public VistaBloqueIndividual(ImageView image, Nodo nodo, boolean esSecuencial, Nodo primerNodoListaInterna){
         this.setMaxWidth(75);
         this.setMaxHeight(50);
         this.getChildren().add(image);
@@ -31,7 +31,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
 
         if (esSecuencial){
             ImageView bloqueInicioImagen = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG"));
-            VistaBloque bloqueInicialListaInterna = new VistaBloqueInicio(bloqueInicioImagen, new NodoNulo());
+            VistaBloque bloqueInicialListaInterna = new VistaBloqueInicio(bloqueInicioImagen, primerNodoListaInterna);
             HBox cuerpoMedio = new HBox();
             VBox cuerpoMedioIzquierdo = new VBox();
             cuerpoMedioIzquierdo.setMinWidth(20);

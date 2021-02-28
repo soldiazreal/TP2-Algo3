@@ -1,5 +1,6 @@
 package com.vista.clasesParaVista.vistaBloques;
 
+import com.nodos.Nodo;
 import com.tablero.Tablero;
 import com.vista.Vista;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Arrastrable;
@@ -39,7 +40,8 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
     public VistaBloque copia(){
         System.out.println("copia vistaBloqueDisponible");
 
-        return new VistaBloqueIndividual(new ImageView(this.imageView.getImage()), tablero.nodoConBloque(nombreBloque), this.tieneListaInternaEditable);
+        Nodo nodo = tablero.nodoConBloque(nombreBloque);
+        return new VistaBloqueIndividual(new ImageView(this.imageView.getImage()), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
     }
 
     public void setDragConfiguration(){

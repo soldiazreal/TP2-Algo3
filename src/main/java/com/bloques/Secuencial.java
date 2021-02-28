@@ -24,4 +24,9 @@ public abstract class Secuencial implements Bloque{
 
     @Override
     public abstract void invertirBloque(Personaje unPersonaje);
+
+    @Override
+    public Nodo primerNodoListaInterna(){
+        return this.bloques;
+    }
 }
