@@ -35,6 +35,6 @@ public class SeccionBloques {
         if (bloque == null){
             throw new BloqueInexistenteException("Error no existe bloque buscado");
         }
-        return bloque;
+        return bloque.copia();
     }
 }

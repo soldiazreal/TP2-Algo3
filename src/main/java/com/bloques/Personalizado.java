@@ -3,6 +3,7 @@ package com.bloques;
 import com.excepciones.ListaNullException;
 import com.excepciones.PersonajeNullException;
 import com.nodos.Nodo;
+import com.nodos.NodoNulo;
 import com.personaje.Personaje;
 import com.tablero.SeccionBloques;
 import java.util.ArrayList;
@@ -51,5 +52,10 @@ public class Personalizado extends Secuencial {
             nodoAux = nodoAux.conseguirSiguiente();
         }
         return personalizado;
+    }
+
+    @Override
+    public Nodo primerNodoListaInterna(){
+        return new NodoNulo();
     }
 }

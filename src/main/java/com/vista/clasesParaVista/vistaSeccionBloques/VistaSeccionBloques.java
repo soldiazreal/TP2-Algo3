@@ -37,6 +37,8 @@ public class VistaSeccionBloques extends VBox{
         ImageView imagenBajarLapiz = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueBajarLapiz.jpeg"));
         ImageView imagenLevantarLapiz = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueLevantarLapiz.jpeg"));
         ImageView imagenRepetir2 = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueRepetir2.jpeg"));
+        ImageView imagenRepetir3 = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueRepetir3.jpeg"));
+        ImageView imagenInvertir = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueInvertir.jpeg"));
 
         //creo contenedores para los bloques de seccion bloque
         VBox contenedorBloqueMoverDerecha = new VBox();
@@ -46,6 +48,9 @@ public class VistaSeccionBloques extends VBox{
         VBox contenedorBloqueLevantarLapiz = new VBox();
         VBox contenedorBloqueBajarLapiz = new VBox();
         VBox contenedorBloqueRepetir2 = new VBox();
+        VBox contenedorBloqueRepetir3 = new VBox();
+        VBox contenedorBloqueInvertir = new VBox();
+
 
         //creo los bloques de seccion bloque y los agrego a sus respectivos contenedores
         contenedorBloqueMoverDerecha.getChildren().add(new VistaBloqueDisponible(imagenBloqueMoverDerecha, contenedorBloqueMoverDerecha, tablero, "MoverDerecha", false));
@@ -55,6 +60,8 @@ public class VistaSeccionBloques extends VBox{
         contenedorBloqueLevantarLapiz.getChildren().add(new VistaBloqueDisponible(imagenLevantarLapiz, contenedorBloqueLevantarLapiz, tablero, "LevantarLapiz", false));
         contenedorBloqueBajarLapiz.getChildren().add(new VistaBloqueDisponible(imagenBajarLapiz, contenedorBloqueBajarLapiz, tablero, "BajarLapiz", false));
         contenedorBloqueRepetir2.getChildren().add(new VistaBloqueDisponible(imagenRepetir2, contenedorBloqueRepetir2, tablero, "RepetirDoble", true));
+        contenedorBloqueRepetir3.getChildren().add(new VistaBloqueDisponible(imagenRepetir3, contenedorBloqueRepetir3, tablero, "RepetirTriple", true));
+        contenedorBloqueInvertir.getChildren().add(new VistaBloqueDisponible(imagenInvertir, contenedorBloqueInvertir, tablero, "Invertir", true));
 
         //agrego de manera ordenada los contenedores de bloques de seccion bloque
         this.getChildren().add(contenedorBloqueMoverDerecha);
@@ -64,6 +71,8 @@ public class VistaSeccionBloques extends VBox{
         this.getChildren().add(contenedorBloqueLevantarLapiz);
         this.getChildren().add(contenedorBloqueBajarLapiz);
         this.getChildren().add(contenedorBloqueRepetir2);
+        this.getChildren().add(contenedorBloqueRepetir3);
+        this.getChildren().add(contenedorBloqueInvertir);
     }
 
 }

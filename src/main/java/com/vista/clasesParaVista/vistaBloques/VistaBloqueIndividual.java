@@ -56,6 +56,8 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
         this.getChildren().remove(this.siguiente);
         this.getChildren().add(siguienteNuevo);
         this.siguiente = siguienteNuevo;
+        this.nodo.asignarSiguiente(this.siguiente.getNodo());
+        siguienteNuevo.asignarAnterior(this.siguiente);
     }
 
     @Override
@@ -65,6 +67,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
 
     public void separarDeLaCadena (){
         this.anterior.asignarSiguiente(new VistaBloqueNulo());
+        this.anterior = new VistaBloqueNulo();
     }
 
     @Override

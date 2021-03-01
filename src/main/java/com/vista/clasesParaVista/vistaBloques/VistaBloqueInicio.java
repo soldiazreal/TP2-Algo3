@@ -30,18 +30,23 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
         this.setDropConfiguration();
     }
 
-    public void asignarSiguiente(VistaBloque siguienteNuevo){
+    public void insertarSiguiente(VistaBloque siguienteNuevo){
         this.getChildren().remove(this.siguiente);
-        siguienteNuevo.ultimoSiguiente().asignarSiguiente(this.siguiente);
+        this.getChildren().add(siguienteNuevo);
         siguienteNuevo.asignarAnterior(this);
+        siguienteNuevo.ultimoSiguiente().asignarSiguiente(this.siguiente);
+        this.siguiente = siguienteNuevo;
+
+        this.nodo.insertarSiguiente(siguienteNuevo.getNodo());
+    }
+
+    @Override
+    public void asignarSiguiente(VistaBloque siguienteNuevo) {
+        this.getChildren().remove(this.siguiente);
         this.getChildren().add(siguienteNuevo);
         this.siguiente = siguienteNuevo;
-        nodo.insertarSiguiente(siguienteNuevo.getNodo());
-        if (siguienteNuevo.getNodo().getClass() == NodoConcreto.class)
-            System.out.println("Se inserta un nodo concreto");
-        else if (siguienteNuevo.getNodo().getClass() == NodoNulo.class){
-            System.out.println("Se inserta un nodo nulo");
-        }
+        this.nodo.asignarSiguiente(siguienteNuevo.getNodo());
+        siguienteNuevo.asignarAnterior(this.siguiente);
     }
 
     protected void asignarAnterior(VistaBloque anterior){
@@ -76,14 +81,14 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
             System.out.println("DragDropped on VistaBloqueInicio");
             if (VistaBloqueIndividual.class == event.getGestureSource().getClass()) {
                 VistaBloque bloque = (VistaBloque) event.getGestureSource();
-                this.asignarSiguiente(bloque);
+                this.insertarSiguiente(bloque);
 
                 event.setDropCompleted(true);
             }
             else if (VistaBloqueDisponible.class == event.getGestureSource().getClass()){
                 VistaBloqueDisponible vistaBloqueDisponible = (VistaBloqueDisponible) event.getGestureSource();
                 VistaBloque copia = vistaBloqueDisponible.copia();
-                this.asignarSiguiente(copia);
+                this.insertarSiguiente(copia);
 
                 event.setDropCompleted(false);
             }

@@ -26,11 +26,7 @@ public class SeccionAlgoritmo{
     }
 
     public void ejecutar(Personaje unPersonaje){
-        Nodo nodoAux = this.nodos;
-        while(!nodoAux.esUltimo()){
-            nodoAux.ejecutar(unPersonaje);
-            nodoAux = nodoAux.conseguirSiguiente();
-        }
+        nodos.ejecutar(unPersonaje);
     }
 
     public void removerSiguienteBloque(Nodo nodoPadre){

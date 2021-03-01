@@ -21,8 +21,22 @@ public class NodoConcreto implements Nodo {
 
     @Override
     public void insertarSiguiente(Nodo siguiente) {
+        if (siguiente.getClass() == NodoNulo.class)
+            System.out.println("EL nuevo siguiente en nulo");
+        System.out.println(this.siguiente.toString());
+        System.out.println("Pasa a ser el siguiente viejo");
+        System.out.println("");
+        System.out.println(siguiente.toString());
+        System.out.println("Pasa a ser el siguiente nuevo");
+        System.out.println("");
+
         Nodo anteriorSiguiente = this.siguiente;
         this.siguiente = siguiente;
+
+        System.out.println(this.siguiente.ultimoSiguiente().toString());
+        System.out.println("Se le asigna como siguiente:");
+        System.out.println(anteriorSiguiente.toString());
+
         siguiente.ultimoSiguiente().asignarSiguiente(anteriorSiguiente);
     }
 
@@ -36,12 +50,17 @@ public class NodoConcreto implements Nodo {
 
     @Override
     public void ejecutar(Personaje personaje) {
+
         bloque.ejecutarBloque(personaje);
+        if (!siguiente.esUltimo())
+            siguiente.ejecutar(personaje);
     }
 
     @Override
     public void invertir(Personaje personaje) {
+
         bloque.invertirBloque(personaje);
+        siguiente.invertir(personaje);
     }
 
     @Override
