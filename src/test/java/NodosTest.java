@@ -7,6 +7,8 @@ import com.personaje.Personaje;
 import org.junit.Test;
 import com.nodos.*;
 import static org.junit.Assert.*;
+
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 
@@ -74,8 +76,9 @@ public class NodosTest {
         primer.insertarSiguiente(segundo);
 
         primer.ejecutar(personajeMock);
-        verify(personajeMock, times(1)).mover(1, 0);
-        verify(personajeMock, times(1)).mover(0, 1);
+        InOrder inOrder = Mockito.inOrder(personajeMock);
+        inOrder.verify(personajeMock, times(1)).mover(1, 0);
+        inOrder.verify(personajeMock, times(1)).mover(0, 1);
     }
 
     @Test
@@ -91,9 +94,10 @@ public class NodosTest {
 
         primer.ejecutar(personajeMock);
 
-        verify(personajeMock, times(1)).mover(1, 0);
-        verify(personajeMock, times(1)).mover(0, 1);
-        verify(personajeMock, times(1)).mover(0, -1);
+        InOrder inOrder = Mockito.inOrder(personajeMock);
+        inOrder.verify(personajeMock, times(1)).mover(1, 0);
+        inOrder.verify(personajeMock, times(1)).mover(0, -1);
+        inOrder.verify(personajeMock, times(1)).mover(0, 1);
     }
 
     @Test
@@ -109,8 +113,10 @@ public class NodosTest {
 
         primer.invertir(personajeMock);
 
-        verify(personajeMock, times(1)).mover(-1, 0);
-        verify(personajeMock, times(1)).mover(0, 1);
-        verify(personajeMock, times(1)).mover(0, -1);
+
+        InOrder inOrder = Mockito.inOrder(personajeMock);
+        inOrder.verify(personajeMock, times(1)).mover(-1, 0);
+        inOrder.verify(personajeMock, times(1)).mover(0, 1);
+        inOrder.verify(personajeMock, times(1)).mover(0, -1);
     }
 }

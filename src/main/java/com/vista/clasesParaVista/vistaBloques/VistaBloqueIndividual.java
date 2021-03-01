@@ -18,20 +18,20 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
 
     VistaBloque siguiente = new VistaBloqueNulo();
     VistaBloque anterior = new VistaBloqueNulo();
-    ImageView image;
+    Contenido elContenido;
 
-    public VistaBloqueIndividual(ImageView image, Nodo nodo, boolean esSecuencial, Nodo primerNodoListaInterna){
+    public VistaBloqueIndividual(Contenido contenido, Nodo nodo, boolean esSecuencial, Nodo primerNodoListaInterna){
         this.setMaxWidth(75);
         this.setMaxHeight(50);
-        this.getChildren().add(image);
-        this.image = image;
+        this.getChildren().add(contenido);
+        this.elContenido = contenido;
         this.nodo = nodo;
         this.setDragConfiguration();
         this.setDropConfiguration();
 
         if (esSecuencial){
             ImageView bloqueInicioImagen = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG"));
-            VistaBloque bloqueInicialListaInterna = new VistaBloqueInicio(bloqueInicioImagen, primerNodoListaInterna);
+            VistaBloque bloqueInicialListaInterna = new VistaBloqueInicio(new Contenido(bloqueInicioImagen), primerNodoListaInterna);
             HBox cuerpoMedio = new HBox();
             VBox cuerpoMedioIzquierdo = new VBox();
             cuerpoMedioIzquierdo.setMinWidth(20);
@@ -93,17 +93,17 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
 
     public void setDragConfiguration(){
 
-        image.setOnDragDetected((MouseEvent event)->{
+        elContenido.setOnDragDetected((MouseEvent event)->{ //aca ojo
             Dragboard db = this.startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
-            content.putImage(image.getImage());
+            content.putImage(elContenido.getImage().getImage()); //esto rompe antes era image.getImage()
             db.setContent(content);
             this.separarDeLaCadena();
 
             System.out.println("DragDetected on VistaBloqueIndividual");
         });
 
-        image.setOnMouseDragged((MouseEvent event)->{
+        elContenido.setOnMouseDragged((MouseEvent event)->{ //aca ojo
             event.setDragDetect(true);
             System.out.println("MouseDragged on VistaBloqueIndividual");
         });
@@ -111,7 +111,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
 
     public void setDropConfiguration(){
 
-        image.setOnDragOver(new EventHandler<DragEvent>() {
+        elContenido.setOnDragOver(new EventHandler<DragEvent>() { //aca ojo
             @Override
             public void handle(DragEvent dragEvent) {
                 if (dragEvent.getGestureSource().getClass() == VistaBloqueIndividual.class){
@@ -125,7 +125,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
         });
 
 
-        image.setOnDragDropped((DragEvent event)->{
+        elContenido.setOnDragDropped((DragEvent event)->{ //ojo aca
             System.out.println("DragDropped on VistaBloqueIndividual");
             if (VistaBloqueIndividual.class == event.getGestureSource().getClass()) {
                 VistaBloque bloque = (VistaBloque) event.getGestureSource();

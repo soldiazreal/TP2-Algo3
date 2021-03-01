@@ -13,12 +13,12 @@ import javafx.scene.input.TransferMode;
 public class VistaBloqueInicio extends VistaBloque implements Receptor {
 
     VistaBloque siguiente = new VistaBloqueNulo();
-    ImageView bloqueInicioImagen;
+    Contenido bloqueInicioImagen;
 
-    public VistaBloqueInicio (ImageView image, Nodo nodoInicial){
-        bloqueInicioImagen = image;
-        bloqueInicioImagen.setFitHeight(50);
-        bloqueInicioImagen.setFitWidth(75);
+    public VistaBloqueInicio (Contenido contenido, Nodo nodoInicial){
+        bloqueInicioImagen = contenido;
+        //bloqueInicioImagen.setFitHeight(50);
+        //bloqueInicioImagen.setFitWidth(75);
 
         nodo = nodoInicial;
 

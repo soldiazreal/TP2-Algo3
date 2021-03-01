@@ -17,21 +17,21 @@ import javafx.scene.layout.VBox;
 public class VistaBloqueDisponible extends VBox implements Arrastrable {
 
 
-    ImageView imageView;
+    Contenido elContenido;
     VBox contenedor;
     Tablero tablero;
     String nombreBloque;
     boolean tieneListaInternaEditable;
 
-    public VistaBloqueDisponible(ImageView image, VBox contenedor, Tablero tablero, String nombre, boolean tieneListaInternaEditable){
+    public VistaBloqueDisponible(Contenido contenido, VBox contenedor, Tablero tablero, String nombre, boolean tieneListaInternaEditable){
 
         this.tablero = tablero;
         this.contenedor = contenedor;
         this.nombreBloque = nombre;
-        image.setFitWidth(75);
-        image.setFitHeight(50);
-        this.getChildren().add(image);
-        imageView = image;
+        //contenido.setFitWidth(75);
+       //contenido.setFitHeight(50);
+        this.getChildren().add(contenido);
+        this.elContenido = contenido;
         this.tieneListaInternaEditable = tieneListaInternaEditable;
 
         setDragConfiguration();
@@ -39,19 +39,19 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
 
     public VistaBloque copia(){
         Nodo nodo = tablero.nodoConBloque(nombreBloque);
-        return new VistaBloqueIndividual(new ImageView(this.imageView.getImage()), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
+        return new VistaBloqueIndividual((new Contenido(this.elContenido.getImage())), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
     }
 
     public void setDragConfiguration(){
-        imageView.setOnDragDetected((MouseEvent event)->{
+        elContenido.setOnDragDetected((MouseEvent event)->{//aca hay que hacerlo con contenedor tambien
             System.out.println("DragDetected on BloqueDisponible");
             Dragboard db = this.startDragAndDrop(TransferMode.COPY);
             ClipboardContent content = new ClipboardContent();
-            content.putImage(imageView.getImage());
+            content.putImage(elContenido.getImage().getImage()); //aca hay que hacerlo con contenedor
             db.setContent(content);
         });
 
-        imageView.setOnMouseDragged((MouseEvent event)->{
+        elContenido.setOnMouseDragged((MouseEvent event)->{ //aca hay que hacerlo con contenedor
             event.setDragDetect(true);
             System.out.println("MouseDragged on BloqueDisponible");
         });
