@@ -9,11 +9,11 @@ import javafx.scene.layout.VBox;
 public class VistaBloquesAEjecutar extends VBox {
     public VistaBloquesAEjecutar (Tablero tablero){
 
-        this.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
+        this.setStyle("-fx-border-color: #e84daf;" + "-fx-border-width: 4");
 
         this.setSpacing(20);
 
-        this.setPrefSize(200, 350);
+        this.setPrefSize(250, 450);
 
         //Agregando bloque Inicial a Bloques a Ejecutar
         this.getChildren().add(new VistaBloqueInicio(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/BloqueInicio.PNG")), tablero.getPrimerNodo()));
