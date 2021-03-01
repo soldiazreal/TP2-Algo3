@@ -1,9 +1,7 @@
 package com.vista.clasesParaVista.vistaBloques;
 
 
-import com.bloques.Bloque;
 import com.nodos.Nodo;
-import com.nodos.NodoNulo;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Arrastrable;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Receptor;
 import javafx.event.EventHandler;
@@ -96,7 +94,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
         elContenido.setOnDragDetected((MouseEvent event)->{ //aca ojo
             Dragboard db = this.startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
-            content.putImage(elContenido.getImage().getImage()); //esto rompe antes era image.getImage()
+            content.putImage(elContenido.getImageView().getImage()); //esto rompe antes era image.getImage()
             db.setContent(content);
             this.separarDeLaCadena();
 

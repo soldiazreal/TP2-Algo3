@@ -2,16 +2,9 @@ package com.vista.clasesParaVista.vistaBloques;
 
 import com.nodos.Nodo;
 import com.tablero.Tablero;
-import com.vista.Vista;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Arrastrable;
-import com.vista.clasesParaVista.vistaBloques.VistaBloque;
-import com.vista.clasesParaVista.vistaBloques.VistaBloqueIndividual;
-import com.vista.clasesParaVista.vistaBloques.VistaBloqueInicio;
-import com.vista.clasesParaVista.vistaBloques.VistaBloqueNulo;
-import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class VistaBloqueDisponible extends VBox implements Arrastrable {
@@ -39,7 +32,8 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
 
     public VistaBloque copia(){
         Nodo nodo = tablero.nodoConBloque(nombreBloque);
-        return new VistaBloqueIndividual((new Contenido(this.elContenido.getImage())), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
+        ImageView imagenCopia = new ImageView (this.elContenido.getImageView().getImage());
+        return new VistaBloqueIndividual((new Contenido(imagenCopia)), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
     }
 
     public void setDragConfiguration(){
@@ -47,7 +41,7 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
             System.out.println("DragDetected on BloqueDisponible");
             Dragboard db = this.startDragAndDrop(TransferMode.COPY);
             ClipboardContent content = new ClipboardContent();
-            content.putImage(elContenido.getImage().getImage()); //aca hay que hacerlo con contenedor
+            content.putImage(elContenido.getImageView().getImage()); //aca hay que hacerlo con contenedor
             db.setContent(content);
         });
 

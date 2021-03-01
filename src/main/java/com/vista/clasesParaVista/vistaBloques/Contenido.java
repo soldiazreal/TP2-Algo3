@@ -13,7 +13,7 @@ public class Contenido extends StackPane {
         this.imagenes = imagen;
     }
 
-    public ImageView getImage(){
+    public ImageView getImageView(){
         return this.imagenes;
     }
 
