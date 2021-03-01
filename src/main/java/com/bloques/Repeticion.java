@@ -17,22 +17,14 @@ public class Repeticion extends Secuencial{
     @Override
     public void invertirBloque(Personaje unPersonaje) {
         for(int i = 0; i < this.repeticiones; i++) {
-            Nodo nodoAux = this.bloques;
-            while (!(nodoAux.esUltimo())) {
-                nodoAux.invertir(unPersonaje);
-                nodoAux = nodoAux.conseguirSiguiente();
-            }
+            bloques.invertir(unPersonaje);
         }
     }
 
     @Override
     public void ejecutarBloque(Personaje unPersonaje) {
         for(int i = 1; i <= this.repeticiones; i++) {
-            Nodo nodoAux = this.bloques;
-            while (!(nodoAux.esUltimo())) {
-                nodoAux.ejecutar(unPersonaje);
-                nodoAux = nodoAux.conseguirSiguiente();
-            }
+            bloques.ejecutar(unPersonaje);
         }
     }
 

@@ -15,28 +15,14 @@ public class NodoConcreto implements Nodo {
 
     @Override
     public Nodo copiar(){
-       NodoConcreto nuevoNodo = new NodoConcreto(this.bloque.copia());
-       return nuevoNodo;
+       return new NodoConcreto(this.bloque.copia());
     }
 
     @Override
     public void insertarSiguiente(Nodo siguiente) {
-        if (siguiente.getClass() == NodoNulo.class)
-            System.out.println("EL nuevo siguiente en nulo");
-        System.out.println(this.siguiente.toString());
-        System.out.println("Pasa a ser el siguiente viejo");
-        System.out.println("");
-        System.out.println(siguiente.toString());
-        System.out.println("Pasa a ser el siguiente nuevo");
-        System.out.println("");
 
         Nodo anteriorSiguiente = this.siguiente;
         this.siguiente = siguiente;
-
-        System.out.println(this.siguiente.ultimoSiguiente().toString());
-        System.out.println("Se le asigna como siguiente:");
-        System.out.println(anteriorSiguiente.toString());
-
         siguiente.ultimoSiguiente().asignarSiguiente(anteriorSiguiente);
     }
 

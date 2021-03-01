@@ -25,22 +25,14 @@ public class Personalizado extends Secuencial {
     public void ejecutarBloque(Personaje unPersonaje) {
         if (unPersonaje == null)
             throw new PersonajeNullException("No se puede ejecutar bloque con personaje null");
-        Nodo nodoAux = this.bloques;
-        while(!(nodoAux.esUltimo())){
-            nodoAux.ejecutar(unPersonaje);
-            nodoAux = nodoAux.conseguirSiguiente();
-        }
+        bloques.ejecutar(unPersonaje);
     }
 
     @Override
     public void invertirBloque (Personaje unPersonaje){
         if (unPersonaje == null)
             throw new PersonajeNullException("No se puede invertir bloque con personaje null");
-        Nodo nodoAux = this.bloques;
-        while(!(nodoAux.esUltimo())){
-            nodoAux.invertir(unPersonaje);
-            nodoAux = nodoAux.conseguirSiguiente();
-        }
+        bloques.invertir(unPersonaje);
     }
 
     @Override
