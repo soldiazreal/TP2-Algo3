@@ -49,8 +49,10 @@ public class ContenedorPrincipal extends BorderPane {
     }
 
     public void setAlgoritmo(Stage stage) {
-
+        ScrollPane paneBloquesAEjecutar = new ScrollPane();
         bloquesAEjecutar = new VistaBloquesAEjecutar(this.tablero);
+        paneBloquesAEjecutar.setContent(bloquesAEjecutar);
+        paneBloquesAEjecutar.setStyle("-fx-border-color: #e84daf;" + "-fx-border-width: 4;");
         this.vistaSeccionBloques = new VistaSeccionBloques(this.tablero);
         bloquesDisponibles.setContent(vistaSeccionBloques);
         bloquesDisponibles.setStyle("-fx-border-color: #e84daf;" + "-fx-border-width: 4;");
@@ -76,7 +78,7 @@ public class ContenedorPrincipal extends BorderPane {
         textos.setPadding(new Insets(10));
         textos.setAlignment(Pos.CENTER);
 
-        listas = new HBox(bloquesDisponibles, bloquesAEjecutar);
+        listas = new HBox(bloquesDisponibles, paneBloquesAEjecutar);
         listas.setSpacing(60);
         listas.setAlignment(Pos.CENTER);
 
@@ -249,6 +251,7 @@ public class ContenedorPrincipal extends BorderPane {
         this.setBotonera(stage);
         Personaje personaje = tablero.getPersonaje();
         this.setReproductor(personaje, stage);
+        this.setAlgoritmo(stage);
     }
 }
 
