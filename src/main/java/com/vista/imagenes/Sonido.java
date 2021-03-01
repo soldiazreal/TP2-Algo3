@@ -8,7 +8,7 @@ public class Sonido {
 
     public void ReproducirSonido(){
 
-        com.sun.javafx.application.PlatformImpl.startup(()->{});
+       // com.sun.javafx.application.PlatformImpl.startup(()->{});
 
         final String compuertaAmong = "among-us-2-3d.jpg";
 
