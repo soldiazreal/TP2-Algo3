@@ -22,7 +22,6 @@ public class SeccionAlgoritmo{
 
     public void agregarBloqueDespuesDe(Bloque bloqueInsertar, Nodo nodoPadre){
             nodoPadre.insertarSiguiente(new NodoConcreto(bloqueInsertar));
-
     }
 
     public void ejecutar(Personaje unPersonaje){
