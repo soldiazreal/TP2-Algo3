@@ -1,6 +1,7 @@
 package com.tablero;
 
 import  com.bloques.Bloque;
+import com.bloques.Personalizado;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.nodos.*;
@@ -44,6 +45,12 @@ public class Tablero {
 
     public Nodo nodoConBloque(String nombreDelBloque){
         return new NodoConcreto(this.seccionBloques.buscarBloque(nombreDelBloque));
+    }
+
+    public void generarPersonalizado(String nombreDelBloque){
+        Personalizado nuevoPersonalizado = new Personalizado();
+        nuevoPersonalizado.guardarAlgoritmo(this.seccionAlgoritmo.getNodo());
+        seccionBloques.agregarBloque(nombreDelBloque,nuevoPersonalizado);
     }
 }
 

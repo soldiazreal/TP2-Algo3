@@ -21,7 +21,7 @@ public class VistaSeccionBloques extends VBox{
     }
 
 
-    public void agregarVistaBloque(VistaBloque vistaBloque){
+    public void agregarVistaBloque(VistaBloqueDisponible vistaBloque){
         this.getChildren().add(vistaBloque);
     }
 

@@ -6,6 +6,8 @@ import com.tablero.SeccionDibujo;
 import com.tablero.Tablero;
 import com.vista.clasesParaVista.VistaPersonaje;
 import com.vista.clasesParaVista.vistBloquesAEjecutar.VistaBloquesAEjecutar;
+import com.vista.clasesParaVista.vistaBloques.Contenido;
+import com.vista.clasesParaVista.vistaBloques.VistaBloqueDisponible;
 import com.vista.clasesParaVista.vistaBloques.VistaBloqueIndividual;
 import com.vista.clasesParaVista.vistaBloques.VistaBloqueInicio;
 import com.vista.clasesParaVista.vistaSeccionBloques.VistaSeccionBloques;
@@ -16,6 +18,7 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.input.*;
@@ -113,10 +116,19 @@ public class ContenedorPrincipal extends BorderPane {
                 String mensaje = "No hay ninguna secuencia grabada en Sección Algoritmo!\n\nPor favor, antes de presionar el boton 'Guardar algoritmo' asegurate de haber armado una secuencia.";
                 alert.setContentText(mensaje);
                 alert.show();
-            } /*else {
-                this.bloquesDisponibles.getItems().add("Personalizado");
-                botonCrearPersonalizado.setDisable(true);
-            }*/
+            } else {
+                String nombreAlgoritmo = algunaFuncionParaQueElUsuarioIngreseUnNombre();
+
+                Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.jpeg")));
+                contenidoDelPersonalizado.agregarNombre(new Label(nombreAlgoritmo));
+
+                VBox contenedorDelBloqueDisponible = new VBox();
+
+                this.tablero.generarPersonalizado(nombreAlgoritmo);
+
+                VistaBloqueDisponible vistaPersonalizado = new VistaBloqueDisponible(contenidoDelPersonalizado, contenedorDelBloqueDisponible, this.tablero, nombreAlgoritmo, false);
+                vistaSeccionBloques.agregarVistaBloque(vistaPersonalizado);
+            }
         });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
