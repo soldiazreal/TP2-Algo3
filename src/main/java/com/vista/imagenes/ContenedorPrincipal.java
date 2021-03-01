@@ -16,7 +16,6 @@ import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.input.*;
@@ -54,23 +53,20 @@ public class ContenedorPrincipal extends BorderPane {
         bloquesAEjecutar = new VistaBloquesAEjecutar(this.tablero);
         this.vistaSeccionBloques = new VistaSeccionBloques(this.tablero);
         bloquesDisponibles.setContent(vistaSeccionBloques);
-        bloquesDisponibles.setStyle("-fx-border-color: #bb4c14;" + "-fx-border-width: 4");
+        bloquesDisponibles.setStyle("-fx-border-color: #e84daf;" + "-fx-border-width: 4");
 
         // Creacion del texto para cada zona
         Label seccionBloquesLbl = new Label("Sección Bloques ");
         seccionBloquesLbl.setFont(new Font("Tahoma", 19));
-        seccionBloquesLbl.setStyle("-fx-text-fill: #bb4c14");
+        seccionBloquesLbl.setStyle("-fx-text-fill: #ffffff");
         Label seccionAlgoritmosLbl = new Label("  Sección Algoritmo ");
         seccionAlgoritmosLbl.setFont(new Font("Tahoma", 19));
-        seccionAlgoritmosLbl.setStyle("-fx-text-fill: #bb4c14");
+        seccionAlgoritmosLbl.setStyle("-fx-text-fill: #ffffff");
         Label explicacionLbl = new Label("Arrastra de Sección Bloques a Sección Algoritmo para seleccionar qué se ejecuta");
-        explicacionLbl.setStyle("-fx-text-fill: #bb4c14");
+        explicacionLbl.setStyle("-fx-text-fill: #ffffff");
 
         // Seleccion de como se ven las areas
-        bloquesDisponibles.setPrefSize(200, 350);
-
-
-
+        bloquesDisponibles.setPrefSize(250, 460);
 
 
 //-------------------------------------------------------------------------------------------
@@ -81,10 +77,10 @@ public class ContenedorPrincipal extends BorderPane {
         textos.setAlignment(Pos.CENTER);
 
         listas = new HBox(bloquesDisponibles, bloquesAEjecutar);
-        listas.setSpacing(50);
+        listas.setSpacing(60);
         listas.setAlignment(Pos.CENTER);
 
-        HBox explicacion =  new HBox(explicacionLbl);
+        HBox explicacion = new HBox(explicacionLbl);
         explicacion.setAlignment(Pos.CENTER);
 
         VBox general = new VBox(textos, listas, explicacion);
@@ -92,13 +88,13 @@ public class ContenedorPrincipal extends BorderPane {
         general.setPadding(new Insets(10));
         general.setAlignment(Pos.CENTER);
 
-        Image imagen = new Image("file:src/main/java/com/vista/imagenes/f7.jpg");
+        Image imagen = new Image("file:src/main/java/com/vista/imagenes/fondoprincipal.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         general.setBackground(new Background((imagenDeFondo)));
         general.setStyle(
                 "-fx-border-style: solid inside;" +
                         "-fx-border-width: 4;" +
-                        "-fx-border-color: #241802;");
+                        "-fx-border-color: #14b0cc;");
 
         this.setCenter(general);
     }
@@ -122,16 +118,16 @@ public class ContenedorPrincipal extends BorderPane {
         });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
-                "-fx-border-color: #441509;" +
-                "-fx-background-color: #eaaf95;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-border-color: #e84daf;" +
+                "-fx-background-color: #e84daf;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonReiniciar = new Button();
         botonReiniciar.setText("Reiniciar");
         botonReiniciar.setOnAction(e -> this.reiniciarJuego(stage));
         botonReiniciar.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
-                "-fx-border-color: #441509;" +
-                "-fx-background-color: #eaaf95;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-border-color: #e84daf;" +
+                "-fx-background-color: #e84daf;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonInstrucciones = new Button();
         botonInstrucciones.setText("Instrucciones");
@@ -139,15 +135,15 @@ public class ContenedorPrincipal extends BorderPane {
         botonInstrucciones.setOnAction(botonInstruccionesEventHandler);
         botonInstrucciones.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #0a0401;" +
-                "-fx-border-color: #441509;" +
-                "-fx-background-color: #eaaf95;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-border-color: #e84daf;" +
+                "-fx-background-color: #e84daf;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         Button botonSalir = new Button();
         botonSalir.setText("Salir");
         botonSalir.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
-                "-fx-border-color: #441509;" +
-                "-fx-background-color: #eaaf95;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-border-color: #e84daf;" +
+                "-fx-background-color: #e84daf;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
         OpcionSalirEventHandler opcionSalirEventHandler = new OpcionSalirEventHandler();
         botonSalir.setOnAction(opcionSalirEventHandler);
 
@@ -156,13 +152,13 @@ public class ContenedorPrincipal extends BorderPane {
         contenedor.setPadding(new Insets(25));
         contenedor.setAlignment(Pos.CENTER);
 
-        Image imagen = new Image("file:src/main/java/com/vista/imagenes/f13.jpg");
+        Image imagen = new Image("file:src/main/java/com/vista/imagenes/fondoprincipal.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedor.setBackground(new Background((imagenDeFondo)));
         contenedor.setStyle(
                 "-fx-border-style: solid inside;" +
                         "-fx-border-width: 4;" +
-                        "-fx-border-color: #3e2302;");
+                        "-fx-border-color: #14b0cc;");
 
         this.setLeft(contenedor);
     }
@@ -208,7 +204,7 @@ public class ContenedorPrincipal extends BorderPane {
         tablero.agregarBloque("MoverAbajo", 34);
         //se agregaron todos
         */
-        Button reproducir = new Button("reproducir");
+        Button reproducir = new Button("Reproducir");
         reproducir.setOnAction(e -> {
             tablero.iniciarAlgoritmo();
             vistaPersonaje.getTimeline().play();
@@ -216,10 +212,10 @@ public class ContenedorPrincipal extends BorderPane {
         });
         reproducir.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
-                "-fx-border-color: #441509;" +
-                "-fx-background-color: #eaaf95;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-border-color: #e84daf;" +
+                "-fx-background-color: #e84daf;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
-        Button reestablecer = new Button("reestablecer");
+        Button reestablecer = new Button("Reestablecer");
         reestablecer.setOnAction(e -> {
             reproducir.setDisable(false);
             vistaPersonaje.getTimeline().stop();
@@ -228,8 +224,8 @@ public class ContenedorPrincipal extends BorderPane {
         });
         reestablecer.setStyle("-fx-border-width: 4;" +
                 "-fx-text-fill: #000000;" +
-                "-fx-border-color: #441509;" +
-                "-fx-background-color: #eaaf95;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
+                "-fx-border-color: #e84daf;" +
+                "-fx-background-color: #e84daf;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         HBox botonera = new HBox(reproducir, reestablecer);
         botonera.setAlignment(Pos.CENTER);
@@ -252,13 +248,13 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorCanvas.setStyle(
                 "-fx-border-style: solid inside;" +
                         "-fx-border-width: 7;" +
-                        "-fx-border-color: #bb4c14;");
+                        "-fx-border-color: #e84daf;");
 
         VBox contenedor = new VBox(contenedorCanvas);
         contenedor.setAlignment(Pos.CENTER);
         contenedor.setSpacing(20);
         contenedor.setPadding(new Insets(25));
-        Image imagen = new Image("file:src/main/java/com/vista/imagenes/f7.jpg");
+        Image imagen = new Image("file:src/main/java/com/vista/imagenes/fondoprincipal.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         contenedor.setBackground(new Background(imagenDeFondo));
 
@@ -289,12 +285,6 @@ public class ContenedorPrincipal extends BorderPane {
         this.setReproductor(personaje, stage);
     }
 }
-
-
-
-
-
-
 
 
 
