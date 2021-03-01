@@ -10,6 +10,9 @@ public class VistaBloqueNulo extends VistaBloque{
     protected void asignarAnterior(VistaBloque anterior){
     }
 
+    @Override
+    public void asignarASiguienteUnNulo(){ }
+
     public VistaBloque ultimoSiguiente(){
         return this;
     }

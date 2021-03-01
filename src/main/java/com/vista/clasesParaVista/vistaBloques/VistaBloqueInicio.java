@@ -14,7 +14,6 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
 
     VistaBloque siguiente = new VistaBloqueNulo();
     ImageView bloqueInicioImagen;
-    Nodo nodo;
 
     public VistaBloqueInicio (ImageView image, Nodo nodoInicial){
         bloqueInicioImagen = image;
@@ -45,8 +44,16 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
         this.getChildren().remove(this.siguiente);
         this.getChildren().add(siguienteNuevo);
         this.siguiente = siguienteNuevo;
-        this.nodo.asignarSiguiente(siguienteNuevo.getNodo());
         siguienteNuevo.asignarAnterior(this.siguiente);
+    }
+
+    @Override
+    public void asignarASiguienteUnNulo(){
+        VistaBloque nulo = new VistaBloqueNulo();
+        this.getChildren().remove(this.siguiente);
+        this.getChildren().add(nulo);
+        this.siguiente = nulo;
+        this.nodo.asignarSiguiente(nulo.getNodo());
     }
 
     protected void asignarAnterior(VistaBloque anterior){

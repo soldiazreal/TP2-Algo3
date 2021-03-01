@@ -38,8 +38,6 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
     }
 
     public VistaBloque copia(){
-        System.out.println("copia vistaBloqueDisponible");
-
         Nodo nodo = tablero.nodoConBloque(nombreBloque);
         return new VistaBloqueIndividual(new ImageView(this.imageView.getImage()), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
     }

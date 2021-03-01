@@ -22,4 +22,6 @@ public abstract class VistaBloque extends VBox {
 
     public abstract boolean esNulo();
 
+    public abstract void asignarASiguienteUnNulo();
+
 }

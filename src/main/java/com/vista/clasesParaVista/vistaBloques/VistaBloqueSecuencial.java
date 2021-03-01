@@ -131,4 +131,13 @@ public class VistaBloqueSecuencial extends VistaBloque implements Arrastrable, R
             }
         });
     }
+
+    @Override
+    public void asignarASiguienteUnNulo(){
+        VistaBloque nulo = new VistaBloqueNulo();
+        this.getChildren().remove(this.siguiente);
+        this.getChildren().add(nulo);
+        this.siguiente = nulo;
+        this.nodo.asignarSiguiente(nulo.getNodo());
+    }
 }
