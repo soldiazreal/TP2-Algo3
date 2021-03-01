@@ -53,13 +53,13 @@ public class ContenedorPrincipal extends BorderPane {
         bloquesAEjecutar = new VistaBloquesAEjecutar(this.tablero);
         this.vistaSeccionBloques = new VistaSeccionBloques(this.tablero);
         bloquesDisponibles.setContent(vistaSeccionBloques);
-        bloquesDisponibles.setStyle("-fx-border-color: #e84daf;" + "-fx-border-width: 4");
+        bloquesDisponibles.setStyle("-fx-border-color: #e84daf;" + "-fx-border-width: 4;");
 
         // Creacion del texto para cada zona
-        Label seccionBloquesLbl = new Label("Sección Bloques ");
+        Label seccionBloquesLbl = new Label("   Sección Bloques ");
         seccionBloquesLbl.setFont(new Font("Tahoma", 19));
         seccionBloquesLbl.setStyle("-fx-text-fill: #ffffff");
-        Label seccionAlgoritmosLbl = new Label("  Sección Algoritmo ");
+        Label seccionAlgoritmosLbl = new Label("      Sección Algoritmo ");
         seccionAlgoritmosLbl.setFont(new Font("Tahoma", 19));
         seccionAlgoritmosLbl.setStyle("-fx-text-fill: #ffffff");
         Label explicacionLbl = new Label("Arrastra de Sección Bloques a Sección Algoritmo para seleccionar qué se ejecuta");
@@ -72,7 +72,7 @@ public class ContenedorPrincipal extends BorderPane {
 //-------------------------------------------------------------------------------------------
         HBox textos = new HBox();
         textos.getChildren().addAll(seccionBloquesLbl, seccionAlgoritmosLbl);
-        textos.setSpacing(80);
+        textos.setSpacing(104);
         textos.setPadding(new Insets(10));
         textos.setAlignment(Pos.CENTER);
 
@@ -94,7 +94,7 @@ public class ContenedorPrincipal extends BorderPane {
         general.setStyle(
                 "-fx-border-style: solid inside;" +
                         "-fx-border-width: 4;" +
-                        "-fx-border-color: #14b0cc;");
+                        "-fx-border-color: #000000;");
 
         this.setCenter(general);
     }
@@ -158,7 +158,7 @@ public class ContenedorPrincipal extends BorderPane {
         contenedor.setStyle(
                 "-fx-border-style: solid inside;" +
                         "-fx-border-width: 4;" +
-                        "-fx-border-color: #14b0cc;");
+                        "-fx-border-color: #000000;");
 
         this.setLeft(contenedor);
     }
@@ -166,44 +166,6 @@ public class ContenedorPrincipal extends BorderPane {
     public void setReproductor(Personaje personaje, Stage stage) {
         VBox contenedor = this.crearVistaPersonaje(personaje);
 
-      /*  //creacion de bloques
-        tablero.agregarBloque("BajarLapiz", 0);
-        tablero.agregarBloque("MoverDerecha", 1);
-        tablero.agregarBloque("MoverDerecha", 2);
-        tablero.agregarBloque("MoverArriba", 3);
-        tablero.agregarBloque("MoverIzquierda", 4);
-        tablero.agregarBloque("MoverIzquierda", 5);
-        tablero.agregarBloque("MoverIzquierda", 6);
-        tablero.agregarBloque("MoverAbajo", 7);
-        tablero.agregarBloque("MoverAbajo", 8);
-        tablero.agregarBloque("MoverDerecha", 9);
-        tablero.agregarBloque("MoverDerecha", 10);
-        tablero.agregarBloque("MoverDerecha", 11);
-        tablero.agregarBloque("MoverDerecha", 12);
-        tablero.agregarBloque("MoverArriba", 13);
-        tablero.agregarBloque("MoverArriba", 14);
-        tablero.agregarBloque("MoverArriba", 15);
-        tablero.agregarBloque("MoverIzquierda", 16);
-        tablero.agregarBloque("LevantarLapiz", 17);
-        tablero.agregarBloque("MoverIzquierda", 18);
-        tablero.agregarBloque("MoverIzquierda", 19);
-        tablero.agregarBloque("MoverIzquierda", 20);
-        tablero.agregarBloque("BajarLapiz", 21);
-        tablero.agregarBloque("MoverIzquierda", 22);
-        tablero.agregarBloque("MoverAbajo", 23);
-        tablero.agregarBloque("MoverAbajo", 24);
-        tablero.agregarBloque("MoverAbajo", 25);
-        tablero.agregarBloque("MoverAbajo", 26);
-        tablero.agregarBloque("MoverDerecha", 27);
-        tablero.agregarBloque("MoverAbajo", 28);
-        tablero.agregarBloque("MoverAbajo", 29);
-        tablero.agregarBloque("MoverAbajo", 30);
-        tablero.agregarBloque("MoverAbajo", 31);
-        tablero.agregarBloque("MoverAbajo", 32);
-        tablero.agregarBloque("MoverAbajo", 33);
-        tablero.agregarBloque("MoverAbajo", 34);
-        //se agregaron todos
-        */
         Button reproducir = new Button("Reproducir");
         reproducir.setOnAction(e -> {
             tablero.iniciarAlgoritmo();
@@ -233,6 +195,10 @@ public class ContenedorPrincipal extends BorderPane {
         botonera.setPadding(new Insets(25));
 
         contenedor.getChildren().addAll(botonera);
+        contenedor.setStyle(
+                "-fx-border-style: solid inside;" +
+                        "-fx-border-width: 4;" +
+                        "-fx-border-color: #000000;");
 
         this.setRight(contenedor);
     }

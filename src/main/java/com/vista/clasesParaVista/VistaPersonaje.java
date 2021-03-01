@@ -35,7 +35,7 @@ public class VistaPersonaje implements InvalidationListener {
         this.seccionDibujo = personaje.getSeccionDibujo();
         this.canvas = canvas;
 
-        timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> this.simularUnPaso()));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> this.simularUnPaso()));
         timeline.setCycleCount(Timeline.INDEFINITE);
     }
 
@@ -75,7 +75,11 @@ public class VistaPersonaje implements InvalidationListener {
     }
 
     public void dibujarPersonaje(int contadorRecorrido) {
-        if (recorridoPersonaje.get(contadorRecorrido).getX() >= posicionAnterior.getX()){
+        if (recorridoPersonaje.get(contadorRecorrido).getY() > posicionAnterior.getY()) {
+            canvas.getGraphicsContext2D().drawImage(new Image("file:src/main/java/com/vista/imagenes/amongEspalda.jpg"), (recorridoPersonaje.get(contadorRecorrido).getX()) * 40 + 210, -(recorridoPersonaje.get(contadorRecorrido).getY()) * 40 + 211, 30, 37);
+        }else if (recorridoPersonaje.get(contadorRecorrido).getY() < posicionAnterior.getY()) {
+            canvas.getGraphicsContext2D().drawImage(new Image("file:src/main/java/com/vista/imagenes/amongQuieto.jpg"), (recorridoPersonaje.get(contadorRecorrido).getX()) * 40 + 210, -(recorridoPersonaje.get(contadorRecorrido).getY()) * 40 + 211, 31, 37);
+        }else if (recorridoPersonaje.get(contadorRecorrido).getX() >= posicionAnterior.getX()){
             canvas.getGraphicsContext2D().drawImage(new Image("file:src/main/java/com/vista/imagenes/amongMoviendose.png"), (recorridoPersonaje.get(contadorRecorrido).getX()) * 40 + 221, -(recorridoPersonaje.get(contadorRecorrido).getY()) * 40 + 209, 40, 37);
         }else {
             canvas.getGraphicsContext2D().drawImage(new Image("file:src/main/java/com/vista/imagenes/amongMovIzq.png"), (recorridoPersonaje.get(contadorRecorrido).getX()) * 40 + 221, -(recorridoPersonaje.get(contadorRecorrido).getY()) * 40 + 209, 40, 37);
