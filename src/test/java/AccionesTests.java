@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
 import com.acciones.*;
-
+import com.nodos.*;
 import com.arista.Arista;
 import com.excepciones.PersonajeNullException;
 import com.excepciones.PosicionANullException;
@@ -13,6 +13,7 @@ import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import org.junit.Test;
+
 
 
 public class AccionesTests {

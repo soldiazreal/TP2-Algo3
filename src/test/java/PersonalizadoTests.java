@@ -5,6 +5,7 @@ import com.acciones.*;
 import com.bloques.*;
 import com.excepciones.ListaNullException;
 import com.excepciones.PersonajeNullException;
+import com.nodos.NodoConcreto;
 import com.personaje.Personaje;
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -19,13 +20,10 @@ public class PersonalizadoTests {
     public void test01SeGuardaAlgoritmoPersonalizado (){
         Personalizado personalizado = new Personalizado();
 
-        List<Bloque> algoritmo = new ArrayList<>();
-        Individual moverDerecha = new Individual(new MoverDerecha());
-        Individual moverArriba = new Individual(new MoverArriba());
-        Individual bajarLapiz = new Individual(new BajarLapiz());
-        algoritmo.add(moverDerecha);
-        algoritmo.add(moverArriba);
-        algoritmo.add(bajarLapiz);
+        NodoConcreto algoritmo = new NodoConcreto(new Inicial());
+        algoritmo.insertarSiguiente(new NodoConcreto(new Individual(new MoverDerecha())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new MoverArriba())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new BajarLapiz())));
 
         personalizado.guardarAlgoritmo(algoritmo);
 
@@ -42,15 +40,11 @@ public class PersonalizadoTests {
     @Test
     public void test02SeEjecutaPersonalizadoConIndividualesDentro(){
         Personalizado personalizado = new Personalizado();
-        List<Bloque> algoritmo = new ArrayList<>();
-        Individual moverDerecha = new Individual(new MoverDerecha());
-        Individual moverAbajo = new Individual(new MoverAbajo());
-        Individual levantarLapiz = new Individual(new LevantarLapiz());
-        Individual bajarLapiz = new Individual(new BajarLapiz());
-        algoritmo.add(moverDerecha);
-        algoritmo.add(moverAbajo);
-        algoritmo.add(levantarLapiz);
-        algoritmo.add(bajarLapiz);
+        NodoConcreto algoritmo = new NodoConcreto(new Inicial());
+        algoritmo.insertarSiguiente(new NodoConcreto(new Individual(new MoverDerecha())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new MoverAbajo())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new LevantarLapiz())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new BajarLapiz())));
 
         personalizado.guardarAlgoritmo(algoritmo);
 
@@ -66,20 +60,21 @@ public class PersonalizadoTests {
     @Test
     public void test03SeEjecutaPersonalizadoConSecuencialesDentro(){
         Personalizado personalizado = new Personalizado();
-        List<Bloque> algoritmo = new ArrayList<>();
+        NodoConcreto algoritmo = new NodoConcreto(new Inicial());
         Personaje personajeMock = mock(Personaje.class);
 
-        Individual moverDerecha = new Individual(new MoverDerecha());
-        Individual moverArriba = new Individual(new MoverArriba());
+
+        NodoConcreto derecha = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto arriba = new NodoConcreto(new Individual(new MoverArriba()));
 
         Repeticion repeticion = new Repeticion(2);
-        repeticion.agregarBloque(moverArriba);
+        repeticion.agregarBloque(arriba);
 
         Inversion inversion = new Inversion();
-        inversion.agregarBloque(moverDerecha);
+        inversion.agregarBloque(derecha);
 
-        algoritmo.add(repeticion);
-        algoritmo.add(inversion);
+        algoritmo.insertarSiguiente(new NodoConcreto(repeticion));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(inversion));
 
         personalizado.guardarAlgoritmo(algoritmo);
         personalizado.ejecutarBloque(personajeMock);
@@ -91,23 +86,19 @@ public class PersonalizadoTests {
     @Test
     public void test04SeGuardaAlgoritmoVacio(){
         Personalizado personalizado = new Personalizado();
-        List<Bloque> algoritmo = new ArrayList<>();
+        NodoConcreto algoritmo = new NodoConcreto(new Inicial());
         personalizado.guardarAlgoritmo(algoritmo);
-        assertEquals(personalizado.cantidadBloques(), 0);
+        assertEquals(personalizado.cantidadBloques(), 1);
     }
 
     @Test
     public void test05SeInviertePersonalizadoConIndividualesDentro(){
         Personalizado personalizado = new Personalizado();
-        List<Bloque> algoritmo = new ArrayList<>();
-        Individual moverDerecha = new Individual(new MoverDerecha());
-        Individual moverAbajo = new Individual(new MoverAbajo());
-        Individual levantarLapiz = new Individual(new LevantarLapiz());
-        Individual bajarLapiz = new Individual(new BajarLapiz());
-        algoritmo.add(moverDerecha);
-        algoritmo.add(moverAbajo);
-        algoritmo.add(levantarLapiz);
-        algoritmo.add(bajarLapiz);
+        NodoConcreto algoritmo = new NodoConcreto(new Inicial());
+        algoritmo.insertarSiguiente(new NodoConcreto(new Individual(new MoverDerecha())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new MoverAbajo())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new LevantarLapiz())));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(new Individual(new BajarLapiz())));
 
         personalizado.guardarAlgoritmo(algoritmo);
 
@@ -123,20 +114,20 @@ public class PersonalizadoTests {
     @Test
     public void test06SeInviertePersonalizadoConSecuencialesDentro(){
         Personalizado personalizado = new Personalizado();
-        List<Bloque> algoritmo = new ArrayList<>();
+        NodoConcreto algoritmo = new NodoConcreto(new Inicial());
         Personaje personajeMock = mock(Personaje.class);
 
-        Individual moverDerecha = new Individual(new MoverDerecha());
-        Individual moverArriba = new Individual(new MoverArriba());
+        NodoConcreto derecha = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto arriba = new NodoConcreto(new Individual(new MoverArriba()));
 
         Repeticion repeticion = new Repeticion(2);
-        repeticion.agregarBloque(moverArriba);
+        repeticion.agregarBloque(arriba);
 
         Inversion inversion = new Inversion();
-        inversion.agregarBloque(moverDerecha);
+        inversion.agregarBloque(derecha);
 
-        algoritmo.add(repeticion);
-        algoritmo.add(inversion);
+        algoritmo.insertarSiguiente(new NodoConcreto(repeticion));
+        algoritmo.ultimoSiguiente().insertarSiguiente(new NodoConcreto(inversion));
 
         personalizado.guardarAlgoritmo(algoritmo);
         personalizado.invertirBloque(personajeMock);
@@ -148,11 +139,11 @@ public class PersonalizadoTests {
     @Test
     public void test07SeCopiaPersonalizado(){
         Personalizado personalizado = new Personalizado();
-        List<Bloque> algoritmo = new ArrayList<>();
+        NodoConcreto algoritmo = new NodoConcreto(new Inicial());
         Personaje personajeMock = mock(Personaje.class);
 
-        Individual moverArriba = new Individual(new MoverArriba());
-        algoritmo.add(moverArriba);
+        NodoConcreto moverArriba = new NodoConcreto(new Individual(new MoverArriba()));
+        algoritmo.insertarSiguiente(moverArriba);
 
         personalizado.guardarAlgoritmo(algoritmo);
         Bloque copia = personalizado.copia();
