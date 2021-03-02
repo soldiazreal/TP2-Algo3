@@ -54,7 +54,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
         this.getChildren().remove(this.siguiente);
         this.getChildren().add(siguienteNuevo);
         this.siguiente = siguienteNuevo;
-        siguienteNuevo.asignarAnterior(this.siguiente);
+        siguienteNuevo.asignarAnterior(this);
     }
 
     @Override

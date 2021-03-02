@@ -44,7 +44,7 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
         this.getChildren().remove(this.siguiente);
         this.getChildren().add(siguienteNuevo);
         this.siguiente = siguienteNuevo;
-        siguienteNuevo.asignarAnterior(this.siguiente);
+        siguienteNuevo.asignarAnterior(this);
     }
 
     @Override
