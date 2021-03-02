@@ -4,6 +4,7 @@ import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import com.tablero.Tablero;
+import com.vista.clasesParaVista.StageGuardarAlgoritmo;
 import com.vista.clasesParaVista.VistaPersonaje;
 import com.vista.clasesParaVista.vistBloquesAEjecutar.VistaBloquesAEjecutar;
 import com.vista.clasesParaVista.vistaBloques.Contenido;
@@ -15,11 +16,13 @@ import com.vista.eventos.BotonInstruccionesEventHandler;
 import com.vista.eventos.OpcionSalirEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.input.*;
 import javafx.collections.FXCollections;
@@ -117,7 +120,10 @@ public class ContenedorPrincipal extends BorderPane {
                 alert.setContentText(mensaje);
                 alert.show();
             } else {
-                String nombreAlgoritmo = algunaFuncionParaQueElUsuarioIngreseUnNombre();
+                StageGuardarAlgoritmo ventanaGuardar = new StageGuardarAlgoritmo();
+                ventanaGuardar.showStage();
+                String nombreAlgoritmo = ventanaGuardar.getData();
+                System.out.println("String guardado " + nombreAlgoritmo);
 
                 Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.jpeg")));
                 contenidoDelPersonalizado.agregarNombre(new Label(nombreAlgoritmo));
