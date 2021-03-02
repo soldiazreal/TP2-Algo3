@@ -1,15 +1,17 @@
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import com.acciones.MoverArriba;
+import com.acciones.MoverDerecha;
+import com.acciones.MoverIzquierda;
 import com.excepciones.ValorInvalidoException;
-import com.factory.BloqueMoverArriba;
-import com.factory.BloqueMoverDerecha;
-import com.factory.BloqueMoverIzquierda;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import org.junit.Test;
 import com.bloques.*;
+import com.nodos.*;
+
 
 public class SecuencialesTest {
 
@@ -20,10 +22,9 @@ public class SecuencialesTest {
 
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
-        BloqueMoverDerecha generador = new BloqueMoverDerecha();
 
-        Individual primerBloque = generador.generarBloque();
-        Individual segundoBloque = generador.generarBloque();
+        NodoConcreto primerBloque = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto segundoBloque = new NodoConcreto(new Individual(new MoverDerecha()));
 
         Inversion bloqueInversion = new Inversion();
         bloqueInversion.agregarBloque(primerBloque);
@@ -43,16 +44,19 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        BloqueMoverDerecha generadorDerecha = new BloqueMoverDerecha();
+        NodoConcreto primerBloque = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto segundoBloque = new NodoConcreto(new Individual(new MoverDerecha()));
 
-        Individual primerBloque = generadorDerecha.generarBloque();
 
         Inversion bloqueInversionSecundario = new Inversion();
+
         bloqueInversionSecundario.agregarBloque(primerBloque);
-        bloqueInversionSecundario.agregarBloque(primerBloque);
+        bloqueInversionSecundario.agregarBloque(segundoBloque);
+
+        NodoConcreto inversionSecun = new NodoConcreto(bloqueInversionSecundario);
 
         Inversion bloqueInversionPrimario = new Inversion();
-        bloqueInversionPrimario.agregarBloque(bloqueInversionSecundario);
+        bloqueInversionPrimario.agregarBloque(inversionSecun);
 
         bloqueInversionPrimario.ejecutarBloque(unPersonaje);
 
@@ -68,13 +72,10 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        BloqueMoverDerecha generadorDerecha = new BloqueMoverDerecha();
-        BloqueMoverArriba generadorArriba = new BloqueMoverArriba();
-
-        Individual primerBloque = generadorDerecha.generarBloque();
-        Individual segundoBloque = generadorDerecha.generarBloque();
-        Individual tercerBloque = generadorArriba.generarBloque();
-        Individual cuartoBloque = generadorDerecha.generarBloque();
+        NodoConcreto primerBloque = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto segundoBloque = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto tercerBloque = new NodoConcreto(new Individual(new MoverArriba()));
+        NodoConcreto cuartoBloque = new NodoConcreto(new Individual(new MoverDerecha()));
 
 
         Inversion bloqueInversionSecundario = new Inversion();
@@ -84,7 +85,8 @@ public class SecuencialesTest {
         Inversion bloqueInversionPrimario = new Inversion();
         bloqueInversionPrimario.agregarBloque(primerBloque);
         bloqueInversionPrimario.agregarBloque(segundoBloque);
-        bloqueInversionPrimario.agregarBloque(bloqueInversionSecundario);
+
+        bloqueInversionPrimario.agregarBloque(new NodoConcreto(bloqueInversionSecundario));
 
 
         bloqueInversionPrimario.ejecutarBloque(unPersonaje);
@@ -100,9 +102,8 @@ public class SecuencialesTest {
 
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
-        BloqueMoverDerecha generador = new BloqueMoverDerecha();
 
-        Individual primerBloque = generador.generarBloque();
+        NodoConcreto primerBloque = new NodoConcreto(new Individual(new MoverDerecha()));
 
         Repeticion bloqueRepeticion = new Repeticion(2);
         bloqueRepeticion.agregarBloque(primerBloque);
@@ -121,15 +122,13 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        BloqueMoverDerecha generadorDerecha = new BloqueMoverDerecha();
-
-        Individual primerBloque = generadorDerecha.generarBloque();
+        NodoConcreto primerBloque = new NodoConcreto(new Individual(new MoverDerecha()));
 
         Inversion bloqueInversionSecundario = new Inversion();
         bloqueInversionSecundario.agregarBloque(primerBloque);
 
         Repeticion bloqueRepeticionPrimario = new Repeticion(2);
-        bloqueRepeticionPrimario.agregarBloque(bloqueInversionSecundario);
+        bloqueRepeticionPrimario.agregarBloque(new NodoConcreto(bloqueInversionSecundario));
 
         bloqueRepeticionPrimario.ejecutarBloque(unPersonaje);
 
@@ -145,14 +144,9 @@ public class SecuencialesTest {
         SeccionDibujo nuevaSeccion = new SeccionDibujo();
         Personaje unPersonaje = new Personaje(posicionActual,nuevaSeccion);
 
-        BloqueMoverDerecha generadorDerecha = new BloqueMoverDerecha();
-        BloqueMoverIzquierda generadorIzquierda = new BloqueMoverIzquierda();
-        BloqueMoverArriba generadorArriba = new BloqueMoverArriba();
-
-
-        Individual primerBloque = generadorDerecha.generarBloque();
-        Individual segundoBloque = generadorArriba.generarBloque();
-        Individual tercerBloque = generadorIzquierda.generarBloque();
+        NodoConcreto primerBloque = new NodoConcreto(new Individual(new MoverDerecha()));
+        NodoConcreto segundoBloque = new NodoConcreto(new Individual(new MoverArriba()));
+        NodoConcreto tercerBloque = new NodoConcreto(new Individual(new MoverIzquierda()));
 
 
         Inversion bloqueInversionSecundario = new Inversion();
@@ -160,7 +154,7 @@ public class SecuencialesTest {
         bloqueInversionSecundario.agregarBloque(segundoBloque);
 
         Repeticion bloqueRepeticionPrimario = new Repeticion(2);
-        bloqueRepeticionPrimario.agregarBloque(bloqueInversionSecundario);
+        bloqueRepeticionPrimario.agregarBloque(new NodoConcreto(bloqueInversionSecundario));
         bloqueRepeticionPrimario.agregarBloque(tercerBloque);
 
         bloqueRepeticionPrimario.ejecutarBloque(unPersonaje);
@@ -199,5 +193,33 @@ public class SecuencialesTest {
     @Test (expected = ValorInvalidoException.class)
     public void test10NoSePuedeCrearBloqueRepeticionConRepeticionesNulas (){
         new Repeticion(0);
+    }
+
+    @Test
+    public void test11RepeticionesSeCopiaCorrectamente(){
+        Repeticion repeticion = new Repeticion(2);
+        Individual moverDerecha = new Individual(new MoverDerecha());
+        repeticion.agregarBloque(new NodoConcreto(moverDerecha));
+
+        Bloque copia = repeticion.copia();
+
+        Personaje personajeMock = mock(Personaje.class);
+
+        copia.ejecutarBloque(personajeMock);
+        verify(personajeMock, times(2)).mover(1,0);
+    }
+
+    @Test
+    public void test12InversionSeCopiaCorrectamente(){
+        Inversion inversion = new Inversion();
+        Individual moverDerecha = new Individual(new MoverDerecha());
+        inversion.agregarBloque(new NodoConcreto(moverDerecha));
+
+        Bloque copia = inversion.copia();
+
+        Personaje personajeMock = mock(Personaje.class);
+
+        copia.ejecutarBloque(personajeMock);
+        verify(personajeMock, times(1)).mover(-1,0);
     }
 }

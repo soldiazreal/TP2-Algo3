@@ -1,6 +1,7 @@
 package com.bloques;
 
 import com.excepciones.ValorInvalidoException;
+import com.nodos.Nodo;
 import com.personaje.Personaje;
 
 public class Repeticion extends Secuencial{
@@ -15,19 +16,26 @@ public class Repeticion extends Secuencial{
 
     @Override
     public void invertirBloque(Personaje unPersonaje) {
-        for(int i = 0; i < repeticiones; ++i){
-            for (Bloque elBloque : this.bloques) {
-                elBloque.invertirBloque(unPersonaje);
-            }
+        for(int i = 0; i < this.repeticiones; i++) {
+            bloques.invertir(unPersonaje);
         }
     }
 
     @Override
     public void ejecutarBloque(Personaje unPersonaje) {
-        for(int i = 0; i < repeticiones; ++i){
-            for (Bloque elBloque : this.bloques) {
-             elBloque.ejecutarBloque(unPersonaje);
-            }
+        for(int i = 1; i <= this.repeticiones; i++) {
+            bloques.ejecutar(unPersonaje);
         }
+    }
+
+    @Override
+    public Bloque copia(){
+        Repeticion repeticion = new Repeticion(this.repeticiones);
+        Nodo nodoAux = this.bloques;
+        while(!(nodoAux.esUltimo())){
+            repeticion.agregarBloque(nodoAux.copiar());
+            nodoAux = nodoAux.conseguirSiguiente();
+        }
+        return repeticion;
     }
 }

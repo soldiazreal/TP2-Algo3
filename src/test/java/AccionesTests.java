@@ -1,18 +1,13 @@
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 import com.acciones.*;
-
-import com.arista.Arista;
 import com.excepciones.PersonajeNullException;
-import com.excepciones.PosicionANullException;
-import com.lapiz.Lapiz;
 import com.lapiz.LapizBajo;
-import com.lapiz.LapizLevantado;
 import com.personaje.Personaje;
 import com.posicion.Posicion;
 import com.tablero.SeccionDibujo;
 import org.junit.Test;
+
 
 
 public class AccionesTests {
