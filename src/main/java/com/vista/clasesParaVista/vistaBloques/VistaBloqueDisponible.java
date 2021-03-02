@@ -30,8 +30,7 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
 
     public VistaBloque copia(){
         Nodo nodo = tablero.nodoConBloque(nombreBloque);
-        ImageView imagenCopia = new ImageView (this.elContenido.getImageView().getImage());
-        return new VistaBloqueIndividual((new Contenido(imagenCopia)), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
+        return new VistaBloqueIndividual(this.elContenido.copiaContenido(), nodo, this.tieneListaInternaEditable, nodo.primerNodoListaInternaDeBloque());
     }
 
     public void setDragConfiguration(){

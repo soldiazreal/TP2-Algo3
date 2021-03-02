@@ -101,39 +101,29 @@ public class ContenedorPrincipal extends BorderPane {
         botonCrearPersonalizado.setText("Guardar algoritmo");
 
         botonCrearPersonalizado.setOnAction(e -> {
-            if (bloquesAEjecutar.getChildren().size() == 0) {
+            if (tablero.getPrimerNodo().conseguirSiguiente().esUltimo()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alerta");
-                alert.setHeaderText("Hubo un error");
-                String mensaje = "No hay ninguna secuencia grabada en Sección Algoritmo!\n\nPor favor, antes de presionar el boton 'Guardar algoritmo' asegurate de haber armado una secuencia.";
+                alert.setTitle("Error");
+                alert.setHeaderText("La sección algoritmo está vacía!");
+                String mensaje = "Lo sentimos, tenés que agregar por lo menos un bloque a sección algoritmo antes de intentar guardar un bloque personalizado.";
                 alert.setContentText(mensaje);
                 alert.show();
             } else {
-                if (tablero.getPrimerNodo().conseguirSiguiente().esUltimo()) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("La sección algoritmo está vacía!");
-                    String mensaje = "Lo sentimos, tenés que agregar por lo menos un bloque a sección algoritmo antes de intentar guardar un bloque personalizado.";
-                    alert.setContentText(mensaje);
-                    alert.show();
-                } else {
-                    StageGuardarAlgoritmo ventanaGuardar = new StageGuardarAlgoritmo();
-                    ventanaGuardar.showStage();
-                    String nombreAlgoritmo = ventanaGuardar.getData();
-                    System.out.println("String guardado " + nombreAlgoritmo);
+                StageGuardarAlgoritmo ventanaGuardar = new StageGuardarAlgoritmo();
+                ventanaGuardar.showStage();
+                String nombreAlgoritmo = ventanaGuardar.getData();
+                System.out.println("String guardado " + nombreAlgoritmo);
 
-                    Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.png")));
-                    Label labelAlgoritmo = new Label(nombreAlgoritmo);
-                    labelAlgoritmo.setStyle("-fx-text-fill: #FFFFFF;"+"-fx-font-weight: bold;");
-                    contenidoDelPersonalizado.agregarNombre(labelAlgoritmo);
+                Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.png")));
+                Label labelAlgoritmo = new Label(nombreAlgoritmo);
+                contenidoDelPersonalizado.agregarNombre(labelAlgoritmo);
 
-                    VBox contenedorDelBloqueDisponible = new VBox();
+                VBox contenedorDelBloqueDisponible = new VBox();
 
-                    this.tablero.generarPersonalizado(nombreAlgoritmo);
+                this.tablero.generarPersonalizado(nombreAlgoritmo);
 
-                    VistaBloqueDisponible vistaPersonalizado = new VistaBloqueDisponible(contenidoDelPersonalizado, contenedorDelBloqueDisponible, this.tablero, nombreAlgoritmo, false);
-                    vistaSeccionBloques.agregarVistaBloque(vistaPersonalizado);
-                }
+                VistaBloqueDisponible vistaPersonalizado = new VistaBloqueDisponible(contenidoDelPersonalizado, contenedorDelBloqueDisponible, this.tablero, nombreAlgoritmo, false);
+                vistaSeccionBloques.agregarVistaBloque(vistaPersonalizado);
             }
         });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
