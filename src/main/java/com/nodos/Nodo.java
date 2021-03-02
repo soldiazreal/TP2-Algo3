@@ -1,10 +1,8 @@
 package com.nodos;
 
-import com.bloques.Bloque;
 import com.personaje.Personaje;
-import com.bloques.*;
 
-//algo
+
 public interface Nodo {
 
     void insertarSiguiente(Nodo siguiente);

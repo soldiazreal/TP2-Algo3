@@ -10,8 +10,6 @@ import javafx.scene.layout.VBox;
 public class VistaBloquesAEjecutar extends VBox {
     public VistaBloquesAEjecutar (Tablero tablero){
 
-        //this.setStyle("-fx-border-color: #e84daf;" + "-fx-border-width: 4");
-
         this.setSpacing(20);
 
         this.setPrefSize(250, 460);

@@ -9,29 +9,19 @@ import com.vista.clasesParaVista.VistaPersonaje;
 import com.vista.clasesParaVista.vistBloquesAEjecutar.VistaBloquesAEjecutar;
 import com.vista.clasesParaVista.vistaBloques.Contenido;
 import com.vista.clasesParaVista.vistaBloques.VistaBloqueDisponible;
-import com.vista.clasesParaVista.vistaBloques.VistaBloqueIndividual;
-import com.vista.clasesParaVista.vistaBloques.VistaBloqueInicio;
 import com.vista.clasesParaVista.vistaSeccionBloques.VistaSeccionBloques;
 import com.vista.eventos.BotonInstruccionesEventHandler;
 import com.vista.eventos.OpcionSalirEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.input.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.text.Font;
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class ContenedorPrincipal extends BorderPane {
 
@@ -76,8 +66,6 @@ public class ContenedorPrincipal extends BorderPane {
         // Seleccion de como se ven las areas
         bloquesDisponibles.setPrefSize(250, 460);
 
-
-//-------------------------------------------------------------------------------------------
         HBox textos = new HBox();
         textos.getChildren().addAll(seccionBloquesLbl, seccionAlgoritmosLbl);
         textos.setSpacing(104);
@@ -135,7 +123,9 @@ public class ContenedorPrincipal extends BorderPane {
                     System.out.println("String guardado " + nombreAlgoritmo);
 
                     Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.png")));
-                    contenidoDelPersonalizado.agregarNombre(new Label(nombreAlgoritmo));
+                    Label labelAlgoritmo = new Label(nombreAlgoritmo);
+                    labelAlgoritmo.setStyle("-fx-text-fill: #FFFFFF;"+"-fx-font-weight: bold;");
+                    contenidoDelPersonalizado.agregarNombre(labelAlgoritmo);
 
                     VBox contenedorDelBloqueDisponible = new VBox();
 

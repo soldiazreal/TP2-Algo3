@@ -35,7 +35,7 @@ public class NodosTest {
         primer.insertarSiguiente(segundo);
         segundo.insertarSiguiente(tercer);
 
-        assertEquals(primer.ultimoSiguiente(),segundo.conseguirSiguiente());;
+        assertEquals(primer.ultimoSiguiente(),segundo.conseguirSiguiente());
     }
 
     @Test

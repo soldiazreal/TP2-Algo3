@@ -1,12 +1,8 @@
 package com.vista.clasesParaVista.vistaBloques;
 
 import com.nodos.Nodo;
-import com.nodos.NodoConcreto;
-import com.nodos.NodoNulo;
 import com.vista.clasesParaVista.InterfacesDragAndDrop.Receptor;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 
@@ -17,8 +13,6 @@ public class VistaBloqueInicio extends VistaBloque implements Receptor {
 
     public VistaBloqueInicio (Contenido contenido, Nodo nodoInicial){
         bloqueInicioImagen = contenido;
-        //bloqueInicioImagen.setFitHeight(50);
-        //bloqueInicioImagen.setFitWidth(75);
 
         nodo = nodoInicial;
 

@@ -26,7 +26,6 @@ public class Tablero {
         seccionAlgoritmo.ejecutar(personaje);
     }
 
-    //necesito esto para reiniciar simulacion, se puede mejorar
     public void reestablecerPersonaje (Personaje personaje) {
         this.personaje = personaje;
     }
@@ -37,7 +36,6 @@ public class Tablero {
 
     public Nodo getPrimerNodo(){ return primerNodo;}
 
-    //ojo con esto, es peligroso pero no quedaba otra por el momento
     public void setSeccionBloquesYAlgoritmos (SeccionBloques seccionBloques, SeccionAlgoritmo seccionAlgoritmo)  {
         this.seccionBloques = seccionBloques;
         this.seccionAlgoritmo = seccionAlgoritmo;

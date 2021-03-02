@@ -5,9 +5,7 @@ import com.excepciones.PersonajeNullException;
 import com.nodos.Nodo;
 import com.nodos.NodoNulo;
 import com.personaje.Personaje;
-import com.tablero.SeccionBloques;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Personalizado extends Secuencial {
 

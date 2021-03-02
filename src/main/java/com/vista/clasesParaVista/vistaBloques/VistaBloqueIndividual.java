@@ -91,17 +91,17 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
 
     public void setDragConfiguration(){
 
-        elContenido.setOnDragDetected((MouseEvent event)->{ //aca ojo
+        elContenido.setOnDragDetected((MouseEvent event)->{
             Dragboard db = this.startDragAndDrop(TransferMode.ANY);
             ClipboardContent content = new ClipboardContent();
-            content.putImage(elContenido.getImageView().getImage()); //esto rompe antes era image.getImage()
+            content.putImage(elContenido.getImageView().getImage());
             db.setContent(content);
             this.separarDeLaCadena();
 
             System.out.println("DragDetected on VistaBloqueIndividual");
         });
 
-        elContenido.setOnMouseDragged((MouseEvent event)->{ //aca ojo
+        elContenido.setOnMouseDragged((MouseEvent event)->{
             event.setDragDetect(true);
             System.out.println("MouseDragged on VistaBloqueIndividual");
         });
@@ -109,7 +109,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
 
     public void setDropConfiguration(){
 
-        elContenido.setOnDragOver(new EventHandler<DragEvent>() { //aca ojo
+        elContenido.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {
                 if (dragEvent.getGestureSource().getClass() == VistaBloqueIndividual.class){
@@ -123,7 +123,7 @@ public class VistaBloqueIndividual extends VistaBloque implements Arrastrable, R
         });
 
 
-        elContenido.setOnDragDropped((DragEvent event)->{ //ojo aca
+        elContenido.setOnDragDropped((DragEvent event)->{
             System.out.println("DragDropped on VistaBloqueIndividual");
             if (VistaBloqueIndividual.class == event.getGestureSource().getClass()) {
                 VistaBloque bloque = (VistaBloque) event.getGestureSource();

@@ -2,7 +2,6 @@ package com.vista.clasesParaVista.vistaBloques;
 
 import com.nodos.Nodo;
 import com.nodos.NodoNulo;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public abstract class VistaBloque extends VBox {

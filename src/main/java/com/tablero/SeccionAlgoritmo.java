@@ -3,10 +3,8 @@ package com.tablero;
 import com.bloques.Bloque;
 import com.bloques.Inicial;
 import com.personaje.Personaje;
-import javafx.scene.Node;
 import com.nodos.*;
 
-import java.util.LinkedList;
 
 public class SeccionAlgoritmo{
 

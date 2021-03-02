@@ -1,6 +1,5 @@
 package com.bloques;
 
-import com.acciones.*;
 import com.nodos.Nodo;
 import com.personaje.*;
 

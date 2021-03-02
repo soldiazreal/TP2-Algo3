@@ -2,11 +2,9 @@ package com.vista.imagenes;
 
 import com.vista.eventos.OpcionAcercaDeEventHandler;
 import com.vista.eventos.OpcionPantallaCompletaEventHandler;
-import com.vista.eventos.OpcionSalirEventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.Stage;
 
 public class BarraDeMenu extends MenuBar {

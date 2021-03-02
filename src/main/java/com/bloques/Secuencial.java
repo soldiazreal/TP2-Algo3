@@ -17,8 +17,6 @@ public abstract class Secuencial implements Bloque{
         return this.cantidad;
     }
 
-    //No se si esto se hace asi como que es doble abstraccion dado que la ejecucion de los bloques
-    //secuenciales tambien es diferente
     @Override
     public abstract void ejecutarBloque(Personaje unPersonaje);
 

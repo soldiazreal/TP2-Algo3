@@ -1,6 +1,5 @@
 package com.acciones;
 import com.excepciones.PersonajeNullException;
-import com.excepciones.SeccionDibujoNullException;
 import com.lapiz.*;
 import com.personaje.*;
 

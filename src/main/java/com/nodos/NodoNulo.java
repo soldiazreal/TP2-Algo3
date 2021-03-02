@@ -1,10 +1,7 @@
 package com.nodos;
 
-import com.bloques.Bloque;
-import com.bloques.Inicial;
 import com.personaje.Personaje;
 
-//nodonulo
 public class NodoNulo implements Nodo {
 
 

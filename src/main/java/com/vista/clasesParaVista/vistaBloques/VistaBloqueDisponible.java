@@ -21,8 +21,6 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
         this.tablero = tablero;
         this.contenedor = contenedor;
         this.nombreBloque = nombre;
-        //contenido.setFitWidth(75);
-       //contenido.setFitHeight(50);
         this.getChildren().add(contenido);
         this.elContenido = contenido;
         this.tieneListaInternaEditable = tieneListaInternaEditable;
@@ -37,15 +35,15 @@ public class VistaBloqueDisponible extends VBox implements Arrastrable {
     }
 
     public void setDragConfiguration(){
-        elContenido.setOnDragDetected((MouseEvent event)->{//aca hay que hacerlo con contenedor tambien
+        elContenido.setOnDragDetected((MouseEvent event)->{
             System.out.println("DragDetected on BloqueDisponible");
             Dragboard db = this.startDragAndDrop(TransferMode.COPY);
             ClipboardContent content = new ClipboardContent();
-            content.putImage(elContenido.getImageView().getImage()); //aca hay que hacerlo con contenedor
+            content.putImage(elContenido.getImageView().getImage());
             db.setContent(content);
         });
 
-        elContenido.setOnMouseDragged((MouseEvent event)->{ //aca hay que hacerlo con contenedor
+        elContenido.setOnMouseDragged((MouseEvent event)->{
             event.setDragDetect(true);
             System.out.println("MouseDragged on BloqueDisponible");
         });
