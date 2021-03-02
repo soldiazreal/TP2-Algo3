@@ -111,6 +111,7 @@ public class ContenedorPrincipal extends BorderPane {
 
         Button botonCrearPersonalizado = new Button();
         botonCrearPersonalizado.setText("Guardar algoritmo");
+
         botonCrearPersonalizado.setOnAction(e -> {
             if (bloquesAEjecutar.getChildren().size() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -120,20 +121,29 @@ public class ContenedorPrincipal extends BorderPane {
                 alert.setContentText(mensaje);
                 alert.show();
             } else {
-                StageGuardarAlgoritmo ventanaGuardar = new StageGuardarAlgoritmo();
-                ventanaGuardar.showStage();
-                String nombreAlgoritmo = ventanaGuardar.getData();
-                System.out.println("String guardado " + nombreAlgoritmo);
+                if (tablero.getPrimerNodo().conseguirSiguiente().esUltimo()) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("La sección algoritmo está vacía!");
+                    String mensaje = "Lo sentimos, tenés que agregar por lo menos un bloque a sección algoritmo antes de intentar guardar un bloque personalizado.";
+                    alert.setContentText(mensaje);
+                    alert.show();
+                } else {
+                    StageGuardarAlgoritmo ventanaGuardar = new StageGuardarAlgoritmo();
+                    ventanaGuardar.showStage();
+                    String nombreAlgoritmo = ventanaGuardar.getData();
+                    System.out.println("String guardado " + nombreAlgoritmo);
 
-                Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.jpeg")));
-                contenidoDelPersonalizado.agregarNombre(new Label(nombreAlgoritmo));
+                    Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.jpeg")));
+                    contenidoDelPersonalizado.agregarNombre(new Label(nombreAlgoritmo));
 
-                VBox contenedorDelBloqueDisponible = new VBox();
+                    VBox contenedorDelBloqueDisponible = new VBox();
 
-                this.tablero.generarPersonalizado(nombreAlgoritmo);
+                    this.tablero.generarPersonalizado(nombreAlgoritmo);
 
-                VistaBloqueDisponible vistaPersonalizado = new VistaBloqueDisponible(contenidoDelPersonalizado, contenedorDelBloqueDisponible, this.tablero, nombreAlgoritmo, false);
-                vistaSeccionBloques.agregarVistaBloque(vistaPersonalizado);
+                    VistaBloqueDisponible vistaPersonalizado = new VistaBloqueDisponible(contenidoDelPersonalizado, contenedorDelBloqueDisponible, this.tablero, nombreAlgoritmo, false);
+                    vistaSeccionBloques.agregarVistaBloque(vistaPersonalizado);
+                }
             }
         });
         botonCrearPersonalizado.setStyle("-fx-border-width: 4;" +
