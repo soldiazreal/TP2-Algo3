@@ -32,11 +32,11 @@ public class VistaSeccionBloques extends VBox{
         ImageView imagenMoverIzquierda = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueMoverIzquierda.jpeg"));
         ImageView imagenMoverArriba = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueMoverArriba.jpeg"));
         ImageView imagenMoverAbajo = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueMoverAbajo.jpeg"));
-        ImageView imagenBajarLapiz = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueBajarLapiz.jpeg"));
-        ImageView imagenLevantarLapiz = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueLevantarLapiz.jpeg"));
+        ImageView imagenBajarLapiz = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueBajarLapiz.jpg"));
+        ImageView imagenLevantarLapiz = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueLevantarLapiz.jpg"));
         ImageView imagenRepetir2 = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueRepetir2.jpeg"));
         ImageView imagenRepetir3 = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueRepetir3.jpeg"));
-        ImageView imagenInvertir = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueInvertir.jpeg"));
+        ImageView imagenInvertir = new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloqueInvertir.png"));
 
         //creo contenedores para los bloques de seccion bloque
         VBox contenedorBloqueMoverDerecha = new VBox();

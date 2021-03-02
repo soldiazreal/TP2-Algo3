@@ -134,7 +134,7 @@ public class ContenedorPrincipal extends BorderPane {
                     String nombreAlgoritmo = ventanaGuardar.getData();
                     System.out.println("String guardado " + nombreAlgoritmo);
 
-                    Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.jpeg")));
+                    Contenido contenidoDelPersonalizado = new Contenido(new ImageView(new Image("file:src/main/java/com/vista/imagenes/bloqueImagenes/bloquePersonalizado.png")));
                     contenidoDelPersonalizado.agregarNombre(new Label(nombreAlgoritmo));
 
                     VBox contenedorDelBloqueDisponible = new VBox();
