@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class StageGuardarAlgoritmo {
     private String data;
+    private final int maxLongitudNombre = 13;
 
     public void showStage() {
         Stage stage = new Stage();
@@ -38,13 +39,21 @@ public class StageGuardarAlgoritmo {
                 "-fx-background-color: #e84daf;" + "-fx-background-radius: 8,7,6;" + "-fx-background-insets: 0,1,2;");
 
         botonGuardar.setOnAction(e -> {
-            if (contendorString.getText() == "") {
+            if (contendorString.getText().equals("")) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
                 alert.setHeaderText("Ingresaste un nombre vacío!");
                 String mensaje = "Lo sentimos, el nombre debe ser válido. Por favor ingresalo de nuevo.";
                 alert.setContentText(mensaje);
                 alert.show();
+            } else if (contendorString.getText().length() > this.maxLongitudNombre){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText("Ingresaste un nombre muy largo, el nombre debe tener un maximo de "+maxLongitudNombre+" caracteres");
+                String mensaje = "Lo sentimos, el nombre debe ser válido. Por favor ingresalo de nuevo.";
+                alert.setContentText(mensaje);
+                alert.show();
+
             } else {
                 data = contendorString.getText();
                 stage.close();
